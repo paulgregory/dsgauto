@@ -1,0 +1,421 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Mollom 0.6.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-12-20 16:27+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Matthias Vandermaesen <matthias@colada.be>\n"
+"Language-Team:  <matthias@netsensei.nl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: uninstall.php:8
+msgid "The uninstall is not being executed from plugins.php. Halting."
+msgstr "De deinstallatie werd niet uitgevoerd door plugins.php en wordt daarom gestopt."
+
+#: wp-mollom.php:147
+msgid "Something went wrong while moving data from comments to the Mollom data table"
+msgstr "Er liep iets fout tijdens het migreren van data naar de Mollom data tabel."
+
+#: wp-mollom.php:218
+#: wp-mollom.php:229
+#: wp-mollom.php:235
+msgid "Mollom"
+msgstr "Mollom"
+
+#: wp-mollom.php:230
+#: wp-mollom.php:236
+#: wp-mollom.php:284
+msgid "Mollom statistics"
+msgstr "Mollom statistieken"
+
+#: wp-mollom.php:285
+msgid "What is happening at Mollom?"
+msgstr "Wat gebeurt er bij Mollom.com?"
+
+#: wp-mollom.php:290
+msgid "These are statistics kept by the Mollom service."
+msgstr "Deze statistieken worden gegenereerd op basis van data bijgehouden door de Mollom.com servers. "
+
+#: wp-mollom.php:298
+msgid "What is happening over here?"
+msgstr "Wat gebeurt er hier?"
+
+#: wp-mollom.php:299
+msgid "The plugin keeps some statistics of it's own. These are stored in the database. These values represent the number of messages that the plugin has succesfully parsed."
+msgstr "De plugin bewaart ook data in de lokale Wordpress database. Deze grafiek toont het aantal comments, trackbacks,... dat succesvol door de plugin werd verwerkt."
+
+#: wp-mollom.php:304
+msgid "The Mollom plugin is not configured. Please go to <strong><a href=\"options-general.php?page=mollom-key-config\">Settings &gt; Mollom</a></strong> and configure the plugin."
+msgstr "De Mollom plugin is nog niet geconfigureerd. Gelieve naar <strong><a href=\"options-general.php?page=mollom-key-config\">Settings &gt Mollom</a></strong> te gaan en de plugin daar te configureren."
+
+#: wp-mollom.php:404
+#, php-format
+msgid "WP Mollom has processed a total of <strong>%1$d</strong> messages."
+msgstr "WP Mollom verwerkte een totaal van <strong>%1$d</strong> comments en trackbacks."
+
+#: wp-mollom.php:406
+msgid "Ham: "
+msgstr "Ham:"
+
+#: wp-mollom.php:406
+#, php-format
+msgid "%d messages cleared as ham."
+msgstr "%d boodschappen zijn ham."
+
+#: wp-mollom.php:407
+msgid "Spam: "
+msgstr "Spam:"
+
+#: wp-mollom.php:407
+#, php-format
+msgid "%d messages blocked as spam."
+msgstr "%d boodschappen werden geblokkeerd als spam."
+
+#: wp-mollom.php:408
+msgid "Unsure: "
+msgstr "Onzeker:"
+
+#: wp-mollom.php:408
+#, php-format
+msgid "%d messages passed a captcha succesfully."
+msgstr "Voor %d boodschappen werd er een succesvolle captcha uitgevoerd."
+
+#: wp-mollom.php:409
+msgid "Moderated: "
+msgstr "Gemodereerd:"
+
+#: wp-mollom.php:409
+#, php-format
+msgid "%d messages had to be manually moderated by you."
+msgstr "%d boodschappen hebt u manueel moeten modereren."
+
+#: wp-mollom.php:433
+#: wp-mollom.php:678
+msgid "Cheatin&#8217; uh?"
+msgstr "Geen toegang!"
+
+#: wp-mollom.php:537
+msgid "Your private key is empty."
+msgstr "Uw private sleutel is niet ingevuld."
+
+#: wp-mollom.php:538
+msgid "Your public key is empty."
+msgstr "Uw publieke sleutel is niet ingevuld."
+
+#: wp-mollom.php:539
+msgid "The key you provided is wrong."
+msgstr "De sleutelcombinatie die u invoerde is verkeerd."
+
+#: wp-mollom.php:540
+#, php-format
+msgid "Mollom error: %s"
+msgstr "Mollom fout: %s"
+
+#: wp-mollom.php:541
+#, php-format
+msgid "Network error: %s"
+msgstr "Netwerk fout: %s"
+
+#: wp-mollom.php:542
+msgid "Your keys are valid."
+msgstr "Uw sleutels werden succesvol gevalideerd."
+
+#: wp-mollom.php:552
+msgid "Mollom Configuration"
+msgstr "Mollom configuratie."
+
+#: wp-mollom.php:555
+msgid "Options saved."
+msgstr "Opties bewaard."
+
+#: wp-mollom.php:569
+msgid "<a href=\"http://mollom.com\" title=\"Mollom\">Mollom</a> is a web service that helps you identify content quality and, more importantly, helps you stop comment and contact form spam. When moderation becomes easier, you can spend more time and energy to interact with your web community."
+msgstr "<a href=\"http://mollom.com\" title=\"Mollom\">Mollom</a> is een webdienst die u helpt om spam via commentaar- en contactformulieren te blokkeren. Mollom bezorgt u minder werk waardoor u meer tijd en energie kan richten op wat belangrijk is: een kwaliteitsvolle dienstverlening."
+
+#: wp-mollom.php:570
+msgid "You need a public and a private key before you can make use of Mollom. <a href=\"http://mollom.com/user/register\">Register</a> with Mollom to get your keys."
+msgstr "U hebt een publieke en een private sleutel nodig vooraleer u van Mollom gebruik kan maken. <a href=\"http://mollom.com/user/register\">Registreer</a> een account bij Mollom om een sleutelcombinatie te verkijgen."
+
+#: wp-mollom.php:575
+msgid "Public key"
+msgstr "Publieke sleutel"
+
+#: wp-mollom.php:577
+msgid "Private key"
+msgstr "Private sleutel"
+
+#: wp-mollom.php:579
+msgid "User roles"
+msgstr "Gebruikersrollen"
+
+#: wp-mollom.php:580
+msgid "Select the roles you want to exclude from the mandatory Mollom check. Default: all roles are exempt."
+msgstr "Selecteer de rollen waarvan de gebruikers' commentaren niet door Mollom moeten worden gecontroleerd. Default: alle rollen worden vrijgesteld van controle."
+
+#: wp-mollom.php:589
+msgid "Policy mode"
+msgstr "Policy mode"
+
+#: wp-mollom.php:590
+msgid "If Mollom services are down, all comments are blocked by default."
+msgstr "Indien de Mollom diensten niet bereikbaar zijn, dan worden alle comments en trackbacks standaard geblokkeerd."
+
+#: wp-mollom.php:594
+msgid "Restore"
+msgstr "Herstel"
+
+#: wp-mollom.php:595
+msgid "Restore the database (purge all Mollom data) upon deactivation of the plugin."
+msgstr "Herstel de database (verwijder alle Mollom data) bij deactivatie van de plugin"
+
+#: wp-mollom.php:597
+msgid "Reverse proxy"
+msgstr "Reverse proxy"
+
+#: wp-mollom.php:598
+msgid "Check this if your host is running a reverse proxy service (squid,...) and enter the ip address(es) of the reverse proxy your host runs as a commaseparated list."
+msgstr "Indien uw host zich achter een reverse proxy dienst (squid,...) bevindt, geef dan hier de ipadres(sen) van de reverse proxy als een kommagescheiden lijst."
+
+#: wp-mollom.php:599
+msgid "When in doubt, just leave this off."
+msgstr "Twijfel? Laat deze optie uitgeschakeld."
+
+#: wp-mollom.php:600
+msgid "Enable: "
+msgstr "Schakel aan:"
+
+#: wp-mollom.php:602
+msgid "Update options &raquo;"
+msgstr "Update opties &raquo;"
+
+#: wp-mollom.php:739
+msgid "Feedback sent to Mollom. The comment was successfully deleted."
+msgstr "Feedback werd naar Mollom verzonden. De comment werd succesvol verwijderd."
+
+#: wp-mollom.php:740
+msgid "You flagged this comment as approved."
+msgstr "U markeerde deze comment als goedgekeurd."
+
+#: wp-mollom.php:741
+msgid "You flagged this comment as unapproved."
+msgstr "U markeerde deze comment als afgekeurd."
+
+#: wp-mollom.php:742
+msgid "Feedback sent to Mollom but the comment could not be deleted."
+msgstr "Feedback werd naar Mollom verzonden maar de comment kon niet worden verwijderd."
+
+#: wp-mollom.php:743
+msgid "Mollom was unreachable. Maybe the service is down or there is a network disruption."
+msgstr "De Mollom diensten waren onbereikbaar. Misschien is de dienst inactief of is er een netwerkstoring."
+
+#: wp-mollom.php:744
+msgid "Could not perform action because the Mollom plugin is not configured. Please configure <strong><a href=\"options-general.php?page=mollom-key-config\">the settings</a></strong> first."
+msgstr "Kon de actie niet voltooien omdat de Mollom plugin niet is geconfigureerd. Gelieve de plugin eerst te <strong><a href=\"options-general.php?page-mollom-key-config\">configureren</a></strong>."
+
+#: wp-mollom.php:745
+msgid "Mollom could not process your request."
+msgstr "Mollom kon uw verzoek niet verwerken."
+
+#: wp-mollom.php:746
+msgid "Wordpress could not (un)approve this comment."
+msgstr "Wordpress kon deze comment niet goed- of afkeuren."
+
+#: wp-mollom.php:747
+msgid "Invalid Mollom feedback action."
+msgstr "Ongeldige Mollom feedback actie."
+
+#: wp-mollom.php:806
+msgid "Mollom Manage"
+msgstr "Manage Mollom."
+
+#: wp-mollom.php:807
+msgid "This is an overview of all the Mollom approved comments posted on your website. You can moderate them here. Through moderating these messages, Mollom learns from it's mistakes. Moderation of messages that, in your view, should have been blocked, is encouraged."
+msgstr "Dit is een overzicht van alle comments die door Mollom werden goedgekeurd. U kan deze hier modereren. Moderatie is belangrijk omdat Mollom zo uit fouten (valse positieven) kan leren."
+
+#: wp-mollom.php:808
+msgid "Take a look at <a href=\"#\" id=\"mollom-stat-toggle\">some statistics</a>."
+msgstr "Bekijk enkele <a href=\"#\" id=\"mollom-stat-toggle\">statistieken</a>."
+
+#: wp-mollom.php:828
+msgid "Something went wrong while processing the feedback. <a href=\"#\" id=\"mollom-toggle\">Click to display a detailed report</a>."
+msgstr "Er liep iets fout tijdens het verwerken van de feedback. <a href=\"#\" id=\"mollom-toggle\">Bekijk een gedetailleerd rapport</a>."
+
+#: wp-mollom.php:830
+msgid "All comments were succesfully moderated. <a href=\"#\" id=\"mollom-toggle\">Click to display a detailed report</a>."
+msgstr "Alle comments werden succesvol gemodereerd. <a href=\"#\" id=\"mollom-toggle\">Bekijk een gedetailleerd rapport</a>."
+
+#: wp-mollom.php:852
+msgid "There are no comments that can be moderated through Mollom."
+msgstr "Er zijn momenteel geen comments die door Mollom kunnen worden gemodereerd."
+
+#: wp-mollom.php:933
+#: wp-mollom.php:1096
+msgid "spam"
+msgstr "spam"
+
+#: wp-mollom.php:933
+#: wp-mollom.php:1097
+msgid "profanity"
+msgstr "vuile taal"
+
+#: wp-mollom.php:934
+msgid "low-quality"
+msgstr "lage kwaliteit"
+
+#: wp-mollom.php:934
+#: wp-mollom.php:1099
+msgid "unwanted"
+msgstr "ongewenst"
+
+#: wp-mollom.php:935
+msgid "approve"
+msgstr "goedgekeurd"
+
+#: wp-mollom.php:935
+msgid "unapprove"
+msgstr "afgekeurd"
+
+#: wp-mollom.php:1032
+msgid "&laquo;"
+msgstr "&laquo; Vorige"
+
+#: wp-mollom.php:1057
+msgid "&raquo;"
+msgstr "Volgende &raquo;"
+
+#: wp-mollom.php:1096
+msgid "moderate as spam"
+msgstr "modereer als spam"
+
+#: wp-mollom.php:1097
+msgid "moderate as profanity"
+msgstr "modereer als vuile taal"
+
+#: wp-mollom.php:1098
+msgid "moderate as low quality"
+msgstr "modereer als lage kwaliteit"
+
+#: wp-mollom.php:1098
+msgid "low quality"
+msgstr "lage kwaliteit"
+
+#: wp-mollom.php:1099
+#: wp-mollom.php:1100
+#: wp-mollom.php:1101
+msgid "moderate as unwanted"
+msgstr "modereer als ongewenst"
+
+#: wp-mollom.php:1100
+msgid "approved"
+msgstr "goedgekeurd"
+
+#: wp-mollom.php:1101
+msgid "unapproved"
+msgstr "afgekeurd"
+
+#: wp-mollom.php:1127
+#: wp-mollom.php:1223
+msgid "You haven't configured Mollom yet! Per the website's policy. We could not process your comment."
+msgstr "U hebt Mollom nog niet geconfigureerd. Het beleid van de website verhindert het verwerken van uw verzoek."
+
+#: wp-mollom.php:1159
+#: wp-mollom.php:1194
+#: wp-mollom.php:1204
+#: wp-mollom.php:1238
+#: wp-mollom.php:1274
+#: wp-mollom.php:1320
+#: wp-mollom.php:1348
+#: wp-mollom.php:1412
+#: wp-mollom.php:1422
+msgid "Something went wrong..."
+msgstr "Er liep iets fout..."
+
+#: wp-mollom.php:1188
+msgid "Your comment has been marked as spam or unwanted by Mollom. It could not be accepted."
+msgstr "Uw comment werd gemarkeerd als spam of ongewenst door Mollom. Uw bijdrage kon niet worden geaccepteerd."
+
+#: wp-mollom.php:1296
+msgid "The Mollom session ID part (a hidden field) is missing from the form you tried to submit."
+msgstr "Het Mollom session ID (een verborgen formulierveld) ontbreekt van het formulier dat je probeerde in te dienen."
+
+#: wp-mollom.php:1303
+msgid "You didn't fill out all the required fields, please try again"
+msgstr "U hebt niet alle verplichte velden ingevuld."
+
+#: wp-mollom.php:1341
+msgid "The solution you submitted to the CAPTCHA was incorrect. Please try again..."
+msgstr "De oplossing die u hebt opgegeven is incorrecte. Gelieve opnieuw te proberen..."
+
+#: wp-mollom.php:1434
+msgid "WordPress &raquo; Mollom CAPTCHA test"
+msgstr "Wordpress &raquo; Mollom CAPTCHA test"
+
+#: wp-mollom.php:1489
+msgid "Mollom CAPTCHA"
+msgstr "Mollom CAPTCHA"
+
+#: wp-mollom.php:1490
+#, fuzzy
+msgid "This blog is protected by <a href=\"http://mollom.com\">Mollom</a> against spam. Mollom is unsure whether your comment was spam or not. Please complete this form by typing the text in the image in the input box. Additionally, you can also listen to a spoken version of the text."
+msgstr "Deze website wordt beschermd door <a href=\"http://mollom.com\">Mollom</a> tegen spam. Mollom is onzeker of uw comment al dan niet spam is. Gelieve deze test te vervolledigen door de tekst in de afbeelding in het formulier over te nemen. U kan ook een gesproken versie van de tekst beluisteren."
+
+#: wp-mollom.php:1495
+msgid "Image Captcha"
+msgstr "Afbeelding Captcha"
+
+#: wp-mollom.php:1497
+msgid "Audio Captcha"
+msgstr "Audio Captcha"
+
+#: wp-mollom.php:1502
+msgid "Download Audio Captcha"
+msgstr "Download Audio Captcha"
+
+#: wp-mollom.php:1505
+msgid "Submit"
+msgstr "Dien in"
+
+#: wp-mollom.php:1507
+msgid "You want Mollom also on your own Wordpress blog? Register with <a href=\"http://mollom.com\">Mollom</a>, download and install <a href=\"http://wordpress.org/extend/plugins/wp-mollom\">the plugin</a>!"
+msgstr "Mollom op uw eigen Wordpress blog? Registreer uw website bij <a href=\"http://mollom.com\">Mollom</a>, download en installeer <a href=\"http://wordpress.org/extend/plugins/wp-mollom\">de plugin</a>!"
+
+#: wp-mollom.php:1611
+msgid "The Mollom servers could not be contacted at this time. Please try again at a later time."
+msgstr "De Mollom servers konden op dit moment niet worden gecontacteerd. Gelieve later opnieuw te proberen."
+
+#~ msgid ""
+#~ "The PHP function <code>mb_convert_encoding()</code> does not exist. Is <a "
+#~ "href=\"http://www.php.net/mb_string\" title=\"Multibyte string"
+#~ "\">Multibyte string</a> available on your server? You will need this if "
+#~ "you want support for non-western character sets (Chinese, Arabic,...). WP "
+#~ "Mollom falls back to <code>htmlentities()</code> for now."
+#~ msgstr ""
+#~ "De PHP functie <code>mb_convert_encoding()</code> is niet aanwezig. Is <a "
+#~ "href=\"http://www.php.net/mb_string\" title=\"Multibyte string"
+#~ "\">Multibyte string</a> beschikbaar op uw server? U heeft deze "
+#~ "functiebibliotheek nodig voor de ondersteuning van niet-westerse "
+#~ "karaktersets (Chinees, Arabisch,...) WP Mollom valt momenteel terug op "
+#~ "<code>htmlentities()</code>."
+#~ msgid "&raquo;&nbsp;Legend: "
+#~ msgstr "&raquo;&nbsp;Legende:"
+#~ msgid "Clean"
+#~ msgstr "Clean"
+#~ msgid "Captcha"
+#~ msgstr "Captcha"
+#~ msgid "Unapproved"
+#~ msgstr "Afgekeurd"
+#~ msgid "All"
+#~ msgstr "Alles"
+#~ msgid "&laquo;Previous"
+#~ msgstr "&laquo;Vorige"
+#~ msgid "Mollom recognized your trackback as spam."
+#~ msgstr "Mollom herkende uw trackback als spam."
+#~ msgid "Mollom could not recognize your trackback as spam or ham."
+#~ msgstr "Mollom kon uw trackback niet als spam of ham herkennen."
+

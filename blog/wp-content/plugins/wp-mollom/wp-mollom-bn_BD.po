@@ -1,0 +1,412 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Mollom in Bangla\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-16 17:30+0600\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Lenin (aka 9el) <lenin@phpXperts.net>\n"
+"Language-Team: Gianni Diurno | http://gidibao.net/ <gidibao@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Bangla\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Country: Bangladesh\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: uninstall.php:8
+msgid "The uninstall is not being executed from plugins.php. Halting."
+msgstr "plugin.php ফাইল থেকে আনইনস্টল চালানো হয়নি, তাই থামানো হল।"
+
+#: wp-mollom.php:143
+msgid "Something went wrong while moving data from comments to the Mollom data table"
+msgstr "মন্তব্যের তথ্য Mollom ডাটা টেবিলে স্থানান্তরের সময় কোনো একটি সমস্যা দেখা দিয়েছে"
+
+#: wp-mollom.php:213
+#: wp-mollom.php:224
+#: wp-mollom.php:230
+msgid "Mollom"
+msgstr "Mollom"
+
+#: wp-mollom.php:225
+#: wp-mollom.php:231
+#: wp-mollom.php:279
+msgid "Mollom statistics"
+msgstr "Mollom পরিসংখ্যান"
+
+#: wp-mollom.php:280
+msgid "What is happening at Mollom?"
+msgstr "Mollom এর ঘটনাপঞ্জি"
+
+#: wp-mollom.php:285
+msgid "These are statistics kept by the Mollom service."
+msgstr "Mollom কর্তৃক রক্ষিত পরিসংখ্যানসমূহ।"
+
+#: wp-mollom.php:293
+msgid "What is happening over here?"
+msgstr "এখানে যা হচ্ছে..."
+
+#: wp-mollom.php:294
+msgid "The plugin keeps some statistics of it's own. These are stored in the database. These values represent the number of messages that the plugin has succesfully parsed."
+msgstr "প্লাগ-ইনটি নিজের কিছু পরিসংখ্যান রাখে, যা ডাটাবেজে থাকে। মানগুলো হচ্ছে প্লাগ-ইনটি যে মেসেজসমূহ সফলভাবে পার্স করেছে তা সম্পর্কিত।"
+
+#: wp-mollom.php:299
+msgid "The Mollom plugin is not configured. Please go to <strong><a href=\"options-general.php?page=mollom-key-config\">Settings &gt; Mollom</a></strong> and configure the plugin."
+msgstr "Mollom প্লাগ-ইনটি এখনো কনফিগার করা হয়নি। <strong><a href=\"options-general.php?page=mollom-key-config\" &gt; Mollom</a></strong> এ গিয়ে কনফিগার করে নিন।"
+
+#: wp-mollom.php:399
+#, php-format
+msgid "WP Mollom has processed a total of <strong>%1$d</strong> messages."
+msgstr "WP Mollom <strong>%1$d</strong>টি মেসেজ প্রক্রিয়াজাত করেছে।"
+
+#: wp-mollom.php:401
+msgid "Ham: "
+msgstr "হ্যাম: "
+
+#: wp-mollom.php:401
+#, php-format
+msgid "%d messages cleared as ham."
+msgstr "%dটি মেসেজ হ্যাম হিসেবে অব্যহতি দেয়া হয়েছে। "
+
+#: wp-mollom.php:402
+msgid "Spam: "
+msgstr "স্প্যাম: "
+
+#: wp-mollom.php:402
+#, php-format
+msgid "%d messages blocked as spam."
+msgstr "%dটি মেসেজ স্প্যাম হিসেবে আটকানো হয়েছে।"
+
+#: wp-mollom.php:403
+msgid "Unsure: "
+msgstr "অনিশ্চিত:"
+
+#: wp-mollom.php:403
+#, php-format
+msgid "%d messages passed a captcha succesfully."
+msgstr "%dটি মেসেজ ক্যাপচা'তে পাশ করেছে।"
+
+#: wp-mollom.php:404
+msgid "Moderated: "
+msgstr "মডারেটেড:"
+
+#: wp-mollom.php:404
+#, php-format
+msgid "%d messages had to be manually moderated by you."
+msgstr "%dটি মেসেজ আপনাকে নিজে মডারেট করতে হবে।"
+
+#: wp-mollom.php:428
+#: wp-mollom.php:676
+msgid "Cheatin&#8217; uh?"
+msgstr "চালবাজী হচ্ছে! &#8217;  হ্যাঁ?"
+
+#: wp-mollom.php:532
+msgid "Your private key is empty."
+msgstr "আপনার গোপন কী অপূরণকৃত।"
+
+#: wp-mollom.php:533
+msgid "Your public key is empty."
+msgstr "আপনার উন্মুক্ত কী অপূরণকৃত।"
+
+#: wp-mollom.php:534
+msgid "The key you provided is wrong."
+msgstr "আপনার দেয়া কী সঠিক নয়।"
+
+#: wp-mollom.php:535
+#, php-format
+msgid "Mollom error: %s"
+msgstr "Mollom সমস্যা: %s"
+
+#: wp-mollom.php:536
+#, php-format
+msgid "Network error: %s"
+msgstr "নেটওয়ার্ক সমস্যা: %s"
+
+#: wp-mollom.php:537
+msgid "Your keys are valid."
+msgstr "আপনার কী'সমূহ বৈধ।"
+
+#: wp-mollom.php:547
+msgid "Mollom Configuration"
+msgstr "Mollom কনফিগারেশন"
+
+#: wp-mollom.php:550
+msgid "Options saved."
+msgstr "অপশনসমূহ সেভ করা হলো।"
+
+#: wp-mollom.php:565
+msgid "The PHP function <code>mb_convert_encoding()</code> does not exist. Is <a href=\"http://www.php.net/mb_string\" title=\"Multibyte string\">Multibyte string</a> available on your server? You will need this if you want support for non-western character sets (Chinese, Arabic,...). WP Mollom falls back to <code>htmlentities()</code> for now."
+msgstr "PHP এর ফাংশন<code>mb_convert_encoding()</code> পাওয়া যাচ্ছে না!  <a href=\"http://www.php.net/mb_string\" title=\"Multibyte string\">Multibyte string</a> কী আপনার সার্ভারে উপস্থিত? WP Mollom<code>htmlentities()</code> দিয়ে চালিয়ে নেবে।"
+
+#: wp-mollom.php:567
+msgid "<a href=\"http://mollom.com\" title=\"Mollom\">Mollom</a> is a web service that helps you identify content quality and, more importantly, helps you stop comment and contact form spam. When moderation becomes easier, you can spend more time and energy to interact with your web community."
+msgstr "<a href=\"http://mollom.com\" title=\"Mollom\">Mollom</a> একটি ওয়েব সার্ভিস যা আপনার কন্টেন্টের গুণাগুণ নিশ্চিত করতে সহায়তা করে, তদুপরি, মন্তব্য এবং যোগাযোগ ফরম এ স্প্যাম করা থেকে রক্ষা করে। এটি ব্যবহারে আপনাকে নিজে মডারেশনে ব্যস্ত থাকতে হবে না, বরং সে সময়টি আপনি আপনার ওয়েব কমিউনিটি'র সাথে যোগাযোগে মনোনিবেশ করতে পারেন।"
+
+#: wp-mollom.php:568
+msgid "You need a public and a private key before you can make use of Mollom. <a href=\"http://mollom.com/user/register\">Register</a> with Mollom to get your keys."
+msgstr "Mollom ব্যবহার করতে হলে আপনার একটি উন্মুক্ত এবং গোপন কী থাকতে হবে। এখানে <a href=\"http://mollom.com/user/register\">রেজিস্টার করে</a> কী'দ্বয় সংগ্রহ করে নিন।"
+
+#: wp-mollom.php:573
+msgid "Public key"
+msgstr "উন্মুক্ত কী"
+
+#: wp-mollom.php:575
+msgid "Private key"
+msgstr "গোপন কী"
+
+#: wp-mollom.php:577
+msgid "User roles"
+msgstr "কর্তৃত্ব বণ্টন"
+
+#: wp-mollom.php:578
+msgid "Select the roles you want to exclude from the mandatory Mollom check. Default: all roles are exempt."
+msgstr "যে কর্তৃত্বসমূহ আপনি বাদ দিতে চান Mollom থেকে তা নির্বাচন করে দিন। শুরুতে সব কর্তৃত্ব বাদ দেয়া থাকে।"
+
+#: wp-mollom.php:587
+msgid "Policy mode"
+msgstr "পলিসি মোড"
+
+#: wp-mollom.php:588
+msgid "If Mollom services are down, all comments are blocked by default."
+msgstr "যদি Mollom সার্ভিসটি অকার্যকর থাকে তাহলে সব মন্তব্য ব্লক করা থাকে ডিফল্ট হিসেবে।"
+
+#: wp-mollom.php:592
+msgid "Restore"
+msgstr "পূনর্বহাল"
+
+#: wp-mollom.php:593
+msgid "Restore the database (purge all Mollom data) upon deactivation of the plugin."
+msgstr "ডাটাবেজ এর পূর্বাবস্থায় গমণ (Mollom এর সব তথ্য মুছে দেয়া হবে) যখন প্লাগ-ইনটি অকার্যকর করা হবে।"
+
+#: wp-mollom.php:595
+msgid "Reverse proxy"
+msgstr "Reverse প্রক্সি"
+
+#: wp-mollom.php:596
+msgid "Check this if your host is running a reverse proxy service (squid,...) and enter the ip address(es) of the reverse proxy your host runs as a commaseparated list."
+msgstr "আপনার হোস্টটি কি রিভার্স প্রক্সি(যেমন স্কুইড) দ্বরা পরিচালিত? তাহলে কমা দিয়ে দিয়ে রিভার্স প্রক্সিগুলোর আইপি বসান।"
+
+#: wp-mollom.php:597
+msgid "When in doubt, just leave this off."
+msgstr "কোনো সংশয় থাকলে, এটি অফ রাখুন"
+
+#: wp-mollom.php:598
+msgid "Enable: "
+msgstr "সক্রিয়করণ:"
+
+#: wp-mollom.php:600
+msgid "Update options &raquo;"
+msgstr "অপশন নবায়ন &raquo;"
+
+#: wp-mollom.php:737
+msgid "Feedback sent to Mollom. The comment was successfully deleted."
+msgstr "Mollom এর কাছে ফীডব্যাক চলে গেছে। মন্তব্যটি সফলভাবে মোছা হলো।"
+
+#: wp-mollom.php:738
+msgid "You flagged this comment as approved."
+msgstr "আপনি এই মন্তব্যটি অনুমোদিত হিসেবে চিহ্নিত করেছেন।"
+
+#: wp-mollom.php:739
+msgid "You flagged this comment as unapproved."
+msgstr "আপনি এই মন্তব্যটি অনুমোদিত হিসেবে চিহ্নিত করেছেন।"
+
+#: wp-mollom.php:740
+msgid "Feedback sent to Mollom but the comment could not be deleted."
+msgstr "ফীডব্যাক Mollom কে পঠানো হলো, তবে মন্তব্য মোছা যায়নি।"
+
+#: wp-mollom.php:741
+msgid "Mollom was unreachable. Maybe the service is down or there is a network disruption."
+msgstr "Mollom এ সংযোগ পাওয়া যাচ্ছে না। হয় সার্ভিসটি অকার্যকর অথবা নেটওয়ার্ক সমস্যা হচ্ছে।"
+
+#: wp-mollom.php:742
+msgid "Could not perform action because the Mollom plugin is not configured. Please configure <strong><a href=\"options-general.php?page=mollom-key-config\">the settings</a></strong> first."
+msgstr "Mollolm প্লাগ-ইনটি কনফিগার করা না থাকায় কাজটি করা যাচ্ছে না। দয়া করে <strong><a href=\"options-general.php?page=mollom-key-config\">কনফিগার করে নিন</a></strong>।"
+
+#: wp-mollom.php:743
+msgid "Mollom could not process your request."
+msgstr "Mollom আপনার রিকোয়েস্টটি কার্যকর করতে পারছে না।"
+
+#: wp-mollom.php:744
+msgid "Wordpress could not (un)approve this comment."
+msgstr "Wordpress মন্তব্যটিকে অনুমোদন দিতে পারছে না।"
+
+#: wp-mollom.php:745
+msgid "Invalid Mollom feedback action."
+msgstr "Mollom এর ফীডব্যাকটি অবৈধ।"
+
+#: wp-mollom.php:804
+msgid "Mollom Manage"
+msgstr "Mollom নিয়ন্ত্রণ"
+
+#: wp-mollom.php:805
+msgid "This is an overview of all the Mollom approved comments posted on your website. You can moderate them here. Through moderating these messages, Mollom learns from it's mistakes. Moderation of messages that, in your view, should have been blocked, is encouraged."
+msgstr "এখানে Mollom কর্তৃক ছাড় পাওয়া সব মন্তব্যগুলো দেখানো হচ্ছে। আপনি এখানে সম্পাদনা করতে পারেন। Mollom মন্তব্য সম্পাদনা করার সময় নিজের ভুল থেকে নিজেই শিক্ষা নেয়, তাই আপনার চোখে আটকানো/ব্লক করার যোগ্য মন্তব্য আপনি চিহ্ণিত করলে Mollom তা ভবিষ্যতে করবে।"
+
+#: wp-mollom.php:806
+msgid "Take a look at <a href=\"#\" id=\"mollom-stat-toggle\">some statistics</a>."
+msgstr "এক নজরে <a href=\"#\" id=\"mollom-stat-toggle\">পরিসংখ্যান</a>."
+
+#: wp-mollom.php:826
+msgid "Something went wrong while processing the feedback. <a href=\"#\" id=\"mollom-toggle\">Click to display a detailed report</a>."
+msgstr "ফীডব্যাক প্রসেস করার সময় কোনো ভুল হয়েছে. <a href=\"#\" id=\"mollom-toggle\">ক্লিক করে বিস্তারিত জানুন</a>।"
+
+#: wp-mollom.php:828
+msgid "All comments were succesfully moderated. <a href=\"#\" id=\"mollom-toggle\">Click to display a detailed report</a>."
+msgstr "সব মন্তব্য সফলভাবে সম্পাদিত। <a href=\"#\" id=\"mollom-toggle\">ক্লিক করে বিস্তারিত দেখুন</a>।"
+
+#: wp-mollom.php:850
+msgid "There are no comments that can be moderated through Mollom."
+msgstr "Mollom কর্তৃক সম্পাদনযোগ্য কোনো মন্তব্য নেই।"
+
+#: wp-mollom.php:932
+#: wp-mollom.php:1082
+msgid "spam"
+msgstr "স্প্যাম"
+
+#: wp-mollom.php:932
+#: wp-mollom.php:1083
+msgid "profanity"
+msgstr "অশ্লীল"
+
+#: wp-mollom.php:933
+msgid "low-quality"
+msgstr "নিম্নমানের"
+
+#: wp-mollom.php:933
+#: wp-mollom.php:1085
+msgid "unwanted"
+msgstr "অবাঞ্ছিত"
+
+#: wp-mollom.php:934
+msgid "approve"
+msgstr "অনুমোদিত"
+
+#: wp-mollom.php:934
+msgid "unapprove"
+msgstr "অন-অনুমোদিত"
+
+#: wp-mollom.php:1018
+msgid "&laquo;"
+msgstr "&laquo;"
+
+#: wp-mollom.php:1043
+msgid "&raquo;"
+msgstr "&raquo;"
+
+#: wp-mollom.php:1082
+msgid "moderate as spam"
+msgstr "স্প্যাম হিসেবে গণ্য হয়েছে"
+
+#: wp-mollom.php:1083
+msgid "moderate as profanity"
+msgstr "অশ্লীল হিসেবে গণ্য হয়েছে"
+
+#: wp-mollom.php:1084
+msgid "moderate as low quality"
+msgstr "নিম্নমানের হিসেবে গণ্য হয়েছে"
+
+#: wp-mollom.php:1084
+msgid "low quality"
+msgstr "নিম্নমানের"
+
+#: wp-mollom.php:1085
+#: wp-mollom.php:1086
+#: wp-mollom.php:1087
+msgid "moderate as unwanted"
+msgstr "অবাঞ্ছিত হিসেবে গণ্য হয়েছে"
+
+#: wp-mollom.php:1086
+msgid "approved"
+msgstr "অনুমোদিত"
+
+#: wp-mollom.php:1087
+msgid "unapproved"
+msgstr "অন-অনুমোদিত"
+
+#: wp-mollom.php:1113
+#: wp-mollom.php:1209
+msgid "You haven't configured Mollom yet! Per the website's policy. We could not process your comment."
+msgstr "আপনি Mollom কনফিগার করেননি, তাই মন্তব্য সম্পাদন করা যাচ্ছে না।"
+
+#: wp-mollom.php:1145
+#: wp-mollom.php:1180
+#: wp-mollom.php:1190
+#: wp-mollom.php:1224
+#: wp-mollom.php:1260
+#: wp-mollom.php:1306
+#: wp-mollom.php:1334
+#: wp-mollom.php:1400
+#: wp-mollom.php:1410
+msgid "Something went wrong..."
+msgstr "কোনো একটি সমস্যা হয়েছে..."
+
+#: wp-mollom.php:1174
+msgid "Your comment has been marked as spam or unwanted by Mollom. It could not be accepted."
+msgstr "আপনার মন্তব্যটি Mollom কর্তৃক স্প্যাম বা অবাঞ্ছিত হিসেবে চিহ্নিত হয়েছে। তাই গ্রহণযোগ্য নয়।"
+
+#: wp-mollom.php:1282
+msgid "The Mollom session ID part (a hidden field) is missing from the form you tried to submit."
+msgstr "আপনার ফরমটিতে Mollom সেশন আইডি (একটি গোপন মান) অনুপস্থিত।"
+
+#: wp-mollom.php:1289
+msgid "You didn't fill out all the required fields, please try again"
+msgstr "সবগুলো আবশ্যকিয় স্থান পূরণ করেননি। আবার চেষ্টা করুন।"
+
+#: wp-mollom.php:1327
+msgid "The solution you submitted to the CAPTCHA was incorrect. Please try again..."
+msgstr "আপনার লেখা ক্যাপচা'র পাঠোদ্ধারটি ভুল হয়েছে। আবার চেষ্টা করুন..."
+
+#: wp-mollom.php:1422
+msgid "WordPress &raquo; Mollom CAPTCHA test"
+msgstr "WordPress &raquo; Mollom ক্যাপচা পরীক্ষা"
+
+#: wp-mollom.php:1477
+msgid "Mollom CAPTCHA"
+msgstr "Mollom ক্যাপচা"
+
+#: wp-mollom.php:1478
+msgid "This blog is protected by <a href=\"http://mollom.com\">Mollom</a> against spam. Mollom is unsure wether your comment was spam or not. Please complete this form by typing the text in the image in the input box. Additionally, you can also listen to a spoken version of the text."
+msgstr "ব্লগটি <a href=\"http://mollom.com\">Mollom</a> সুরক্ষিত। তবে Mollom নিশ্চিত নয় আপনার মন্তব্যটি স্প্যাম কী'না। নিচের ফরমটি পূরণ করুন ছবির ক্যাপচা দেখে। প্রয়োজনে ক্যাপচা'টির অডিও শুনে নিতে পারেন।"
+
+#: wp-mollom.php:1483
+msgid "Image Captcha"
+msgstr "ছবি Captcha"
+
+#: wp-mollom.php:1485
+msgid "Audio Captcha"
+msgstr "Audio ক্যাপচা"
+
+#: wp-mollom.php:1490
+msgid "Download Audio Captcha"
+msgstr "Audio ক্যাপচা ডাউনলোড করুন"
+
+#: wp-mollom.php:1493
+msgid "Submit"
+msgstr "সাবমিট"
+
+#: wp-mollom.php:1495
+msgid "You want Mollom also on your own Wordpress blog? Register with <a href=\"http://mollom.com\">Mollom</a>, download and install <a href=\"http://wordpress.org/extend/plugins/wp-mollom\">the plugin</a>!"
+msgstr "আপনার Wordpress ব্লগে Mollom চাই? তাহলে এক্ষুণি <a href=\"http://mollom.com\">Mollom</a>এ রেজিস্টার করুন এবং  <a href=\"http://wordpress.org/extend/plugins/wp-mollom\">ওয়ার্ডপ্রেস প্লাগ-ইন</a>থেকে ডাউনলোড করুন!"
+
+#: wp-mollom.php:1599
+msgid "The Mollom servers could not be contacted at this time. Please try again at a later time."
+msgstr "Mollom সার্ভারসমূহের সাথে সংযোগ করা সম্ভব হচ্ছেনা, দয়া করে পরে চেষ্টা করুন।"
+
+#~ msgid "&raquo;&nbsp;Legend: "
+#~ msgstr "&raquo;&nbsp;Legende:"
+#~ msgid "Clean"
+#~ msgstr "সাফ"
+#~ msgid "Captcha"
+#~ msgstr "ক্যাপচা"
+#~ msgid "Unapproved"
+#~ msgstr "অন-অনুমোদিত"
+#~ msgid "All"
+#~ msgstr "সব"
+#~ msgid "&laquo;Previous"
+#~ msgstr "&laquo;আগেরটি"
+#~ msgid "Mollom recognized your trackback as spam."
+#~ msgstr "Mollom আপনার ট্র্যাকব্যাকটি স্প্যাম হিসেবে চিহ্নিত করেছে।"
+#~ msgid "Mollom could not recognize your trackback as spam or ham."
+#~ msgstr "Mollom আপনার ট্র্যাকব্যাকটিকে স্প্যাম বা হ্যাম কোন হিসেবেই সনাক্ত করেনি।"
+

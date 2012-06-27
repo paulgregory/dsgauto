@@ -1,0 +1,52 @@
+#sitemapTop{ 
+	background: url('/images/articleTop.png') no-repeat;
+	float:left;
+	height:7px;
+	line-height:7px;
+	margin-top:4px;
+	width:700px;
+}
+#sitemap {
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	font-size: 0.9em;
+	margin-top: 11px;
+	min-height:200px;
+	padding: 1px 8px; 
+	width:682px;
+}
+#sitemapBottom{
+	background: url('/images/articleBottom.png') no-repeat;
+	float:left;
+	height:7px;
+	line-height:7px;
+	width:700px;
+}
+
+#sitemap a {
+	color : #bd0015;
+}
+#sitemap h1{
+	margin-top: 0;
+	margin-bottom:10px;
+	color: #bd0015;
+}
+
+#sitemap h2 {
+	color: black;
+}
+#sitemap ul {
+	margin-bottom: 10px;
+}
+
+#sitemap ul li ul {
+	margin-bottom: 0px;
+}
+#sitemap ul li {
+	margin-left: 20px;
+}
+
+#sitemap ul li ul li {
+	list-style-type:disc;
+	margin-left:40px;
+}

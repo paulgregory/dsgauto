@@ -1,0 +1,167 @@
+#dealTop {
+	background: url('/images/articleTop.png') no-repeat;
+	float:left;
+	height:7px;
+	margin-top:4px;
+	width:700px;
+}
+
+#deal {
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	font-size: 15px;
+	margin-top: 11px;
+	padding: 1px 8px; 
+	width:682px;
+}
+
+#deal #detailsTop {
+	float: left;
+	width: 682px;
+}
+
+#deal .carImage {
+	float: right;
+	margin-right:10px;
+	height:200px;
+	width: 300px;
+}
+
+#deal h1 {
+	float: left;
+	font-size:2em;
+	width:350px;
+}
+
+#deal #details {
+	float: left;
+	margin-bottom: 10px;
+}
+#deal #details .businessPrice {
+	margin-top: 20px;
+}
+
+#deal #details .businessPrice, #deal #details .personalPrice, #deal #details .finalPayment {
+	float: left;
+	width: 678px;
+	margin-bottom: 20px;
+}
+
+ #deal #details .finalPayment {
+	float: right;
+	width: 250px;
+ }
+
+#deal #details .col1{
+	color: #bd0015;
+	font-size: 1.1em;
+	float:left;
+	width: 678px;
+}
+#deal #details .col2 {	
+	float:left;
+	margin-left:30px;
+	width: 140px;
+} 
+#deal #details .col3 {
+	float:left;
+	width: 100px;
+} 
+#deal #details .col4 {
+	float:left;
+	width: 140px;
+}
+
+#deal #details .col5 {
+	float:left;
+	width: 100px;
+}
+#deal #details .col6{
+	float:left;
+	width: 140px;
+}
+
+#deal #details .notes {
+	float: left;
+	margin-top:20px;
+	width: 330px;
+}
+
+#deal #details .price {
+	float: left;
+	font-size:1.8em;
+}
+
+#deal #details .vat {
+	float: left;
+	font-size:0.7em;
+	margin-left:2px;
+	width:5px;
+}
+
+#deal #details .term {
+	width: 100px;
+	float: left;
+	font-size:1.8em;
+}
+
+#deal #details .mileage, #deal #details .docFee, #deal #details .paymentProfile {
+	font-weight: bold;
+	float: left;
+	width: 350px;
+}
+
+#deal #details .applyNow, #deal #details .getQuote{
+	background: url('/images/dealRequestApplyBox1.png') no-repeat;
+	color: #bd0015;
+	float: left;
+	font-size:1.1em;
+	font-weight:bold;
+	height:41px;
+	line-height:20px;
+	padding:2px 3px;
+	text-align:center;
+	width:49px;
+}
+
+#deal #details .getQuote {
+	margin-left: 10px;
+}
+
+#deal #details a:hover.applyNow , #deal #details a:hover.getQuote{
+	background: url('/images/dealRequestApplyBox2.png') no-repeat;
+}
+
+#deal #details .callNow {
+	background: url('/images/dealRequestCallBox1.png') no-repeat;
+	color: #bd0015;
+	float: left;
+	font-size:1.1em;
+	font-weight:bold;
+	height:41px;
+	line-height:20px;
+	margin-left: 10px;
+	padding:2px 3px;
+	text-align:center;
+	width:79px;
+}
+
+#deal #details a:hover.callNow {
+	background: url('/images/dealRequestCallBox2.png') no-repeat;
+}
+
+#deal p {
+	font-size: 15px;
+}
+
+#deal .financeLease {
+	float: left;
+}
+
+#dealBottom {
+	background: url('/images/articleBottom.png') no-repeat;
+	float:left;
+	height:7px;
+	width:700px;
+	margin-bottom: 20px;
+}

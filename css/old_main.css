@@ -1,0 +1,695 @@
+*{
+	padding:0;
+	margin:0;
+}
+
+img {
+	border: 0;
+}
+ul, li, a{
+	text-decoration: none;
+	list-style-type: none;
+}
+
+body {
+	background: #f6f6f6 url('/images/body_bg.png') repeat-y 50% 0;
+	color: Black;
+	font: 100% Arial, Helvetica, sans-serif;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
+
+h1 {font-size: 1.5em;}
+h2 {font-size: 1.4em;}
+h3 {font-size: 1.2em;}
+h4 {font-size: 1.1em;}
+h5 {font-size: 1.0em;}
+h6 {font-size: 0.9em;}
+
+.clear {
+	clear:both;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+
+#content {
+	background: white ;
+	margin: 10px auto;
+	text-align:left;
+	width: 1040px;
+}
+
+/* -------------- Header -------------- */
+#header {
+	background: url('/images/background.png') repeat-x;
+	height: 147px;
+}
+#header .telNo {
+	color:black;
+}
+
+#headerLeft {
+	background: url('/images/header_bg_left.png');
+	float:left;
+	height: 147px;
+	width:6px;
+}
+
+#headerRight{
+	background: url('/images/header_bg_right.png');
+	float:right;
+	height: 147px;
+	width:6px;
+}
+
+#navBar{	
+	height: 26px;
+}
+
+#navBar ul#nav {
+	float: right;
+	padding: 2px 10px;
+}
+
+#navBar ul#nav li {
+	float:left;
+	list-style:none;	
+	position:relative;
+}
+
+#navBar ul#nav li a{
+	color: white;
+	display:block;
+	float:left;
+	font-size: 0.7em;
+	padding:4px 10px;
+	text-transform: uppercase;
+}
+
+#navBar ul#nav li:hover a {
+	color:white;
+}
+	
+#navBar ul#nav li ul {
+	position:absolute;
+	width:125px;
+	top:22px;
+	display:none;
+	z-index:10;
+}
+
+#navBar ul#nav li#applyOnline  ul {
+	width: 150px;
+}
+
+#navBar ul#nav li#information  ul {
+	width: 160px;
+}
+
+#navBar ul#nav li#legal  ul {
+	width: 185px;
+}
+#navBar ul#nav li#insurance  ul {
+	width: 185px;
+}
+
+
+ul#nav li#contact ul {
+	right:-16px;
+}
+
+#navBar ul#nav li:hover ul{
+	display:block;
+	background:#373737;
+	height:auto;
+}
+
+#navBar ul#nav li li {
+	float:none;
+	background:none;
+	line-height:15px;
+}
+
+#navBar ul#nav li li:hover {
+	background:#4e4e4e;
+}
+
+#navBar ul#nav li li a, #navBar ul#nav li:hover li a {
+	display:block;
+	float:none;
+	color:#ffffff;
+	padding:5px 10px;
+	font-weight:normal;
+}
+
+#banner {
+	padding: 20px;
+}
+
+#Logo {
+	float: left;
+}
+
+#PhoneNumber, #EmailAddress{
+	color: #231f20;
+	text-align:right;
+	font-size: 35px;
+	line-height:32px;
+	height: 35px;
+	float:right;
+	width:500px;
+}
+
+/* -------------- Left -------------- */
+#left {
+	background: white;
+	float: left;
+	margin-top: 10px;
+	width: 160px;
+	padding-bottom:9px;
+}
+
+#Left {
+	float: left;
+	width: 158px;
+	padding-bottom:9px;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;	
+	margin-top: -10px;
+}
+
+#left .leftTop{
+	background: white url('/images/left_header.png') no-repeat;
+	height: 40px;
+	width: 160px;
+	margin-bottom:10px;
+}
+
+#left h3{
+	text-align: center;
+	color:#BD0015;
+	font-size:1.1em;
+	padding-top:8px;
+}
+
+#Left .carsVans {
+	background: url('/images/carsVans.png') no-repeat;
+	color:black;
+	height:22px;
+	width:140px;
+	margin-left:9px;
+}
+
+#Left .vansCars {
+	background: url('/images/vansCars.png') no-repeat;
+	color:black;
+	height:22px;
+	width:140px;
+	margin-left:9px;
+}
+
+#Left #VehicleType h4 a.cars{
+	color:white;
+	float: left;
+	line-height: 22px;
+	width:45px;
+	padding-left:20px;
+	height: 22px;
+}
+
+#Left #VehicleType h4 a.vans{
+	color:white;
+	float: left;
+	line-height: 22px;
+	width:50px;
+	margin-left:10px;
+	padding-left:15px;
+	height: 22px;
+}
+
+#left ul{
+	margin-left: 9px;
+	width:140px;
+	border-bottom: 1px solid #cccccc;
+}
+
+#left ul li {
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	height:25px;
+	line-height: 25px;
+	padding: 0 0 0 10px;
+}
+
+#left ul li .brand{ 
+	display: block;
+	width: 120px;
+}
+
+#left a{
+	color: Black;
+	font-size: 13px;
+}
+
+/* -------------- Right -------------- */
+#right {
+	float: right;
+	font-size:15px;
+	margin-top: 10px;
+	overflow: hidden;
+	width: 160px;
+}
+
+#right .rightTop{
+	background: white url('/images/left_header.png') no-repeat;
+	height: 40px;
+	width: 160px;
+}
+
+#right #partners {
+	border-bottom:1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	height:300px;
+	margin-top:-35px;
+	text-align: center;
+	margin-bottom: 14px;
+	padding: 5px;
+	width: 148px;
+}
+
+#right #twitter {
+	border-bottom:1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	height:35px;
+	margin-top:-35px;
+	text-align: center;
+	margin-bottom: 14px;
+	padding: 5px;
+	width: 148px;
+}
+
+#right #partners p{
+	font-weight:bold;
+	color:#BD0015;
+}
+
+#right #partners .partner {
+	margin-top:10px;
+}
+
+#right #partners .lex {
+	height: 60px;
+	width: 150px;
+}
+
+#right #testimonials{
+	border-bottom:1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	margin-top:-35px;
+	margin-bottom: 14px;
+	padding: 7px;
+	text-align:justify;
+	width: 144px;
+	padding-bottom:34px;
+}
+
+#right #testimonials h3 {
+	font-size: 1.1em;
+	text-align: center;
+	font-weight:bold;
+	color:#BD0015;
+	margin-bottom: 5px;
+}
+
+#right #testimonials q {	
+	font-size: 12px;
+}
+
+#right #testimonials p{	
+	margin-top:4px;
+	font-size: 12px;
+	text-align:right;
+	color:#BD0015;
+}
+
+#right #testimonials .bold{	
+	font-weight:bolder;
+}
+
+#right #testimonials a{	
+	font-size: 12px;
+	text-align:right;
+}
+
+#right #affiliatedSites {
+	border-bottom:1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	margin-top:-35px;
+	text-align: center;
+	padding: 5px;
+	width: 148px;
+	margin-bottom: 14px;
+}
+
+#right #awards{
+	border-bottom:1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	margin-top:-35px;
+	text-align: center;
+	padding: 5px;
+	width: 148px;
+}
+
+#right #awards img{
+	margin-bottom:10px;
+}
+
+#right #affiliatedSites img {
+	margin-bottom: 5px;
+}
+
+#right #affiliatedSites p{
+	margin-bottom: 5px;
+	font-weight:bold;
+	color:#BD0015;
+}
+
+/* -------------- Main -------------- */
+#main {
+	background: white;
+	color: Black;
+	float: left;
+	margin: 6px 0;
+	padding: 0 10px;
+	width: 700px;
+}
+
+#main #whyDSG {
+	background: url('/images/whyDSGBox.png') no-repeat;
+	float: left;
+	height: 230px;
+	margin-right: 10px;
+	padding: 10px;
+	width: 320px;
+}
+
+#main #whyDSG  h2{
+	font-size: 1.1em;
+	color: #bd0015;
+}
+
+#main #whyDSG  ul {
+	padding:10px 0 0 20px;
+}
+
+#main #whyDSG  ul li {
+	list-style-type:disc;
+	margin-left:20px;
+}
+
+#main #whyDSG  ul li h3{
+	font-size: 1em;
+	color: #bd0015;
+}
+
+#main #whyDSG  p{
+	margin-top:5px;
+	text-align:justify;
+	font-size:0.8em;
+}
+
+#main #specialOffer {
+	background: url('/images/specialOfferBox.png') no-repeat;
+	display: block;
+	float: left;
+	height: 240px;
+	padding: 10px;
+	width: 330px;
+}
+#main #specialOffer  h2{
+	font-size: 1.1em;
+	color: #bd0015;
+}
+
+#main #deals {
+	float: left;
+	width:700px;
+}
+
+#main .dealsText {
+	font-size: 0.7em;
+	font-weight:bold;
+	text-align:center;
+}
+
+#main .dealsText a {
+	color:#BD0015;
+}
+
+#main #deals .carDealBox {
+	background: url('/images/dealBox.png');
+	display: block;
+	float: left;
+	height:190px;	
+	margin-right:20px;
+	margin-bottom:10px;
+	overflow:hidden;
+	padding:5px;
+	width:210px;
+}
+
+#main #deals .vanDealBox {
+	background: url('/images/dealBoxVan.png');
+	display: block;
+	float: left;
+	height:190px;	
+	margin-right:20px;
+	margin-bottom:10px;
+	overflow:hidden;
+	padding:5px;
+	width:210px;
+}
+
+#main #deals .rowLast {
+	margin-right:0;
+}
+
+#main #deals .car , #main #specialOffer .car{
+	background: url('/images/carOffer.png') no-repeat;
+	height:50px;
+	position:absolute;
+	right:0;
+	top:0;
+	width:50px;
+}
+
+#main #deals .hire , #main #specialOffer .hire{
+	background: url('/images/contractHire.png') no-repeat;
+	height:75px;
+	position:absolute;	
+	right:0;
+	top:0;
+	width:75px;
+}
+
+#main #deals .van, #main #specialOffer .van {
+	background:url('/images/vanOffer.png') no-repeat;
+	height:50px;
+	position:absolute;
+	right:0;
+	top:0;
+	width:50px;
+}
+
+#main #deals .lease, #main #specialOffer .lease{
+	background:url('/images/financeLease.png') no-repeat;
+	height:75px;
+	position:absolute;	
+	right:0;
+	top:0;
+	width:75px;
+}
+
+#main #specialOffer .car, #main #specialOffer .hire, #main #specialOffer .van , #main #specialOffer .lease {
+	top:-5px;
+	right:-5px;
+}
+
+#main #deals .carDealBox .dealContainer, #main #deals .vanDealBox .dealContainer, #main #specialOffer .dealContainer{
+	position:relative;
+	height:190px;	
+	width:210px;
+}
+#main #specialOffer .dealContainer {
+	height:240px;	
+	width:330px;
+}
+
+#main #deals .carDealBox .type, #main #deals .vanDealBox .type, #main #specialOffer .type{
+	color: white;
+	height:40px;
+	font-size: 0.8em;
+	font-weight:bold;
+	position:absolute;
+	right:25px;
+	top:0;
+	width: 30px;
+}
+
+#main #deals .carDealBox .price, #main #deals .vanDealBox .price, #main #specialOffer .price{
+	bottom:20px;
+	color:black;
+	height:40px;
+	font-size: 1.7em;
+	font-weight: bold;
+	left:2px;
+	position:absolute;
+	width: 200px;
+}
+
+#main #specialOffer .price{
+	bottom: 25px;
+}
+
+#main #deals .carDealBox .price small, #main #deals .vanDealBox .price small, #main #specialOffer .price small{
+	display: block;
+	line-height:1.4em;
+	font-size: 0.4em;
+}
+
+#main #deals .carImage {
+	bottom:55px;
+	height: 100px;
+	left:0px;
+	position:absolute;
+	width: 200px;
+}
+
+#main #specialOffer .carImage {
+	bottom:50px;
+	height: 150px;
+	right:20px;
+	position:absolute;
+	width: 230px;
+}
+
+#main #deals .carDealBox .description, #main #deals .vanDealBox .description, #main #specialOffer .description{
+	color: black;
+	height:40px;
+	font-size: 0.7em;
+	font-weight: bold;	
+	left:5px;
+	position:absolute;
+	top:5px;
+	width: 120px;
+}
+
+#main #specialOffer .description{
+	top:25px;
+	font-size: 0.9em;
+	width: 170px;
+}
+
+#main #deals .carDealBox .buttons, #main #deals .vanDealBox .buttons, #main #specialOffer .buttons {
+	bottom:10px;
+	color:black;
+	height:45px;
+	font-size:0.7em;
+	font-weight:bold;
+	line-height:20px;
+	position: absolute;
+	right:4px;
+	text-align:center;
+	width:100px;
+}
+
+#right #testimonials .button {
+	width: 148px;
+	font-size:0.7em;
+	font-weight:bold;
+	line-height:20px;
+	text-align:center;
+	float: left;
+	margin-left: 24px;
+	margin-top:5px;
+}
+
+#main #deals .carDealBox .buttons .info, #main #deals .carDealBox .buttons .quote, #main #deals .vanDealBox .buttons .info, #main #deals .vanDealBox .buttons .quote,
+#main #specialOffer .buttons .info, #main #specialOffer .buttons .quote, #right #testimonials .button .viewAll{
+	background: url('/images/button1.png');
+	color:black;
+	float:right;
+	height:20px;
+	width: 100px;
+	text-align:center;
+}
+
+#right #testimonials .button .viewAll {
+	color: #bd0015;
+	float:left;
+}
+
+#main #deals .carDealBox .buttons .info, #main #deals .vanDealBox .buttons .info, #main #specialOffer .buttons .info, #main #specialOffer .buttons .quote{
+	margin-bottom:2px;
+}
+
+#main #deals .carDealBox .buttons a:hover, #main #deals .vanDealBox .buttons a:hover, #main #specialOffer .buttons a:hover, #right #testimonials .button a:hover{
+	background: url('/images/button2.png');
+}
+
+/* -------------- Footer -------------- */
+#footer{
+	clear:both;
+	padding:20px 0;
+}
+
+#footer #brands {
+	text-align: center;
+}
+
+#footer #brands ul {
+	display:inline;
+	text-align: center;
+}
+#footer #brands ul li{
+	margin-bottom:10px;
+}
+#footer #brands ul li a{	
+	padding-right:10px;
+}
+
+#footer #brands ul li a img{	
+	height:40px;
+	width:70px;
+}
+#footer ul#copy {
+	float: left;
+	/*margin-top:4px;*/
+}
+
+#footer ul#footerLinks{
+	float:right;
+	padding-right: 20px;
+}
+
+#footer ul#footerLinks li, #footer ul#copy li{
+	display:inline;
+	font-size: 0.7em;
+	padding-left:20px;
+}
+
+#footer ul#footerLinks li a{
+	color:black;
+}

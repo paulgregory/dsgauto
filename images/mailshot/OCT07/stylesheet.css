@@ -1,0 +1,48 @@
+body
+{
+   font-family:arial;
+}
+
+.DSGNo
+{
+	float:left;
+	width:260px;
+	text-align:center;
+	
+}
+
+.NC4mNo
+{
+	float:left;
+	text-align:center;
+	width:380px;	
+}
+
+.smallprint
+{
+text-align:left;
+font-size:9px;
+float:left;
+width:400px;
+}
+
+.contactpics
+{
+float:left;
+width:100%;
+
+}
+
+
+.spacer
+{
+float:left;
+width:100%;
+}
+
+img
+{border:0px;}
+
+.footertext
+{width:100%;
+float:left; text-align:left; font-size:11px}

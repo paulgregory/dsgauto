@@ -1,0 +1,18 @@
+#navBar ul#nav li.hover ul {
+	display: block;
+	left: -1px;
+	background: #2d2d2d;
+	height: auto;
+}
+
+#navBar ul#nav li ul li.hover {
+	background: #4e4e4e;
+}
+
+ul#nav li#contact ul {
+	right:-16px; 
+}
+
+#contactUs #Finance, #contactUs #Bank {
+	width: 405px;
+}

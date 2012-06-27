@@ -1,0 +1,417 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Mollom 0.6.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-02-12 10:30+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Donald <donaldabcdq@gmail.com>\n"
+"Language-Team:  <matthias@netsensei.nl>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: uninstall.php:8
+msgid "The uninstall is not being executed from plugins.php. Halting."
+msgstr "卸载并未从plugins.php执行。"
+
+#: wp-mollom.php:143
+msgid "Something went wrong while moving data from comments to the Mollom data table"
+msgstr "从评论区向Mollom数据表转移数据时似乎出了点问题"
+
+#: wp-mollom.php:213
+#: wp-mollom.php:224
+#: wp-mollom.php:230
+msgid "Mollom"
+msgstr "Mollom"
+
+#: wp-mollom.php:225
+#: wp-mollom.php:231
+#: wp-mollom.php:279
+msgid "Mollom statistics"
+msgstr "Mollom 统计"
+
+#: wp-mollom.php:280
+msgid "What is happening at Mollom?"
+msgstr "Mollom在干什么?"
+
+#: wp-mollom.php:285
+msgid "These are statistics kept by the Mollom service."
+msgstr "下面这个图表统计由Mollom服务提供。"
+
+#: wp-mollom.php:293
+msgid "What is happening over here?"
+msgstr "这里发生了什么事？"
+
+#: wp-mollom.php:294
+msgid "The plugin keeps some statistics of it's own. These are stored in the database. These values represent the number of messages that the plugin has succesfully parsed."
+msgstr "本插件同时具有统计功能。此统计保存在你的数据库中。这些值代表Mollom插件已经成功调用的消息数量。"
+
+#: wp-mollom.php:299
+msgid "The Mollom plugin is not configured. Please go to <strong><a href=\"options-general.php?page=mollom-key-config\">Settings &gt; Mollom</a></strong> and configure the plugin."
+msgstr "Mollom插件尚未设置。请先到<strong><a href=\"options-general.php?page=mollom-key-config\">设置 &gt; Mollom</a></strong> 对其进行设置.De Mollom plugin is nog niet geconfigureerd. Gelieve naar <strong><a href=\"options-general.php?page=mollom-key-config\">Settings &gt Mollom</a></strong> te gaan en de plugin daar te configureren."
+
+#: wp-mollom.php:399
+#, php-format
+msgid "WP Mollom has processed a total of <strong>%1$d</strong> messages."
+msgstr "WP Mollom 已经检查了总共 <strong>%1$d</strong> 个评论和trackback。"
+
+#: wp-mollom.php:401
+msgid "Ham: "
+msgstr "正常评论："
+
+#: wp-mollom.php:401
+#, php-format
+msgid "%d messages cleared as ham."
+msgstr "%d 个评论被判定为正常评论。"
+
+#: wp-mollom.php:402
+msgid "Spam: "
+msgstr "垃圾评论："
+
+#: wp-mollom.php:402
+#, php-format
+msgid "%d messages blocked as spam."
+msgstr "%d 个垃圾评论被阻止。"
+
+#: wp-mollom.php:403
+msgid "Unsure: "
+msgstr "不确定的："
+
+#: wp-mollom.php:403
+#, php-format
+msgid "%d messages passed a captcha succesfully."
+msgstr "%d 个评论成功通过验证码检验。"
+
+#: wp-mollom.php:404
+msgid "Moderated: "
+msgstr "经审核的："
+
+#: wp-mollom.php:404
+#, php-format
+msgid "%d messages had to be manually moderated by you."
+msgstr "%d 个评论已经你的人工审核。"
+
+#: wp-mollom.php:428
+#: wp-mollom.php:676
+msgid "Cheatin&#8217; uh?"
+msgstr "嗯？想作弊？"
+
+#: wp-mollom.php:532
+msgid "Your private key is empty."
+msgstr "你的私钥（private key)是空的。"
+
+#: wp-mollom.php:533
+msgid "Your public key is empty."
+msgstr "你的公钥（public key）是空的。"
+
+#: wp-mollom.php:534
+msgid "The key you provided is wrong."
+msgstr "你填入的Key不正确。"
+
+#: wp-mollom.php:535
+#, php-format
+msgid "Mollom error: %s"
+msgstr "Mollom 错误: %s"
+
+#: wp-mollom.php:536
+#, php-format
+msgid "Network error: %s"
+msgstr "网络错误: %s"
+
+#: wp-mollom.php:537
+msgid "Your keys are valid."
+msgstr "你的公钥私钥均有效。"
+
+#: wp-mollom.php:547
+msgid "Mollom Configuration"
+msgstr "Mollom 设置"
+
+#: wp-mollom.php:550
+msgid "Options saved."
+msgstr "选项已保存。"
+
+#: wp-mollom.php:565
+msgid "The PHP function <code>mb_convert_encoding()</code> does not exist. Is <a href=\"http://www.php.net/mb_string\" title=\"Multibyte string\">Multibyte string</a> available on your server? You will need this if you want support for non-western character sets (Chinese, Arabic,...). WP Mollom falls back to <code>htmlentities()</code> for now."
+msgstr "PHP函数 <code>mb_convert_encoding()</code> 不存在。请确认你的服务器上的<a href=\"http://www.php.net/mb_string\" title=\"Multibyte string\">Multibyte string</a>是否可用？ Mollom需要此函数来支持非西方字符集（中文，阿拉伯文...）。 WP Mollom从现在起自动使用备用的 <code>htmlentities()</code> 方式工作。"
+
+#: wp-mollom.php:567
+msgid "<a href=\"http://mollom.com\" title=\"Mollom\">Mollom</a> is a web service that helps you identify content quality and, more importantly, helps you stop comment and contact form spam. When moderation becomes easier, you can spend more time and energy to interact with your web community."
+msgstr "<a href=\"http://mollom.com\" title=\"Mollom\">Mollom</a> 是一个帮助你鉴别内容质量，以及更重要的，帮助你阻止评论和联系表单垃圾信息的网络服务。当审核工作变得更简单之后，你可以将更多的时间和精力投入到与你的网络社区的互动之中。"
+
+#: wp-mollom.php:568
+msgid "You need a public and a private key before you can make use of Mollom. <a href=\"http://mollom.com/user/register\">Register</a> with Mollom to get your keys."
+msgstr "在使用Mollom之前，你需要一个公钥（public key）和一个私钥（public key）。在Mollom的网站<a href=\"http://mollom.com/user/register\">注册</a>来获得你的公钥和私钥。"
+
+#: wp-mollom.php:573
+msgid "Public key"
+msgstr "公钥（Public key）"
+
+#: wp-mollom.php:575
+msgid "Private key"
+msgstr "私钥（Private key）"
+
+#: wp-mollom.php:577
+msgid "User roles"
+msgstr "用户类型"
+
+#: wp-mollom.php:578
+msgid "Select the roles you want to exclude from the mandatory Mollom check. Default: all roles are exempt."
+msgstr "选择你想要从强制Mollom检查中排除的用户类型。默认：下列所有用户类型被均被排除。"
+
+#: wp-mollom.php:587
+msgid "Policy mode"
+msgstr "策略模式"
+
+#: wp-mollom.php:588
+msgid "If Mollom services are down, all comments are blocked by default."
+msgstr "如果Mollom服务暂时不能使用，默认自动阻止所有评论。"
+
+#: wp-mollom.php:592
+msgid "Restore"
+msgstr "恢复"
+
+#: wp-mollom.php:593
+msgid "Restore the database (purge all Mollom data) upon deactivation of the plugin."
+msgstr "在禁用Mollom插件时恢复数据库（清除所有Mollom数据）。"
+
+#: wp-mollom.php:595
+msgid "Reverse proxy"
+msgstr "逆向代理服务器"
+
+#: wp-mollom.php:596
+msgid "Check this if your host is running a reverse proxy service (squid,...) and enter the ip address(es) of the reverse proxy your host runs as a commaseparated list."
+msgstr "当你的服务器运行逆向代理服务时（比如squid,...）选中此选项，并输入你的服务器的逆向代理IP地址，用逗号分隔。"
+
+#: wp-mollom.php:597
+msgid "When in doubt, just leave this off."
+msgstr "当你不了解这是什么的时候，留空此项即可。"
+
+#: wp-mollom.php:598
+msgid "Enable: "
+msgstr "启用："
+
+#: wp-mollom.php:600
+msgid "Update options &raquo;"
+msgstr "更新选项 &raquo;"
+
+#: wp-mollom.php:737
+msgid "Feedback sent to Mollom. The comment was successfully deleted."
+msgstr "反馈信息已发送到Mollom。这条评论被成功删除。"
+
+#: wp-mollom.php:738
+msgid "You flagged this comment as approved."
+msgstr "你将这条评论标记为 已验证。"
+
+#: wp-mollom.php:739
+msgid "You flagged this comment as unapproved."
+msgstr "你将这条评论标记为 未验证。"
+
+#: wp-mollom.php:740
+msgid "Feedback sent to Mollom but the comment could not be deleted."
+msgstr "反馈已发送到Mollom，但是这条评论无法删除。"
+
+#: wp-mollom.php:741
+msgid "Mollom was unreachable. Maybe the service is down or there is a network disruption."
+msgstr "无法连接Mollom服务。可能Mollom服务暂时瘫痪或是网络故障。"
+
+#: wp-mollom.php:742
+msgid "Could not perform action because the Mollom plugin is not configured. Please configure <strong><a href=\"options-general.php?page=mollom-key-config\">the settings</a></strong> first."
+msgstr "由于Mollom插件尚未设置，无法执行操作。请先进行<strong><a href=\"options-general.php?page=mollom-key-config\">设置</a></strong>。"
+
+#: wp-mollom.php:743
+msgid "Mollom could not process your request."
+msgstr "Mollom无法处理你的请求。"
+
+#: wp-mollom.php:744
+msgid "Wordpress could not (un)approve this comment."
+msgstr "Wordpress无法验证（或未验证）这条评论。"
+
+#: wp-mollom.php:745
+msgid "Invalid Mollom feedback action."
+msgstr "无效的Mollom反馈操作。"
+
+#: wp-mollom.php:804
+msgid "Mollom Manage"
+msgstr "Mollom 管理"
+
+#: wp-mollom.php:805
+msgid "This is an overview of all the Mollom approved comments posted on your website. You can moderate them here. Through moderating these messages, Mollom learns from it's mistakes. Moderation of messages that, in your view, should have been blocked, is encouraged."
+msgstr "这里是你的网站上已经过Mollom验证的所有评论的概览。你可以在这里进行审核。通过审核这些信息，Mollom可以从中进行学习。 希望您在此处按照您的观点，审核哪些评论应该被阻止。"
+
+#: wp-mollom.php:806
+msgid "Take a look at <a href=\"#\" id=\"mollom-stat-toggle\">some statistics</a>."
+msgstr "去看看<a href=\"#\" id=\"mollom-stat-toggle\">统计数据</a>吧。"
+
+#: wp-mollom.php:826
+msgid "Something went wrong while processing the feedback. <a href=\"#\" id=\"mollom-toggle\">Click to display a detailed report</a>."
+msgstr "在处理反馈时发生错误。<a href=\"#\" id=\"mollom-toggle\">点击这里显示详细报告</a>。"
+
+#: wp-mollom.php:828
+msgid "All comments were succesfully moderated. <a href=\"#\" id=\"mollom-toggle\">Click to display a detailed report</a>."
+msgstr "已成功审核所有评论。 <a href=\"#\" id=\"mollom-toggle\">点击这里显示详细报告</a>。"
+
+#: wp-mollom.php:850
+msgid "There are no comments that can be moderated through Mollom."
+msgstr "没有已通过Mollom的评论可供审核。"
+
+#: wp-mollom.php:932
+#: wp-mollom.php:1082
+msgid "spam"
+msgstr "垃圾评论"
+
+#: wp-mollom.php:932
+#: wp-mollom.php:1083
+msgid "profanity"
+msgstr "不雅的"
+
+#: wp-mollom.php:933
+msgid "low-quality"
+msgstr "低质量的"
+
+#: wp-mollom.php:933
+#: wp-mollom.php:1085
+msgid "unwanted"
+msgstr "不需要的"
+
+#: wp-mollom.php:934
+msgid "approve"
+msgstr "验证"
+
+#: wp-mollom.php:934
+msgid "unapprove"
+msgstr "未验证"
+
+#: wp-mollom.php:1018
+#, fuzzy
+msgid "&laquo;"
+msgstr "下一页&raquo;"
+
+#: wp-mollom.php:1043
+#, fuzzy
+msgid "&raquo;"
+msgstr "下一页&raquo;"
+
+#: wp-mollom.php:1082
+msgid "moderate as spam"
+msgstr "审核为垃圾评论"
+
+#: wp-mollom.php:1083
+msgid "moderate as profanity"
+msgstr "审核为不雅的"
+
+#: wp-mollom.php:1084
+msgid "moderate as low quality"
+msgstr "审核为低质量的"
+
+#: wp-mollom.php:1084
+msgid "low quality"
+msgstr "低质量"
+
+#: wp-mollom.php:1085
+#: wp-mollom.php:1086
+#: wp-mollom.php:1087
+msgid "moderate as unwanted"
+msgstr "审核为不需要的"
+
+#: wp-mollom.php:1086
+msgid "approved"
+msgstr "已验证"
+
+#: wp-mollom.php:1087
+msgid "unapproved"
+msgstr "未验证"
+
+#: wp-mollom.php:1113
+#: wp-mollom.php:1209
+msgid "You haven't configured Mollom yet! Per the website's policy. We could not process your comment."
+msgstr "你尚未设置Mollom！根据Mollom网站的政策，我们不能处理你的评论。"
+
+#: wp-mollom.php:1145
+#: wp-mollom.php:1180
+#: wp-mollom.php:1190
+#: wp-mollom.php:1224
+#: wp-mollom.php:1260
+#: wp-mollom.php:1306
+#: wp-mollom.php:1334
+#: wp-mollom.php:1400
+#: wp-mollom.php:1410
+msgid "Something went wrong..."
+msgstr "有什么地方出问题了..."
+
+#: wp-mollom.php:1174
+msgid "Your comment has been marked as spam or unwanted by Mollom. It could not be accepted."
+msgstr "你的评论已经被Mollom标记为垃圾评论。此评论无法提交。Your comment has been marked as spam or unwanted by Mollom. It could not be accepted."
+
+#: wp-mollom.php:1282
+msgid "The Mollom session ID part (a hidden field) is missing from the form you tried to submit."
+msgstr "你试图提交表单的Mollom会话ID部分（一个隐藏框）为空。"
+
+#: wp-mollom.php:1289
+msgid "You didn't fill out all the required fields, please try again"
+msgstr "你没有填写必填区域，请再试一次 You didn't fill out all the required fields, please try again"
+
+#: wp-mollom.php:1327
+msgid "The solution you submitted to the CAPTCHA was incorrect. Please try again..."
+msgstr "你填写的验证码内容不正确。请再试一次... The solution you submitted to the CAPTCHA was incorrect. Please try again..."
+
+#: wp-mollom.php:1422
+msgid "WordPress &raquo; Mollom CAPTCHA test"
+msgstr "Wordpress &raquo; Mollom 验证码测试 Mollom CAPTCHA test"
+
+#: wp-mollom.php:1477
+msgid "Mollom CAPTCHA"
+msgstr "Mollom 验证码 Mollom CAPTCHA"
+
+#: wp-mollom.php:1478
+msgid "This blog is protected by <a href=\"http://mollom.com\">Mollom</a> against spam. Mollom is unsure wether your comment was spam or not. Please complete this form by typing the text in the image in the input box. Additionally, you can also listen to a spoken version of the text."
+msgstr "本Blog受<a href=\"http://mollom.com\">Mollom</a> 保护对抗垃圾信息。Mollom现在不确定你的评论是否是正常评论。请按照验证码图像上显示的内容填写这个表格，你也可以选择收听验证码文本语言版本。 This blog is protected by <a href=\"http://mollom.com\">Mollom</a> against spam. Mollom is unsure wether your comment was spam or not. Please complete this form by typing the text in the image in the input box. Additionally, you can also listen to a spoken version of the text."
+
+#: wp-mollom.php:1483
+msgid "Image Captcha"
+msgstr "图像验证码"
+
+#: wp-mollom.php:1485
+msgid "Audio Captcha"
+msgstr "声音验证码"
+
+#: wp-mollom.php:1490
+msgid "Download Audio Captcha"
+msgstr "下载声音验证码"
+
+#: wp-mollom.php:1493
+msgid "Submit"
+msgstr "提交"
+
+#: wp-mollom.php:1495
+msgid "You want Mollom also on your own Wordpress blog? Register with <a href=\"http://mollom.com\">Mollom</a>, download and install <a href=\"http://wordpress.org/extend/plugins/wp-mollom\">the plugin</a>!"
+msgstr "你也想在你自己的Blog上使用Mollom？请先在<a href=\"http://mollom.com\">Mollom</a>网站注册服务，然后下载安装<a href=\"http://wordpress.org/extend/plugins/wp-mollom\">Mollom插件</a>！"
+
+#: wp-mollom.php:1599
+msgid "The Mollom servers could not be contacted at this time. Please try again at a later time."
+msgstr "现在暂时无法连接Mollom服务器。请稍候再试。"
+
+#~ msgid "&raquo;&nbsp;Legend: "
+#~ msgstr "&raquo;&nbsp;图例："
+#~ msgid "Clean"
+#~ msgstr "清除"
+#~ msgid "Captcha"
+#~ msgstr "验证码"
+#~ msgid "Unapproved"
+#~ msgstr "未验证的"
+#~ msgid "All"
+#~ msgstr "所有的"
+#~ msgid "&laquo;Previous"
+#~ msgstr "&laquo;前一页"
+#~ msgid "Mollom recognized your trackback as spam."
+#~ msgstr ""
+#~ "Mollom将你的trackback识别为垃圾信息。Mollom recognized your trackback as "
+#~ "spam."
+#~ msgid "Mollom could not recognize your trackback as spam or ham."
+#~ msgstr ""
+#~ "Mollom无法识别你的trackback是垃圾还是正常信息。Mollom could not recognize "
+#~ "your trackback as spam or ham."
+

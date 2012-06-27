@@ -1,0 +1,109 @@
+#administrationTop{ 
+	background: url('/images/articleTop.png') no-repeat;
+	float:left;
+	height:7px;
+	line-height:7px;
+	margin-top:4px;
+	width:700px;
+}
+#administration {
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	font-size: 0.9em;
+	margin-top: 11px;
+	min-height:200px;
+	padding: 1px 8px; 
+	width:682px;
+}
+#administrationBottom{
+	background: url('/images/articleBottom.png') no-repeat;
+	float:left;
+	height:7px;
+	line-height:7px;
+	width:700px;
+}
+
+#administration h1{
+	margin-top: 0;
+	color: #bd0015;
+}
+#administration  #currentCarDeals a, #administration  #currentVanDeals a  {
+	color: #bd0015;
+}
+#administration p{
+	line-height:1.1em;
+	text-align:justify;
+	margin-top: 7px;
+}
+#administration dt{
+	color: #bd0015;
+	margin-top: 20px;
+}
+#administration dd{
+	line-height:1.1em;
+	text-align:justify;
+	margin-top: 7px;
+}
+
+#administration strong{
+}
+#administration h3{
+	color: #bd0015;
+	margin-top: 20px;
+}
+#administration b{
+	color: #bd0015;
+}
+#administration ol{
+	margin-top: 7px;
+}
+
+#administration fieldset {
+	margin-top: 10px;
+	padding: 10px;
+	border:1px solid #c0c0c0;
+}
+
+#administration form legend{
+	color: #bd0015;
+	clear:left;
+	font-size:1.3em;
+	font-weight:bold;
+}
+
+#administration form label{
+	clear: left;
+	margin: 2px;
+	float: left;
+	width: 150px;
+}
+
+#adminEdit, #addArticle, #addDeal  {
+	background: url('/images/dealRequestApplyBox1.png') no-repeat;
+	color: #bd0015;
+	float: left;
+	font-size:1.1em;
+	font-weight:bold;
+	height:41px;
+	line-height:20px;
+	padding:2px 3px;
+	text-align:center;
+	width:49px;
+	text-decoration:none;
+}
+
+.editDeal {
+	float:right;
+}
+#addArticle  {
+	margin-top: 20px;
+}
+
+#adminEdit {
+	float: right;
+	margin-top: -25px;
+}
+
+a:hover#adminEdit, a:hover#addArticle  {
+	background: url('/images/dealRequestApplyBox2.png') no-repeat;
+}

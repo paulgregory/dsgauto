@@ -1,0 +1,37 @@
+#p2fb_popup {
+	height: 100%;
+	width: 100%;
+	background: #000000;
+	position: absolute;
+	top: 0;
+	-moz-opacity:0.75;
+	-khtml-opacity: 0.75;
+	opacity: 0.75;
+	filter:alpha(opacity=75);
+}
+#p2fb_popup_title{
+	background-color: #DFDFDF;
+	width: 100%;
+	border: solid 1px #DFDFDF;
+}
+#p2fb_popup_title a{
+	/* float it? */
+	/* float: right */
+}
+#p2fb_window {
+	width: 800px;
+	height: 520px;
+	margin: 0 auto;
+	border: 1px solid #000000;
+	background: #ffffff;
+	position: absolute;
+	top: 50px;
+	left: 50%;
+	margin-left: -400px;
+	z-index: 100;
+}
+#p2fb_iframe {
+	border-width: 0px;
+	width: 100%;
+	height: 500%;
+}

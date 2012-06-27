@@ -1,0 +1,194 @@
+body
+{
+    font-family: Arial;  
+}
+
+.SectionTitle
+{
+	display:block;
+	background-color: Gray;
+	color: White;
+	font-size:1.1em;
+	padding:2px;	
+}
+
+.SubSectionTitle
+{
+	display:block;
+	background-color: #cccccc;
+	color: White;
+	font-size:1em;
+	padding:2px;	
+}
+
+.SubSubSectionTitle
+{	
+	margin-right:2px;
+	border-bottom: 1px solid black;
+	display:block;
+	color: Black;
+	font-style:italic;
+	font-size:1em;
+	padding-top:10px;		
+}
+
+.SubSection
+{
+	float:right;
+	width: 100%;
+	padding:10px;
+}
+
+.ItemTitle
+{
+	float:left;
+	font-size:0.9em;
+	width:49.9%;
+	text-align:left;
+	border-bottom: 1px solid #eeeeee;	
+}
+
+.Item
+{
+	float:left;
+	font-size:0.9em;
+	width:49.9%;
+	text-align:left;
+	font-weight:bold;
+	border-bottom: 1px solid #ffffff;
+}
+
+#PageContent
+{
+	float:left;
+	width:900px;
+	border: 1px solid #eeeeee;
+	padding:5px;
+}
+
+#PageTitle
+{
+	width:100%;
+	text-align:center;
+	font-size:2em;
+	padding-top: 10px;
+	padding-bottom:10px;	
+}
+
+.BusinessInfo
+{
+	margin-top:10px;
+	width:100%;
+	border: 1px solid #dddddd;
+}
+
+.VehicleAndDeal
+{
+	margin-top:10px;
+	width:100%;
+	border: 1px solid #dddddd;
+}
+
+.Vehicle
+{
+	margin-top:10px;
+	width:100%;
+	border: 1px solid #dddddd;
+}
+
+.AdditionalInfo
+{
+	margin-top:10px;
+	width:100%;
+	border: 1px solid #dddddd;
+}
+
+.Finance
+{
+	margin-top:10px;
+	width:100%;
+	border: 1px solid #dddddd;
+}
+
+.Bank
+{
+	margin-top:10px;
+	width:100%;
+	border: 1px solid #dddddd;
+}
+
+.ApplicantInfo
+{
+	margin-top:10px;
+	width:100%;
+	border: 1px solid #dddddd;
+}
+
+.ApplicantAddresses
+{	
+	margin-top:10px;
+	width:100%;
+	border: 1px solid #dddddd;
+}
+
+.ApplicantEmployments
+{
+	margin-top:10px;
+	width:100%;
+	border: 1px solid #dddddd;
+}
+
+.Address
+{
+	float:left;
+	width:33.2%;
+	padding-bottom:10px;
+}
+
+.Employment
+{
+	float:left;
+	width:33.2%;
+	padding-bottom:10px;	
+}
+
+.thOptionCode
+{
+	text-align:left;
+	width:30%;
+	font-size:0.9em;
+}
+
+.thOptionDescription
+{
+	text-align:left;
+	width:30%;
+	font-size:0.9em;
+}
+
+.thOptionPrice
+{
+	text-align:left;
+	width:30%;
+	font-size:0.9em;	
+}
+
+.tdOptionCode
+{
+	font-size:0.9em;	
+}
+
+.tdOptionDescription
+{
+	font-size:0.9em;	
+}
+
+.tdOptionPrice
+{
+	font-size:0.9em;	
+}
+
+.tblOptions
+{
+	width:100%;
+}

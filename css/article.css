@@ -1,0 +1,72 @@
+#article h2, #article h3, #article h4, #article h5, #article h6{
+	margin-top: 10px;
+}
+#articleTop{ 
+	background: url('/images/articleTop.png') no-repeat;
+	float:left;
+	height:7px;
+	line-height:7px;
+	margin-top:4px;
+	width:700px;
+}
+#article a {
+	color:#BD0015;
+	text-decoration: underline;
+}
+#article {
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	font-size: 0.9em;
+	margin-top: 11px;
+	padding: 1px 8px; 
+	width:682px;
+}
+
+#article h1{
+	margin-top: 0;
+	color: #bd0015;
+}
+
+#article p{
+	line-height:1.1em;
+	text-align:justify;
+	margin-top: 7px;
+}
+#article dt{
+	color: #bd0015;
+	margin-top: 20px;
+}
+#article dd{
+	line-height:1.1em;
+	text-align:justify;
+	margin-top: 7px;
+}
+
+#article strong{
+}
+#article h3{
+	color: #bd0015;
+	margin-top: 20px;
+}
+#article b{
+	color: #bd0015;
+}
+#article ol{
+	margin-top: 7px;
+}
+#article li{
+}
+#article dl{
+}
+#article dt{
+}
+#article dd{
+}
+
+#articleBottom{
+	background: url('/images/articleBottom.png') no-repeat;
+	float:left;
+	height:7px;
+	line-height:7px;
+	width:700px;
+}

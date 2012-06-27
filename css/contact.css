@@ -1,0 +1,238 @@
+#contactUsTop {
+	background: url('/images/articleTop.png') no-repeat;
+	float:left;
+	height:7px;
+	margin-top:4px;
+	width:700px;
+}
+#contactUs {
+	border-left: 1px solid #c0c0c0;
+	border-right: 1px solid #c0c0c0;
+	font-size: 0.9em;
+	margin-top: 11px;
+	padding: 1px 8px; 
+	width:682px;
+	padding-bottom:57px;
+}
+
+#contactUs h1{
+	color: #bd0015;
+}
+
+#contactUs a {
+	color:#BD0015;
+	text-decoration: underline;
+}
+
+#contactUs p{
+	width: 650px;
+	text-align:justify;
+	margin-top: 7px;
+}
+#contactUs .smaller{
+	text-align:justify;
+	font-size: 0.8em;
+}
+
+#contactUsBottom {
+	background: url('/images/articleBottom.png') no-repeat;
+	float:left;
+	height:7px;
+	width:700px;
+}
+
+#contactUs form {
+	margin-top:10px;
+}
+
+#contactUs form p{
+	float: left;
+	width: 600px;
+	margin:5px 0 10px 2px;
+}
+
+#contactUs form .fInfo{
+	float: left;
+	margin-top:2px;
+	width:362px;
+}
+
+#contactUs form .fYesNo {
+	float: right;
+	width: 50px;
+}
+
+#contactUs form .fCredit, #contactUs form .fDecline{
+	width: 250px;
+}
+
+#contactUs form fieldset {
+	margin-top: 10px;
+	padding: 10px;
+	border:1px solid #c0c0c0;
+}
+
+#contactUs legend{
+	color: #bd0015;
+	clear:left;
+	font-size:1.3em;
+	font-weight:bold;
+}
+
+#contactUs form select{
+	margin: 2px;
+	float: left;
+	width: 204px;
+}
+
+#contactUs form label{
+	clear: left;
+	margin: 2px;
+	float: left;
+	width: 180px;
+}
+
+#contactUs form .title {
+	width: 60px;
+}
+#contactUs form .years, #contactUs form .months{ /* dropdown box */
+	width: 40px;
+}
+#contactUs form .addressLine, #contactUs form .contactLine, #contactUs form .jobLine, #contactUs form .vehicleLine, 
+#contactUs form .financeLine, #contactUs form .bankLine, #contactUs form .companyLine{
+	margin: 2px;
+	float: left;
+	width: 200px;
+}
+
+#contactUs form .vehicleOptions, #contactUs form .infoComments, #contactUs form .comments{ /* textarea */
+	float: left;
+	margin: 2px;
+}
+
+#contactUs form  .financeCheck, #contactUs form .infoCheck {/* checkbox */
+	float: left;
+	margin: 2px;
+}
+
+#contactUs a.addAddress, #contactUs a.addJob, #contactUs a.remAddress, #contactUs a.remJob{
+	background: url('/images/dealRequestCallBox1.png') no-repeat;
+	text-decoration: none;
+	color: #bd0015;
+	cursor:pointer;
+	float: right;
+	font-size:1.1em;
+	font-weight:bold;
+	height:41px;
+	line-height:20px;
+	padding:2px 3px;
+	text-align:center;
+	width:79px;
+}
+#contactUs a.addAddress, #contactUs a.addJob {
+	clear: both;
+}
+
+#contactUs a.addJob {
+	line-height:41px;
+}
+
+#contactUs a.remAddress, #contactUs a.remJob{
+	margin-left:66px;
+	float: left;
+}
+
+#contactUs a.addAddress:hover, #contactUs a.addJob:hover, #contactUs a.remAddress:hover {
+	background: url('/images/dealRequestCallBox2.png') no-repeat;
+}
+
+#contactUs .addressTerm, #contactUs .jobTerm{
+	float:left;
+	width: 240px;
+}
+
+#contactUs .Address, #contactUs .Job, #contactUs #Vehicle, #contactUs #Finance, #contactUs #Information, 
+#contactUs #Bank, #contactUs #contactDetails, #contactUs .contactDetails, #contactUs #companyDetails{
+	float:left;
+	padding: 10px;
+	margin-bottom:10px;
+	width:430px;
+}
+
+#contactUs #BusinessAddress{
+	margin-top:10px;
+	margin-left:15px;
+}
+
+#contactUs #BusinessAddress label {
+	width: 165px;
+}
+
+#contactUs .required {
+	color:red;
+	float:left;
+	margin-left:2px;
+	margin-top: 1px;
+}
+
+#contactUs .submitButton{
+	float:right;
+	text-decoration: none;
+	background: url('/images/dealRequestCallBox1.png') no-repeat;
+	color: #bd0015;
+	font-size:1.1em;
+	font-weight:bold;
+	height:41px;
+	line-height:20px;
+	margin-left: 10px;
+	padding:2px 3px;
+	margin-top:9px;
+	text-align:center;
+	width:50px;
+}
+
+#contactUs a:hover.submitButton{
+	background: url('/images/dealRequestCallBox2.png') no-repeat;
+}
+
+#contactUs .submitTestimonial {
+	float:right;
+	text-decoration: none;
+	background: url('/images/TestimonialsBox1.png') no-repeat;
+	color: #bd0015;
+	font-size:1.1em;
+	font-weight:bold;
+	height:41px;
+	line-height:20px;
+	margin-left: 10px;
+	padding:2px 3px;
+	margin-top:9px;
+	text-align:center;
+	width:89px;
+}
+
+#contactUs a:hover.submitTestimonial{
+	background: url('/images/TestimonialsBox2.png') no-repeat;
+}
+
+#contactUs .switchApplication {
+	float:right;
+	text-decoration: none;
+	background: url('/images/switchTo.png') no-repeat;
+	color: black;
+	font-weight:bold;
+	font-size:0.8em;
+	height:16px;
+	line-height:16px;
+	margin-left: 10px;
+	margin-top:3px;
+	padding:2px 3px;
+	text-align:center;
+	width:194px;
+}
+
+#contactUs a:hover.switchApplication{
+	background: url('/images/switchToOn.png') no-repeat;
+}
+
+

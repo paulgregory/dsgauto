@@ -1,0 +1,412 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Mollom 0.7.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-02-10 23:23+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Minh-Quân TRAN <contact@link2caro.com>\n"
+"Language-Team: Minh-Quân TRAN - link2caro <contact@link2caro.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Vietnamese\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Country: VIETNAM\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: uninstall.php:8
+msgid "The uninstall is not being executed from plugins.php. Halting."
+msgstr "Bộ gỡ plugin không thể được gọi bởi plugins.php. Dừng tác vụ."
+
+#: wp-mollom.php:143
+msgid "Something went wrong while moving data from comments to the Mollom data table"
+msgstr "Có gì đó không đúng đã xảy ra khi di chuyển dữ liệu từ phản hồi tới bảng dữ liệu của Mollom"
+
+#: wp-mollom.php:213
+#: wp-mollom.php:224
+#: wp-mollom.php:230
+msgid "Mollom"
+msgstr "Mollom"
+
+#: wp-mollom.php:225
+#: wp-mollom.php:231
+#: wp-mollom.php:279
+msgid "Mollom statistics"
+msgstr "Thống kê Mollom"
+
+#: wp-mollom.php:280
+msgid "What is happening at Mollom?"
+msgstr "Điều gì đang diễn ra tại Mollom?"
+
+#: wp-mollom.php:285
+msgid "These are statistics kept by the Mollom service."
+msgstr "Các thống kê này được lưu giữ bởi Mollom."
+
+#: wp-mollom.php:293
+msgid "What is happening over here?"
+msgstr "Chuyện gì đang xảy ra?"
+
+#: wp-mollom.php:294
+msgid "The plugin keeps some statistics of it's own. These are stored in the database. These values represent the number of messages that the plugin has succesfully parsed."
+msgstr "Plugin giữ một số thống kê trong cơ sở dữ liệu. Các giá trị này là số các phản hồi mà plugin đã xử lý."
+
+#: wp-mollom.php:299
+msgid "The Mollom plugin is not configured. Please go to <strong><a href=\"options-general.php?page=mollom-key-config\">Settings &gt; Mollom</a></strong> and configure the plugin."
+msgstr "Plugin Mollom chưa được cài đặt. Hãy <strong><a href=\"options-general.php?page=mollom-key-config\">cài đặt</a></strong> Mollom."
+
+#: wp-mollom.php:399
+#, php-format
+msgid "WP Mollom has processed a total of <strong>%1$d</strong> messages."
+msgstr "WP Mollom đã xử lí <strong>%1$d</strong>phản hồi."
+
+#: wp-mollom.php:401
+msgid "Ham: "
+msgstr "Ham:"
+
+#: wp-mollom.php:401
+#, php-format
+msgid "%d messages cleared as ham."
+msgstr "%d phản hồi bị đánh dấu là ham."
+
+#: wp-mollom.php:402
+msgid "Spam: "
+msgstr "Spam:"
+
+#: wp-mollom.php:402
+#, php-format
+msgid "%d messages blocked as spam."
+msgstr "%d phản hồi bị đánh dấu là spam."
+
+#: wp-mollom.php:403
+msgid "Unsure: "
+msgstr "Không chắc chắn:"
+
+#: wp-mollom.php:403
+#, php-format
+msgid "%d messages passed a captcha succesfully."
+msgstr "%d phản hồi xác nhận thành công captcha."
+
+#: wp-mollom.php:404
+msgid "Moderated: "
+msgstr "Đã thông qua:"
+
+#: wp-mollom.php:404
+#, php-format
+msgid "%d messages had to be manually moderated by you."
+msgstr "%d phản hồi đã được bạn thông qua."
+
+#: wp-mollom.php:428
+#: wp-mollom.php:676
+msgid "Cheatin&#8217; uh?"
+msgstr "Ăn gian hử?"
+
+#: wp-mollom.php:532
+msgid "Your private key is empty."
+msgstr "Bạn chưa nhập khóa bí mật."
+
+#: wp-mollom.php:533
+msgid "Your public key is empty."
+msgstr "Bạn chưa nhập khóa công khai."
+
+#: wp-mollom.php:534
+msgid "The key you provided is wrong."
+msgstr "Khóa bạn nhập không chính xác."
+
+#: wp-mollom.php:535
+#, php-format
+msgid "Mollom error: %s"
+msgstr "Lỗi của Mollom: %s"
+
+#: wp-mollom.php:536
+#, php-format
+msgid "Network error: %s"
+msgstr "Lỗi mạng: %s"
+
+#: wp-mollom.php:537
+msgid "Your keys are valid."
+msgstr "Khóa của bạn hợp lệ."
+
+#: wp-mollom.php:547
+msgid "Mollom Configuration"
+msgstr "Cài đặt Mollom"
+
+#: wp-mollom.php:550
+msgid "Options saved."
+msgstr "Các thay đổi đã được lưu."
+
+#: wp-mollom.php:565
+msgid "The PHP function <code>mb_convert_encoding()</code> does not exist. Is <a href=\"http://www.php.net/mb_string\" title=\"Multibyte string\">Multibyte string</a> available on your server? You will need this if you want support for non-western character sets (Chinese, Arabic,...). WP Mollom falls back to <code>htmlentities()</code> for now."
+msgstr "Hàm PHP <code>mb_convert_encoding()</code> không tồn tại. Máy chủ của bạn có cài <a href=\"http://www.php.net/mb_string\" title=\"Multibyte string\">Multibyte string</a> không? Bạn cần có chức năng này để hỗ trợ các bộ kí tự phương đông (Trung Quốc, Ả Rập,...). WP Mollom tạm thời sử dụng hàm <code>htmlentities()</code>."
+
+#: wp-mollom.php:567
+msgid "<a href=\"http://mollom.com\" title=\"Mollom\">Mollom</a> is a web service that helps you identify content quality and, more importantly, helps you stop comment and contact form spam. When moderation becomes easier, you can spend more time and energy to interact with your web community."
+msgstr "<a href=\"http://mollom.com\" title=\"Mollom\">Mollom</a> là một dịch vụ web giúp bạn nhận biết chất lượng của phản hồi, và hơn thế nữa, giúp bạn ngăn chặn spam. Khi mà việc xét duyệt trở nên đơn giản hơn, bạn có thể dành nhiều thời gian và sức lực cho trang web của mình hơn."
+
+#: wp-mollom.php:568
+msgid "You need a public and a private key before you can make use of Mollom. <a href=\"http://mollom.com/user/register\">Register</a> with Mollom to get your keys."
+msgstr "Bạn cần có khóa công khai và khóa bí mật trước khi bạn sử dụng Mollom. <a href=\"http://mollom.com/user/register\">Đăng kí</a> tài khoản tại Mollom để lấy khóa của bạn."
+
+#: wp-mollom.php:573
+msgid "Public key"
+msgstr "Khóa công khai"
+
+#: wp-mollom.php:575
+msgid "Private key"
+msgstr "Khóa bí mật"
+
+#: wp-mollom.php:577
+msgid "User roles"
+msgstr "Vai trò của thành viên"
+
+#: wp-mollom.php:578
+msgid "Select the roles you want to exclude from the mandatory Mollom check. Default: all roles are exempt."
+msgstr "Chọn những vai trò mà bạn không muốn Mollom kiểm tra. Mặc định: tất cả các vai trò đều được bỏ qua. "
+
+#: wp-mollom.php:587
+msgid "Policy mode"
+msgstr "Chính sách"
+
+#: wp-mollom.php:588
+msgid "If Mollom services are down, all comments are blocked by default."
+msgstr "Nếu dịch vụ Mollom gặp trục trặc, các phản hồi sẽ mặc định bị chặn."
+
+#: wp-mollom.php:592
+msgid "Restore"
+msgstr "Phục hồi"
+
+#: wp-mollom.php:593
+msgid "Restore the database (purge all Mollom data) upon deactivation of the plugin."
+msgstr "Phục hồi cơ sơ dữ liệu (xóa hết dữ liệu của Mollom) khi plugin bị vô hiệu hóa."
+
+#: wp-mollom.php:595
+msgid "Reverse proxy"
+msgstr "Proxy ngược"
+
+#: wp-mollom.php:596
+msgid "Check this if your host is running a reverse proxy service (squid,...) and enter the ip address(es) of the reverse proxy your host runs as a commaseparated list."
+msgstr "Bật lựa chọn này nếu máy chủ của bạn có cài proxy ngược (squid,...) và nhập IP của proxy ngược vào đây (phân cách bởi dấu \",\")."
+
+#: wp-mollom.php:597
+msgid "When in doubt, just leave this off."
+msgstr "Nếu không chắc chắn, đừng bật lựa chọn này."
+
+#: wp-mollom.php:598
+msgid "Enable: "
+msgstr "Bật"
+
+#: wp-mollom.php:600
+msgid "Update options &raquo;"
+msgstr "Lưu các thay đổi &raquo;"
+
+#: wp-mollom.php:737
+msgid "Feedback sent to Mollom. The comment was successfully deleted."
+msgstr "Thông báo đã được gửi tới Mollom. Phản hồi đã bị xóa."
+
+#: wp-mollom.php:738
+msgid "You flagged this comment as approved."
+msgstr "Bạn đã thông qua phản hồi này."
+
+#: wp-mollom.php:739
+msgid "You flagged this comment as unapproved."
+msgstr "Bạn đã không thông qua phản hồi này."
+
+#: wp-mollom.php:740
+msgid "Feedback sent to Mollom but the comment could not be deleted."
+msgstr "Thông báo đã được gửi tới Mollom nhưng phản hồi chưa bị xóa."
+
+#: wp-mollom.php:741
+msgid "Mollom was unreachable. Maybe the service is down or there is a network disruption."
+msgstr "Không kết nối được với Mollom. Có thể dịch vụ này đang gặp sự cố hoặc có thể có sự gián đoạn đường truyền."
+
+#: wp-mollom.php:742
+msgid "Could not perform action because the Mollom plugin is not configured. Please configure <strong><a href=\"options-general.php?page=mollom-key-config\">the settings</a></strong> first."
+msgstr "Không thể thực hiện được tác vụ vì plugin Mollom chưa được cài đặt. Hãy <strong><a href=\"options-general.php?page-mollom-key-config\">cài đặt</a></strong> Mollom."
+
+#: wp-mollom.php:743
+msgid "Mollom could not process your request."
+msgstr "Mollom không thể xử lý truy vấn của bạn."
+
+#: wp-mollom.php:744
+msgid "Wordpress could not (un)approve this comment."
+msgstr "Wordpress không thể xét duyệt được phản hồi này."
+
+#: wp-mollom.php:745
+msgid "Invalid Mollom feedback action."
+msgstr "Việc gửi thông báo tới Mollom không hợp lệ."
+
+#: wp-mollom.php:804
+msgid "Mollom Manage"
+msgstr "Quản lý Mollom."
+
+#: wp-mollom.php:805
+msgid "This is an overview of all the Mollom approved comments posted on your website. You can moderate them here. Through moderating these messages, Mollom learns from it's mistakes. Moderation of messages that, in your view, should have been blocked, is encouraged."
+msgstr "Đây là tóm tắt về các phản hồi đã được Mollom thông qua trên trang web của bạn. Bạn có thể xét duyệt các phản hồi này tại đây. Thông qua việc xét duyệt của bạn, Mollom sẽ học được từ sai xót của mình. Việc xét duyệt thủ công của bạn được Mollom đánh giá cao."
+
+#: wp-mollom.php:806
+msgid "Take a look at <a href=\"#\" id=\"mollom-stat-toggle\">some statistics</a>."
+msgstr "Xem một số <a href=\"#\" id=\"mollom-stat-toggle\">thống kê</a>."
+
+#: wp-mollom.php:826
+msgid "Something went wrong while processing the feedback. <a href=\"#\" id=\"mollom-toggle\">Click to display a detailed report</a>."
+msgstr "Có điều gì đó không đúng đã xảy ra khi gửi thông báo. <a href=\"#\" id=\"mollom-toggle\">Xem chi tiết</a>."
+
+#: wp-mollom.php:828
+msgid "All comments were succesfully moderated. <a href=\"#\" id=\"mollom-toggle\">Click to display a detailed report</a>."
+msgstr "Tất cả các phản hồi đã được xét duyệt. <a href=\"#\" id=\"mollom-toggle\">Xem chi tiết</a>"
+
+#: wp-mollom.php:850
+msgid "There are no comments that can be moderated through Mollom."
+msgstr "Không có phản hồi nào có thể xét duyệt bởi Mollom."
+
+#: wp-mollom.php:932
+#: wp-mollom.php:1082
+msgid "spam"
+msgstr "spam"
+
+#: wp-mollom.php:932
+#: wp-mollom.php:1083
+msgid "profanity"
+msgstr "báng bổ"
+
+#: wp-mollom.php:933
+msgid "low-quality"
+msgstr "kém chất lượng"
+
+#: wp-mollom.php:933
+#: wp-mollom.php:1085
+msgid "unwanted"
+msgstr "không mong muốn"
+
+#: wp-mollom.php:934
+msgid "approve"
+msgstr "thông qua"
+
+#: wp-mollom.php:934
+msgid "unapprove"
+msgstr "không thông qua"
+
+#: wp-mollom.php:1018
+msgid "&laquo;"
+msgstr "&raquo;"
+
+#: wp-mollom.php:1043
+msgid "&raquo;"
+msgstr "&raquo;"
+
+#: wp-mollom.php:1082
+msgid "moderate as spam"
+msgstr "spam"
+
+#: wp-mollom.php:1083
+msgid "moderate as profanity"
+msgstr "phản hồi báng bổ"
+
+#: wp-mollom.php:1084
+msgid "moderate as low quality"
+msgstr "phản hồi kém chất lượng"
+
+#: wp-mollom.php:1084
+msgid "low quality"
+msgstr "kém chất lượng"
+
+#: wp-mollom.php:1085
+#: wp-mollom.php:1086
+#: wp-mollom.php:1087
+msgid "moderate as unwanted"
+msgstr "phản hồi không mong muốn"
+
+#: wp-mollom.php:1086
+msgid "approved"
+msgstr "thông qua"
+
+#: wp-mollom.php:1087
+msgid "unapproved"
+msgstr "không thông qua"
+
+#: wp-mollom.php:1113
+#: wp-mollom.php:1209
+msgid "You haven't configured Mollom yet! Per the website's policy. We could not process your comment."
+msgstr "U hebt Mollom nog niet geconfigureerd. Het beleid van de website verhindert het verwerken van uw verzoek."
+
+#: wp-mollom.php:1145
+#: wp-mollom.php:1180
+#: wp-mollom.php:1190
+#: wp-mollom.php:1224
+#: wp-mollom.php:1260
+#: wp-mollom.php:1306
+#: wp-mollom.php:1334
+#: wp-mollom.php:1400
+#: wp-mollom.php:1410
+msgid "Something went wrong..."
+msgstr "Er liep iets fout..."
+
+#: wp-mollom.php:1174
+msgid "Your comment has been marked as spam or unwanted by Mollom. It could not be accepted."
+msgstr "Uw comment werd gemarkeerd als spam of ongewenst door Mollom. Uw bijdrage kon niet worden geaccepteerd."
+
+#: wp-mollom.php:1282
+msgid "The Mollom session ID part (a hidden field) is missing from the form you tried to submit."
+msgstr "Het Mollom session ID (een verborgen formulierveld) ontbreekt van het formulier dat je probeerde in te dienen."
+
+#: wp-mollom.php:1289
+msgid "You didn't fill out all the required fields, please try again"
+msgstr "U hebt niet alle verplichte velden ingevuld."
+
+#: wp-mollom.php:1327
+msgid "The solution you submitted to the CAPTCHA was incorrect. Please try again..."
+msgstr "De oplossing die u hebt opgegeven is incorrecte. Gelieve opnieuw te proberen..."
+
+#: wp-mollom.php:1422
+msgid "WordPress &raquo; Mollom CAPTCHA test"
+msgstr "Wordpress &raquo; Mollom CAPTCHA test"
+
+#: wp-mollom.php:1477
+msgid "Mollom CAPTCHA"
+msgstr "Mollom CAPTCHA"
+
+#: wp-mollom.php:1478
+msgid "This blog is protected by <a href=\"http://mollom.com\">Mollom</a> against spam. Mollom is unsure wether your comment was spam or not. Please complete this form by typing the text in the image in the input box. Additionally, you can also listen to a spoken version of the text."
+msgstr "Trang web này được bảo vệ khỏi spam bởi <a href=\"http://mollom.com\">Mollom</a>. Mollom không chắc chắn là phản hồi của bạn có phải là spam không. Hãy điền vào dưới đây dòng chữ bạn nhìn thấy. Ngoài ra, bạn có thể nghe phiên bản tiếng của dòng chữ này."
+
+#: wp-mollom.php:1483
+msgid "Image Captcha"
+msgstr "Captcha hình"
+
+#: wp-mollom.php:1485
+msgid "Audio Captcha"
+msgstr "Captcha tiếng"
+
+#: wp-mollom.php:1490
+msgid "Download Audio Captcha"
+msgstr "Tải Captcha tiếng"
+
+#: wp-mollom.php:1493
+msgid "Submit"
+msgstr "Gửi"
+
+#: wp-mollom.php:1495
+msgid "You want Mollom also on your own Wordpress blog? Register with <a href=\"http://mollom.com\">Mollom</a>, download and install <a href=\"http://wordpress.org/extend/plugins/wp-mollom\">the plugin</a>!"
+msgstr "Bạn cũng muốn sử dụng Mollom với WordPress của bạn? Đăng kí tài khoản tại <a href=\"http://mollom.com\">Mollom</a>, tải về và cài đặt <a href=\"http://wordpress.org/extend/plugins/wp-mollom\">plugin</a>!"
+
+#: wp-mollom.php:1599
+msgid "The Mollom servers could not be contacted at this time. Please try again at a later time."
+msgstr "Không thể kết nối với máy chủ của Mollom. Hãy thử lại."
+
+#~ msgid "&raquo;&nbsp;Legend: "
+#~ msgstr "&raquo;&nbsp;Legende:"
+#~ msgid "Clean"
+#~ msgstr "Clean"
+#~ msgid "Captcha"
+#~ msgstr "Captcha"
+#~ msgid "Unapproved"
+#~ msgstr "Afgekeurd"
+#~ msgid "All"
+#~ msgstr "Alles"
+#~ msgid "&laquo;Previous"
+#~ msgstr "&laquo;Vorige"
+#~ msgid "Mollom recognized your trackback as spam."
+#~ msgstr "Mollom herkende uw trackback als spam."
+#~ msgid "Mollom could not recognize your trackback as spam or ham."
+#~ msgstr "Mollom kon uw trackback niet als spam of ham herkennen."
+

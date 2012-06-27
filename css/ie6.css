@@ -1,0 +1,85 @@
+img, #main #deals .carDealBox, #main #deals .vanDealBox, #articleTop, #articleBottom, #contactUsTop, #contactUsBottom, #dealTop, #dealBottom,
+#whyDSG, #specialOffer, #main #deals .car, #main #deals .hire, #main #deals .van, #main #deals .lease, #main #specialOffer .car, #main #specialOffer .hire, 
+#main #specialOffer .van, #main #specialOffer .lease, #contactUs .switchApplication { 
+	behavior: url(iepngfix.htc);
+}
+
+#left ul li .brand{ 
+	width: 126px;
+}
+
+#main #deals .carDealBox .price, #main #deals .vanDealBox .price{
+	bottom:-2px;
+}
+
+#main #specialOffer  .price{
+	bottom:5px;
+}
+
+#main #specialOffer  .carImage{
+	bottom:75px;
+}
+
+#navBar ul#nav li li {
+	height: 15px;
+}
+
+#navBar ul#nav li.hover ul {
+	display: block;
+	left: -1px;
+	background: #2d2d2d;
+	height: auto;
+}
+
+#navBar ul#nav li ul li.hover {
+	background: #4e4e4e;
+}
+
+ul#nav li#contact ul {
+	right:-16px; 
+}
+
+#contactUs, #deal, #article {
+	margin-top: 0;
+}
+#contactUs #Finance, #contactUs #Bank {
+	width: 405px;
+}
+
+#contactUs .switchApplication {
+	cursor: pointer;
+}
+
+#article table {
+	float: left;
+}
+
+#deal #details .col2 {
+	margin-left: 15px;
+}
+
+#deal #details .col5 {
+	margin-left: 5px;
+	float:left;
+	width: 100px;
+}
+#deal #details .col6{
+	float:left;
+	width: 140px;
+}
+
+#right #testimonials .button {
+	margin-left:12px;
+}
+
+#right #testimonials  q{
+	float: left;
+}
+#right #testimonials  {
+	width: 144px;
+	padding: 5px;
+}
+	
+#contactUs {
+	padding-bottom:0px;
+}
