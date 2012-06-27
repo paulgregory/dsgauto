@@ -1,8 +1,32 @@
 <?php
-define("DB_HOST", "localhost");
-define("DB_USER", "root");
-define("DB_PASS", "zAwEj5SegEz4");
-define("DB_NAME", "dsgac");
+
+switch($_SERVER['SERVER_NAME'])
+{ 
+	case 'dsg.dev':
+	{
+    define("DB_HOST", "localhost");
+		define("DB_USER", "root");
+		define("DB_PASS", "root");
+		define("DB_NAME", "dsgac");
+		break;
+  }
+	case 'dsg.monki.info':
+	{
+    define("DB_HOST", "localhost");
+    define("DB_USER", "root");
+    define("DB_PASS", "zAwEj5SegEz4");
+    define("DB_NAME", "dsgac");
+    break;
+  }
+  default:
+	{
+		// Production
+    define("DB_HOST", "databasehost.dsgfs.com");
+		define("DB_USER", "services");
+		define("DB_PASS", "d15hcl0th");
+		define("DB_NAME", "dsgac");
+  }
+}
 
 //tables
 define("TBL_BRANDS", "tblcarbrands");
