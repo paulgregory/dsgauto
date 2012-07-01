@@ -4,18 +4,18 @@ var VType;
 
 
 function setVtype(){
-	var vehicleType = $('input[name=vehicleType]:checked').val()
+	var vehicleType = $('select[name=vehicleType]').val()
 	VType = escape(vehicleType);
 	return true;
 }
 
 function getBrandList(vehicleType) {
-	// $('#brandSelection').attr('disabled', 'disabled');
-  // $('#brandSelection').html('<option value="0">Makes</option>');
+	$('#brandSelection').attr('disabled', 'disabled');
+  $('#brandSelection').html('<option value="0">Make</option>');
 	$('#modelSelection').attr('disabled', 'disabled');
-  $('#modelSelection').html('<option value="0">Models</option>');
+  $('#modelSelection').html('<option value="0">Model</option>');
 		
-	if(vehicleType != ""){	
+	if(vehicleType != "0"){	
 		$.ajax({
 	    type: "GET",
 	    url: "getBrands.php",
@@ -50,7 +50,7 @@ function getModelList(brandID) {
 function updateBrandSelection(response) {
   var makes = response.split(',');
 
-  var options;
+  var options = '';
 	for (x in makes) {
 		var make = makes[x].split(':');
 	  options += "<option value=\"" + make[1] + "\">" + make[0] + "</option>" + "\n";
@@ -62,7 +62,7 @@ function updateBrandSelection(response) {
 function updateModelSelection(response) {
   var models = response.split(',');
 
-  var options;
+  var options = '';
 	for (x in models) {
 		var model = models[x].split(':');
 	  options += "<option value=\"" + model[1] + "\">" + model[0] + "</option>" + "\n";

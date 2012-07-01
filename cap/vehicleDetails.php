@@ -38,6 +38,14 @@ if ($_GET['capid']) {
 	  //print '</pre>';
 ?>
 
+<?php 
+if ($vehicle['ImageID']) {
+	$img = $_SERVER['DOCUMENT_ROOT'].'/cap/images/'.$vehicle['ImageID'].'.jpg';
+  if (file_exists($img)) {
+	  print '<div class="vehicle-image"><img src="/cap/images/'.$vehicle['ImageID'].'.jpg" /></div>';
+  }	
+} ?>
+
 <h1><?php print $vehicle['ManName']; ?><br /><?php print $vehicle['ModelDesc']; ?><br /><?php print $vehicle['DerivDescription']; ?></h1>
 	
 <h2>Basic Price: &pound;<?php print $vehicle['BasicPrice']; ?></h2>	

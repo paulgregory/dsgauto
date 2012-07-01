@@ -68,7 +68,7 @@ RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} on
 RewriteCond %{REQUEST_URI} (search_results.*\.html)
 RewriteRule .? http://%1/%2 [R,L]
-RewriteRule ^search_results-type_(cars|vans)-make_([0-9]+)-model_([0-9]+)\.html$ index.php?stype=vehiclesearch&vehicleType=$1&brandSelection=$2&modelSelection=$3
+RewriteRule ^search-finance_(personal|business)-type_(cars|vans)-make_([0-9]+)-model_([0-9]+)\.html$ index.php?stype=vehiclesearch&financeType=$1&vehicleType=$2&brandSelection=$3&modelSelection=$4
 
 ##Vehicle Details##
 #Requires No HTTPS
