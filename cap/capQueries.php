@@ -1,5 +1,8 @@
 <?php
 
+// Set the current VAT amount
+define('VAT_AMOUNT', 20);
+
 require_once('mssqlConnect.php');
 
 function run_mssql_query($sql) {
@@ -66,6 +69,18 @@ function vehicle_standard_equipment($capid) {
 	return run_mssql_query($sql);
 }
 
+function vehicle_options($capid) {
+	$sql = "SELECT CAPIDNumber, tblNVDOptions.OptionCode, CatCode, CategoryDesc, LongDesc ".
+	       "FROM tblNVDOptions INNER JOIN ".
+	       "tblNVDDictionaryOption ON tblNVDOptions.OptionCode = tblNVDDictionaryOption.OptionCode INNER JOIN ".
+	       "tblNVDDictionaryCategory ON tblNVDOptions.CatCode = tblNVDDictionaryCategory.CategoryCode ".
+	       "WHERE DateOptionEffective_To IS NULL ".
+	       "AND CAPIDNumber = $capid ".
+	       "ORDER BY CatCode, LongDesc";
+
+	return run_mssql_query($sql);
+}
+
 // Get a list of derivatives and their rate book values for a given internal model number
 // The internal model number is NOT the CAP Model ID but the DSG ID number from the tblcarmodels table
 // This assumes a Mileage of 10000 and a term of 36
@@ -81,5 +96,25 @@ function derivs_by_int_model($model_number) {
 	return run_mysql_query($sql);
 }
 
+// Get a deriv rate book values
+// This assumes a Mileage of 10000 and a term of 36
+function deriv_finance($capid) {
+	$sql = "SELECT CO2, P11D, FinanceRental, ServiceRental, EffectiveRentalValue FROM tblcarderivs AS d, tblratebook AS c ".
+	       "WHERE d.capID = '$capid' ".
+		     "AND d.capID = c.CAP_Id ".
+		     "AND Mileage = 10000 ".
+		     "AND Term = 36 ".
+		     "ORDER BY derivative ASC";
+
+	return run_mysql_query($sql);
+}
+
+function cap_format_price($decimal, $finance = 'business') {
+	if ($finance == 'personal') {
+		$vat_multiplier = (1 + (VAT_AMOUNT / 100));
+		$decimal *= $vat_multiplier;
+	}
+	return number_format($decimal, 2, '.', '');
+}
 
 ?>
