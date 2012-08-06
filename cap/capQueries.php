@@ -73,10 +73,10 @@ function vehicle_options($capid) {
 	$sql = "SELECT CAPIDNumber, tblNVDOptions.OptionCode, CatCode, CategoryDesc, LongDesc ".
 	       "FROM tblNVDOptions INNER JOIN ".
 	       "tblNVDDictionaryOption ON tblNVDOptions.OptionCode = tblNVDDictionaryOption.OptionCode INNER JOIN ".
-	       "tblNVDDictionaryCategory ON tblNVDOptions.CatCode = tblNVDDictionaryCategory.CategoryCode ".
+	       "tblNVDDictionaryCategory ON tblNVDDictionaryOption.CatCode = tblNVDDictionaryCategory.CategoryCode ".
 	       "WHERE DateOptionEffective_To IS NULL ".
 	       "AND CAPIDNumber = $capid ".
-	       "ORDER BY CatCode, LongDesc";
+	       "ORDER BY CategoryDesc, LongDesc";
 
 	return run_mssql_query($sql);
 }
