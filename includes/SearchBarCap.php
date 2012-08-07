@@ -17,7 +17,7 @@
 
   <span class="vehicleType">
 	<select name="vehicleType" id="vehicleType" onchange="getBrandList(this.value);">
-		<option value="0">Vehicle Type</option>
+		<option value="0" selected="selected">Vehicle Type</option>
 		<option value="cars">Cars</option>
 		<option value="vans">Vans</option>
 	</select>

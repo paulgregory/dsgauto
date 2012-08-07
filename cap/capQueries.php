@@ -84,6 +84,7 @@ function vehicle_options($capid) {
 // Get a list of derivatives and their rate book values for a given internal model number
 // The internal model number is NOT the CAP Model ID but the DSG ID number from the tblcarmodels table
 // This assumes a Mileage of 10000 and a term of 36
+// Note: this will only return a deriv if a price is found
 function derivs_by_int_model($model_number) {
 	$sql = "SELECT DISTINCT capID as 'CAPID', model as 'ModelDesc', derivative as 'DerivDescription', CO2, P11D, FinanceRental, ServiceRental, EffectiveRentalValue FROM tblcarderivs AS d, tblratebook AS c ".
 	       "WHERE d.enabled = 1 ".
