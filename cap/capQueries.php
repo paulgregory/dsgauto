@@ -1,8 +1,6 @@
 <?php
 
-// Set the current VAT amount
-define('VAT_AMOUNT', 20);
-
+require_once('capConfig.php');
 require_once('mssqlConnect.php');
 
 function run_mssql_query($sql) {
@@ -25,6 +23,7 @@ function run_mysql_query($sql) {
 	}
 }
 
+// MSSQL
 // Return all current derivatives for a range name (text name, not ID)
 // To be 'current' there has to be an active price for that deriv
 function derivs_by_range_name($range_name) {
@@ -40,6 +39,7 @@ function derivs_by_range_name($range_name) {
 	return run_mssql_query($sql);
 }
 
+// MSSQL
 // Return basic information for a single vehicle for a given CAPID
 // This query makes sure the price being returned is the latest one
 // If there is no active price then we assume the deriv is no longer available
@@ -57,6 +57,7 @@ function vehicle_by_capid($capid) {
 	return run_mssql_query($sql);
 }
 
+// MSSQL
 // Get the list of standard equipment for the vehicle deriv defined by $capid
 function vehicle_standard_equipment($capid) {
 	$sql = "SELECT CAPIDNumber, tblNVDStandardEquipment.OptionCode, CatCode, LongDesc ".
@@ -69,6 +70,7 @@ function vehicle_standard_equipment($capid) {
 	return run_mssql_query($sql);
 }
 
+// MSSQL
 function vehicle_options($capid) {
 	$sql = "SELECT CAPIDNumber, tblNVDOptions.OptionCode, CatCode, CategoryDesc, LongDesc ".
 	       "FROM tblNVDOptions INNER JOIN ".
@@ -81,6 +83,7 @@ function vehicle_options($capid) {
 	return run_mssql_query($sql);
 }
 
+// MYSQL
 // Get a list of derivatives and their rate book values for a given internal model number
 // The internal model number is NOT the CAP Model ID but the DSG ID number from the tblcarmodels table
 // This assumes a Mileage of 10000 and a term of 36
@@ -97,6 +100,7 @@ function derivs_by_int_model($model_number) {
 	return run_mysql_query($sql);
 }
 
+// MYSQL
 // Get a deriv rate book values
 // This assumes a Mileage of 10000 and a term of 36
 function deriv_finance($capid) {

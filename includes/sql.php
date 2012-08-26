@@ -1,4 +1,5 @@
 <?php
+
 ########### Articles ############
 function sqlArticle($aURL){
 $sqlArticle = 
@@ -185,6 +186,22 @@ WHERE
 ORDER BY
 	".TBL_BRANDS.".brand";
 
+$sqlCapCarBrand = 
+"SELECT DISTINCT
+	".TBL_CAP_CAR.".Manufacturer as brand
+FROM
+	".TBL_CAP_CAR."
+ORDER BY
+	".TBL_CAP_CAR.".Manufacturer";
+	
+$sqlCapVanBrand = 
+"SELECT DISTINCT
+	".TBL_CAP_VAN.".Manufacturer as brand
+FROM
+	".TBL_CAP_VAN."
+ORDER BY
+	".TBL_CAP_VAN.".Manufacturer";
+
 function getBrandFromId($Car, $ID){
 $brandTable = "";
 if($Car)
@@ -321,6 +338,25 @@ AND
 return $sqlModels;
 }
 
+function getCapModels($BrandID, $Enabled, $Car){
+$tbl;
+if ($Car)
+	$tbl = TBL_CAP_CAR;
+else
+	$tbl = TBL_CAP_VAN;
+	
+$BrandID = str_replace('+', ' ', $BrandID);
+
+$sqlModels= 
+"SELECT DISTINCT 
+	".$tbl.".ModelShort as model
+FROM
+	".$tbl."
+WHERE
+	".$tbl.".Manufacturer = '$BrandID'";
+return $sqlModels;
+}
+
 function getEnabledDerivs($ModelID, $Enabled, $Car){
 $tbl;
 if ($Car)
@@ -339,6 +375,28 @@ AND
 	".$tbl.".enabled = '$Enabled'
 ORDER BY
 	".$tbl.".derivative";
+return $sqlDerivs;
+}
+
+function getCapDerivs($ModelID, $Enabled, $Car){
+$tbl;
+if ($Car)
+	$tbl = TBL_CAP_CAR;
+else
+	$tbl = TBL_CAP_VAN;
+	
+$ModelID = str_replace('+', ' ', $ModelID);
+	
+$sqlDerivs = 
+"SELECT 
+	".$tbl.".DerivativeLong as derivative,
+	".$tbl.".CAPID
+FROM
+	".$tbl."
+WHERE
+	".$tbl.".ModelShort = '$ModelID' 
+ORDER BY
+	".$tbl.".DerivativeLong";
 return $sqlDerivs;
 }
 
@@ -437,4 +495,39 @@ WHERE
 	".TBL_IMAGES.".id = '$ImageID'";
 return $sqlGetImage;
 }
-?>
+
+function derivsByModel($VehicleType, $ModelName) {
+	if($VehicleType == 'cars'){
+		$tblDerivs = TBL_CAP_CAR;
+	}
+	else{
+		$tblDerivs = TBL_CAP_VAN;
+	}
+	
+	$sql = 
+	 "SELECT
+		  d.CAPID,
+		  d.Manufacturer,
+		  d.ModelShort,
+		  d.DerivativeLong AS Derivative,
+		  r.P11D,
+		  r.CO2,
+		  r.BasicListPrice,
+		  r.FinanceRental
+		FROM 
+		  ".$tblDerivs." as d, 
+		  ".TBL_RATE_BOOK." as r 
+		WHERE 
+		  d.CAPID = r.CAP_ID 
+		AND 
+		  d.ModelShort = '".$ModelName."' 
+		AND 
+		  r.Mileage = 10000 
+		AND 
+		  r.Term = 36 
+		ORDER BY 
+		  d.DerivativeLong ASC";
+		
+	return $sql;
+
+}

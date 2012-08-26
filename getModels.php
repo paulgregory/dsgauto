@@ -14,10 +14,10 @@ if (isset($_SESSION['dsgauto']))
 		switch($vtype)
 		{
 			case 'cars':
-				$qryModels = mysql_query(getEnabledModels($brandID, 1, true),$dbConnect);
+				$qryModels = mysql_query(getCapModels($brandID, 1, true),$dbConnect);
 				break;
 			case 'vans':
-				$qryModels = mysql_query(getEnabledModels($brandID, 1, false),$dbConnect);
+				$qryModels = mysql_query(getCapModels($brandID, 1, false),$dbConnect);
 				break;
 			default:; 
 		}
@@ -26,8 +26,8 @@ if (isset($_SESSION['dsgauto']))
 			$strModels = "Please Select:0";
 			while ($rstBrand = mysql_fetch_array($qryModels))
 			{
-				$strModelID = $rstBrand['id'];
-				$strModel = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstBrand['model']))); 
+				$strModelID = str_replace(' ', '+', $rstBrand['model']);
+				$strModel = $rstBrand['model']; 
 				$strModels .= ",$strModel:$strModelID";
 			}
 		}

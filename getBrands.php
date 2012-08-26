@@ -12,22 +12,22 @@ if (isset($_GET['vtype']) && isset($_SESSION['dsgauto']))
 	switch($vtype)
 	{
 		case 'cars':
-			$qryBrand = mysql_query($sqlCarBrand,$dbConnect);
+			$qryBrand = mysql_query($sqlCapCarBrand,$dbConnect);
 		break;
 		case 'vans':
-			$qryBrand = mysql_query($sqlVanBrand,$dbConnect);
+			$qryBrand = mysql_query($sqlCapVanBrand,$dbConnect);
 		break;
-		default: $qryBrand = mysql_query($sqlCarBrand,$dbConnect);
+		default: $qryBrand = mysql_query($sqlCapCarBrand,$dbConnect);
 	}
 	if($qryBrand)
 	{
 		$strBrandList = "Please Select:0";
 		while ($rstBrand = mysql_fetch_array($qryBrand))
 		{
-			$strBrandID = $rstBrand["id"];
+			$strBrandID = str_replace(' ', '+', $rstBrand["brand"]);
 			$strBrandName = $rstBrand["brand"];
 			if($strBrandName != "BMW")
-				$strBrandName = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstBrand["brand"]))); 
+				$strBrandName = $rstBrand["brand"]; 
 			$strBrandList .= ",$strBrandName:$strBrandID";
 		}
 	}

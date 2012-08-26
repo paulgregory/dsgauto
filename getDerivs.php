@@ -14,10 +14,10 @@ if (isset($_SESSION['dsgauto']))
 		switch($vtype)
 		{
 			case 'cars':
-				$qryDerivs = mysql_query(getEnabledDerivs($modelID, 1, true),$dbConnect);
+				$qryDerivs = mysql_query(getCapDerivs($modelID, 1, true),$dbConnect);
 				break;
 			case 'vans':
-				$qryDerivs = mysql_query(getEnabledDerivs($modelID, 1, false),$dbConnect);
+				$qryDerivs = mysql_query(getCapDerivs($modelID, 1, false),$dbConnect);
 				break;
 			default:; 
 		}
@@ -26,8 +26,8 @@ if (isset($_SESSION['dsgauto']))
 			$strDerivs = "Please Select:0";
 			while ($rstDerivs = mysql_fetch_array($qryDerivs))
 			{
-				$strDerivID = $rstDerivs['id'];
-				$strDeriv = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstDerivs['derivative']))); 
+				$strDerivID = $rstDerivs['CAPID'];
+				$strDeriv = $rstDerivs['derivative']; 
 				$strDerivs .= ",$strDeriv:$strDerivID";
 			}
 		}

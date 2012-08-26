@@ -34,6 +34,9 @@ define("TBL_MODELS", "tblcarmodels");
 define("TBL_DERIVS", "tblcarderivs");
 define("TBL_DEALS", "tbldeals");
 
+define("TBL_CAP_CAR", "tblcapcars");
+define("TBL_CAP_VAN", "tblcapvans");
+
 define("TBL_ARTICLES", "tblarticles");
 define("TBL_USERS", "tblusers");
 define("TBL_IMAGES", "tblvehicleimages");
@@ -43,5 +46,7 @@ define("TBL_VANBRANDS", "tblvanbrands");
 define("TBL_VANMODELS", "tblvanmodels");
 define("TBL_VANDERIVS", "tblvanderivs");
 define("TBL_VANDEALS", "tblvandeals");
+
+define("TBL_RATE_BOOK", "tblratebook");
 
 ?>

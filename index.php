@@ -25,8 +25,8 @@
 	$form_error = false;
 	if (isset($_POST['vehicleType'])) {
 		// validate the post
-		if (($_POST['financeType'] == 'personal' || $_POST['financeType'] == 'business') && ($_POST['vehicleType'] == 'cars' || $_POST['vehicleType'] == 'vans') && intval($_POST['brand']) > 0 && intval($_POST['modelSelection']) > 0) {
-			header( 'Location: /search-finance_'.mysql_real_escape_string($_POST['financeType']).'-type_'.mysql_real_escape_string($_POST['vehicleType']).'-make_'.mysql_real_escape_string($_POST['brand']).'-model_'.mysql_real_escape_string($_POST['modelSelection']).'.html');
+		if (($_POST['financeType'] == 'personal' || $_POST['financeType'] == 'business') && ($_POST['vehicleType'] == 'cars' || $_POST['vehicleType'] == 'vans') && $_POST['brand'] !== 0 && $_POST['modelSelection'] !== 0) {
+			header( 'Location: /search_'.mysql_real_escape_string($_POST['financeType']).'_'.mysql_real_escape_string($_POST['vehicleType']).'_'.mysql_real_escape_string($_POST['brand']).'_'.mysql_real_escape_string($_POST['modelSelection']).'.html');
 		}
 		else {
 			$form_error = 'Please select a vehicle type, make and model';

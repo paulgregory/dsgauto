@@ -1,43 +1,31 @@
 <?php
 
-require_once('capQueries.php');
-
 // Build a readable URL for the vehicle detail page
-function vehicle_url($br, $deriv, $finance = 'business') {
-	$url = 'vehicle_details-finance_'.$finance.'-'.$br['brand'].'-'.$br['range'].'-'.$deriv['CAPID'].'.html';
-	$url = str_replace(' ', '_', $url);
+function vehicle_url($manufacturer, $model, $capid, $finance = 'business') {
+	$url = 'vehicle-details_'.$finance.'_'.$manufacturer.'_'.$model.'_'.$capid.'.html';
+	$url = str_replace(' ', '+', $url);
 	return $url;
 }
 
-
 require_once('includes/constants.php');
+require_once('includes/sql.php');
 require_once('includes/dbConnect.php');
+require_once('capConfig.php');
 
-if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['modelSelection'])) {
+if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['modelSelection']) && isset($_GET['brandSelection'])) {
 
   $finance = ($_GET['financeType'] == 'personal')? 'personal' : 'business'; // a form of query sanitisation
 	$vtype = ($_GET['vehicleType'] == 'vans')? 'vans' : 'cars'; 
-	$model = intval($_GET['modelSelection']);
+	$manufacturer = htmlspecialchars($_GET['brandSelection']);
+	$model = mysql_real_escape_string($_GET['modelSelection']);
 	
-	// Use the text model name to find all derivatives on the CAP feed (MSSQL)
-	// Finance pricing is taken from the Ratebook (MySQL)
-	if ($vtype == 'cars') {
-	  $sql = "SELECT model as 'range', brand FROM tblcarmodels as m, tblcarbrands as b WHERE b.id = m.brandID AND m.id = $model LIMIT 1";
-	}
-	elseif ($vtype == 'vans') {
-		$sql = "SELECT model as 'range', brand FROM tblvanmodels as m, tblvanbrands as b WHERE b.id = m.brandID AND m.id = $model LIMIT 1";
-	}
-	
-	$qryRange = mysql_query($sql);
-	if (mysql_num_rows($qryRange)) {
-		$brand_range = mysql_fetch_assoc($qryRange, 0);
-	} else {
+	$derivs = mysql_query(derivsByModel($vtype, $model));
+	if (!mysql_num_rows($derivs)) {
 		print 'Model not recognised';
 	}
-
-	if ($brand_range) {
+	else {
 		
-		print '<h1> Search results for '.$brand_range['brand'].' '.$brand_range['range'].'</h1>';
+		print '<h1> Search results for '.$manufacturer.' '.$model.'</h1>';
     
     // TODO: Pull this content from an additional model descriptions table
     print '<p>Morbi a neque metus. Nam egestas nisi quis est pulvinar sollicitudin. Donec lobortis scelerisque eros et posuere. Vivamus fringilla bibendum lacus, eget placerat ante pharetra ut. Fusce a quam ut nisi fermentum lacinia. Nulla semper tincidunt ante a convallis. Pellentesque ac nulla libero, quis pellentesque ligula. Suspendisse posuere nunc a nunc faucibus non elementum lectus vulputate.</p>';
@@ -46,9 +34,8 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
     $finance_column_header = ($finance == 'personal')? 'Monthly finance rental price including VAT' : 'Monthly finance rental price excluding VAT';
     print $finance_string;
 
-    $derivs = derivs_by_int_model($model);
 		while ($deriv = mysql_fetch_assoc($derivs)) {
-			$derivs_full[$deriv['DerivDescription']] = $deriv;
+			$derivs_full[$deriv['Derivative']] = $deriv;
 		}
 		ksort($derivs_full);
 
@@ -66,11 +53,11 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 				</thead>
 				<?php foreach($derivs_full as $deriv) {?>
 					<tr>
-						<td class="deriv-name"><a href="<?php print vehicle_url($brand_range, $deriv); ?>"><?php print $brand_range['brand'] . ' ' . $brand_range['range'] . ' ' . $deriv['DerivDescription']; ?></a></td>
+						<td class="deriv-name"><a href="<?php print vehicle_url($manufacturer, $model, $deriv['CAPID']); ?>"><?php print $manufacturer . ' ' . $model . ' ' . $deriv['Derivative']; ?></a></td>
 						<td class="deriv-co2 subtle"><?php print $deriv['CO2']; ?></td>
 						<td class="deriv-p11d subtle">&pound;<?php print number_format($deriv['P11D'], 2, '.', ''); ?></td>
 						<td class="deriv-finance"><strong>&pound;<?php print cap_format_price($deriv['FinanceRental'], $finance); ?></strong></td>
-						<td class="deriv-more"><a class="vehicle-more" href="<?php print vehicle_url($brand_range, $deriv, $finance); ?>">More Info</a></td>
+						<td class="deriv-more"><a class="vehicle-more" href="<?php print vehicle_url($manufacturer, $model, $deriv['CAPID']); ?>">More Info</a></td>
 					</tr>
 					<?php } ?>
 				</table>
@@ -84,9 +71,6 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 			print 'No vehicles found. <a href="/">Search again</a>';
 		}
 	
-	}
-	else {
-		print 'Vehicle type not recognised';
 	}
 
 }
