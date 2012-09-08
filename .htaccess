@@ -1,3 +1,16 @@
+# Password protect if in staging
+SetEnvIfNoCase Host dsg\.monki\.info auth
+
+AuthType Basic
+AuthName "Restricted Area"
+AuthUserFile .htpasswd
+Require valid-user
+
+Order deny,allow
+Deny from env=auth
+Satisfy any
+
+
 # Helicon ISAPI_Rewrite configuration file
 # Version 3.1.0.77
 
