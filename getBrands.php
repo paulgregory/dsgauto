@@ -26,8 +26,6 @@ if (isset($_GET['vtype']) && isset($_SESSION['dsgauto']))
 		{
 			$strBrandID = str_replace(' ', '+', $rstBrand["brand"]);
 			$strBrandName = $rstBrand["brand"];
-			if($strBrandName != "BMW")
-				$strBrandName = $rstBrand["brand"]; 
 			$strBrandList .= ",$strBrandName:$strBrandID";
 		}
 	}

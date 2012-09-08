@@ -72,6 +72,24 @@ function getTitle() {
 			case "sitemap":
 				$title .= "Site Map";
 				break;
+				
+			case "vehiclesearch": // search results
+        $title .= "Search results for " . htmlspecialchars($_GET['brandSelection']) . ' ' . htmlspecialchars($_GET['modelSelection']) . ' | DSG Auto Contracts';
+        $title = str_replace('+', ' ', $title);
+        break;
+      case "vehicledetails": // search results
+        $capid = intval($_GET['capid']);
+			  $vtype = ($_GET['vehicleType'] == 'car')? 'car' : 'van'; // a form of query sanitisation
+			  $qryVehicle = mysql_query(vehicleInfoAndFinance($capid, $vtype));
+			  if ($vehicle = mysql_fetch_assoc($qryVehicle)) {
+          $title .= "Vehicle finance details for " . htmlspecialchars($vehicle['Manufacturer']) . ' ' . htmlspecialchars($vehicle['ModelShort']) . ' ' . htmlspecialchars($vehicle['DerivativeLong']) . ' | DSG Auto Contracts';
+          $title = str_replace('+', ' ', $title);
+        }
+        else {
+	        $title .= "Problem retrieving vehicle info";
+        }
+        break;
+				
 			default:;
 		}
 	}

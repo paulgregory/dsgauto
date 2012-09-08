@@ -76,7 +76,7 @@ RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} on
 RewriteCond %{REQUEST_URI} (vehicle_details.*\.html)
 RewriteRule .? http://%1/%2 [R,L]
-RewriteRule ^vehicle-details_(personal|business)_([A-Z0-9-+]+)_([A-Z0-9-+]+)_([0-9]+)\.html$ index.php?financeType=$1&stype=vehicledetails&capid=$4
+RewriteRule ^vehicle-details_(personal|business)_(car|van)_([A-Z0-9-+]+)_([A-Z0-9-+]+)_([0-9]+)\.html$ index.php?financeType=$1&stype=vehicledetails&vehicleType=$2&capid=$5
 
 
 #Contact Us#

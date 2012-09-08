@@ -187,20 +187,32 @@ ORDER BY
 	".TBL_BRANDS.".brand";
 
 $sqlCapCarBrand = 
-"SELECT DISTINCT
-	".TBL_CAP_CAR.".Manufacturer as brand
-FROM
-	".TBL_CAP_CAR."
-ORDER BY
-	".TBL_CAP_CAR.".Manufacturer";
+	"SELECT 
+	  DISTINCT c.Manufacturer AS brand
+	FROM 
+	  ".TBL_CAP_CAR." AS c 
+	INNER JOIN 
+	  ".TBL_RATE_BOOK." AS r ON c.CAPID = CAP_Id 
+	INNER JOIN 
+	  ".TBL_BRANDS." AS b ON c.Manufacturer = b.brand 
+	AND
+	  b.enabled = 1
+	ORDER BY
+	  c.Manufacturer ASC";
 	
 $sqlCapVanBrand = 
-"SELECT DISTINCT
-	".TBL_CAP_VAN.".Manufacturer as brand
-FROM
-	".TBL_CAP_VAN."
-ORDER BY
-	".TBL_CAP_VAN.".Manufacturer";
+	"SELECT 
+	  DISTINCT c.Manufacturer AS brand
+	FROM 
+	  ".TBL_CAP_VAN." AS c 
+	INNER JOIN 
+	  ".TBL_RATE_BOOK." AS r ON c.CAPID = CAP_Id 
+	INNER JOIN 
+	  ".TBL_VANBRANDS." AS b ON c.Manufacturer = b.brand 
+	AND
+	  b.enabled = 1
+	ORDER BY
+	  c.Manufacturer ASC";
 
 function getBrandFromId($Car, $ID){
 $brandTable = "";
@@ -339,22 +351,35 @@ return $sqlModels;
 }
 
 function getCapModels($BrandID, $Enabled, $Car){
-$tbl;
-if ($Car)
-	$tbl = TBL_CAP_CAR;
-else
-	$tbl = TBL_CAP_VAN;
+
+if ($Car) {
+	$deriv_table = TBL_CAP_CAR;
+	$model_table = TBL_MODELS;
+}
+else {
+	$deriv_table = TBL_CAP_VAN;
+	$model_table = TBL_VANMODELS;
+}
 	
 $BrandID = str_replace('+', ' ', $BrandID);
 
 $sqlModels= 
-"SELECT DISTINCT 
-	".$tbl.".ModelShort as model
-FROM
-	".$tbl."
-WHERE
-	".$tbl.".Manufacturer = '$BrandID'";
-return $sqlModels;
+ "SELECT 
+	  DISTINCT ModelShort AS model
+	FROM 
+	  ".$deriv_table." AS c 
+	INNER JOIN 
+	  ".TBL_RATE_BOOK." AS r ON c.CAPID = CAP_Id 
+	INNER JOIN 
+	  ".$model_table." AS m ON c.ModelShort = m.model 
+	WHERE
+	  c.Manufacturer = '".$BrandID."'
+	AND
+	  m.enabled = ".$Enabled."
+	ORDER BY
+	  c.ModelShort ASC";
+
+  return $sqlModels;
 }
 
 function getEnabledDerivs($ModelID, $Enabled, $Car){
@@ -378,26 +403,28 @@ ORDER BY
 return $sqlDerivs;
 }
 
-function getCapDerivs($ModelID, $Enabled, $Car){
-$tbl;
-if ($Car)
-	$tbl = TBL_CAP_CAR;
-else
-	$tbl = TBL_CAP_VAN;
-	
-$ModelID = str_replace('+', ' ', $ModelID);
-	
-$sqlDerivs = 
-"SELECT 
-	".$tbl.".DerivativeLong as derivative,
-	".$tbl.".CAPID
-FROM
-	".$tbl."
-WHERE
-	".$tbl.".ModelShort = '$ModelID' 
-ORDER BY
-	".$tbl.".DerivativeLong";
-return $sqlDerivs;
+function getCapDerivs($ModelID, $Car){
+	if ($Car)
+		$tbl = TBL_CAP_CAR;
+	else
+		$tbl = TBL_CAP_VAN;
+
+	$ModelID = str_replace('+', ' ', $ModelID);
+
+	$sqlDerivs = 
+	"SELECT 
+		DISTINCT c.DerivativeLong as derivative,
+	  c.CAPID
+	FROM
+		".$tbl." as c
+	INNER JOIN
+		".TBL_RATE_BOOK." AS r ON c.CAPID = r.CAP_Id 
+	WHERE
+		c.ModelShort = '$ModelID' 
+	ORDER BY
+		c.DerivativeLong";
+		
+	return $sqlDerivs;
 }
 
 function getModels($BrandName, $Car){
@@ -530,4 +557,81 @@ function derivsByModel($VehicleType, $ModelName) {
 		
 	return $sql;
 
+}
+
+// Get vehicle info and rate book values given a capid and vtype
+function vehicleInfoAndFinance($capid, $vtype) {
+	if($vtype == 'car'){
+		$tblDerivs = TBL_CAP_CAR;
+	}
+	else{
+		$tblDerivs = TBL_CAP_VAN;
+	}
+	
+	$sql = "SELECT CO2, P11D, FinanceRental, ServiceRental, EffectiveRentalValue, c.Manufacturer, ModelShort, ModelLong, DerivativeShort, DerivativeLong FROM ".$tblDerivs." AS c, tblratebook AS r ".
+	       "WHERE c.CAPID = '$capid' ".
+		     "AND c.CAPID = r.CAP_Id ".
+		     "AND Mileage = 10000 ".
+		     "AND Term = 36 ".
+		     "LIMIT 1";
+
+	return $sql;
+}
+
+function brandNotes($brand, $vtype) {
+	$sql = "SELECT notes, imageid FROM ".TBL_BRAND_NOTES." WHERE brand = '".$brand."' AND vtype='".$vtype."'";
+	return $sql;
+}
+
+
+// --------------- MSSQL Queries ---------------
+
+// Get CAP imageID for a given CAPID
+function capVehicleImage($capid) {
+	$sql = "SELECT TOP 1 ImageID FROM tblNVDModelYear WHERE CAPID = $capid";
+	
+	return $sql;
+}
+
+
+// Return basic information for a single vehicle for a given CAPID
+// This query makes sure the price being returned is the latest one
+// If there is no active price then we assume the deriv is no longer available
+function capVehicleInfo($capid) {
+	$sql = "SELECT TOP 1 * ".
+		"FROM vieCAPDerivativesAndCodes INNER JOIN ".
+		"tblCAPMod ON vieCAPDerivativesAndCodes.ModelCode = tblCAPMod.ModelCode INNER JOIN ".
+		"tblNVDPrices ON vieCAPDerivativesAndCodes.CAPID = tblNVDPrices.CAPIDNumber INNER JOIN ".
+		"tblCAPMan ON vieCAPDerivativesAndCodes.ManCode = tblCAPMan.ManCode INNER JOIN ".
+		"tblNVDModelYear ON vieCAPDerivativesAndCodes.CAPID = tblNVDModelYear.CAPID INNER JOIN ".
+		"tblCAPRanges ON tblCAPMod.RangeCode = tblCAPRanges.RangeCode ".
+		"WHERE DateOptionEffectiveTo IS NULL ".
+		"AND vieCAPDerivativesAndCodes.CAPID = $capid";
+		
+	return $sql;
+}
+
+// Get a list of all the available options for this vehicle
+function capVehicleOptions($capid) {
+	$sql = "SELECT CAPIDNumber, tblNVDOptions.OptionCode, CatCode, CategoryDesc, LongDesc ".
+	       "FROM tblNVDOptions INNER JOIN ".
+	       "tblNVDDictionaryOption ON tblNVDOptions.OptionCode = tblNVDDictionaryOption.OptionCode INNER JOIN ".
+	       "tblNVDDictionaryCategory ON tblNVDDictionaryOption.CatCode = tblNVDDictionaryCategory.CategoryCode ".
+	       "WHERE DateOptionEffective_To IS NULL ".
+	       "AND CAPIDNumber = $capid ".
+	       "ORDER BY CategoryDesc, LongDesc";
+
+	return $sql;
+}
+
+// Get the list of standard equipment for the vehicle deriv defined by $capid
+function capVehicleStandardEquipment($capid) {
+	$sql = "SELECT CAPIDNumber, tblNVDStandardEquipment.OptionCode, CatCode, LongDesc ".
+	       "FROM tblNVDStandardEquipment INNER JOIN ".
+	       "tblNVDDictionaryOption ON tblNVDStandardEquipment.OptionCode = tblNVDDictionaryOption.OptionCode ".
+	       "WHERE DateOptionEffectiveTo IS NULL ".
+	       "AND CAPIDNumber = $capid ".
+	       "ORDER BY CatCode, LongDesc";
+	
+	return $sql;
 }

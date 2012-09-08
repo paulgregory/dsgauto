@@ -123,7 +123,8 @@ if (isset($_SESSION['status']))
 			else
 				$vehicleType = 0;
 			$imageID = addslashes($_POST['imageID']);
-			$qryDeal = mysql_query(addDeal($vehicleType, $VehicleID, $notes, $profile1, $profile2, $initialPayment, $monthlyPayment, $term, $annualMileage, $docFee, true, $business, $personal, $imageID, $financeType, $finalPayment, $specialOffer), $dbConnect);
+			
+			//$qryDeal = mysql_query(addDeal($vehicleType, $VehicleID, $notes, $profile1, $profile2, $initialPayment, $monthlyPayment, $term, $annualMileage, $docFee, true, $business, $personal, $imageID, $financeType, $finalPayment, $specialOffer), $dbConnect);
 			if ($qryDeal)
 				$strUpdated = "Deal Added";			
 			else

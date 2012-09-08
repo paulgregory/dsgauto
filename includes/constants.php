@@ -47,6 +47,7 @@ define("TBL_VANMODELS", "tblvanmodels");
 define("TBL_VANDERIVS", "tblvanderivs");
 define("TBL_VANDEALS", "tblvandeals");
 
+define("TBL_BRAND_NOTES", "tblbrandnotes");
 define("TBL_RATE_BOOK", "tblratebook");
 
 ?>

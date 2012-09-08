@@ -4,7 +4,7 @@
 define('VAT_AMOUNT', 20);
 
 // MS SQL Database config
-define('MSSQL_HOST', 'ec2-54-247-133-62.eu-west-1.compute.amazonaws.com');
+define('MSSQL_HOST', 'ec2-46-137-67-195.eu-west-1.compute.amazonaws.com');
 define("MSSQL_USER", "AMAZONA-HMIH3E4\Muba");
 define("MSSQL_PASS", "mub4cr3at1ve()");
 define("MSSQL_NAME", "CAPEnhanced");
@@ -15,5 +15,5 @@ function cap_format_price($decimal, $finance = 'business') {
 		$vat_multiplier = (1 + (VAT_AMOUNT / 100));
 		$decimal *= $vat_multiplier;
 	}
-	return number_format($decimal, 2, '.', '');
+	return number_format($decimal, 2, '.', ',');
 }

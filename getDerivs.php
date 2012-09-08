@@ -6,6 +6,7 @@ if (isset($_SESSION['dsgauto']))
 	{
 		$vtype = $_GET['vtype'];
 		$modelID = $_GET['modelID'];
+		
 		$strDerivs = "";
 		include('includes/constants.php');
 		include('includes/sql.php');
@@ -14,10 +15,10 @@ if (isset($_SESSION['dsgauto']))
 		switch($vtype)
 		{
 			case 'cars':
-				$qryDerivs = mysql_query(getCapDerivs($modelID, 1, true),$dbConnect);
+				$qryDerivs = mysql_query(getCapDerivs($modelID, true),$dbConnect);
 				break;
 			case 'vans':
-				$qryDerivs = mysql_query(getCapDerivs($modelID, 1, false),$dbConnect);
+				$qryDerivs = mysql_query(getCapDerivs($modelID, false),$dbConnect);
 				break;
 			default:; 
 		}

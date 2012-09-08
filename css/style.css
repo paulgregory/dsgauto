@@ -952,8 +952,34 @@ p.dealsText {
 -------------*/
 
 #contactUs form {
-	width: 450px;
-	margin: 10px auto;
+	margin: 10px 0;
+}
+
+#contactUs form .column-1,
+#contactUs form .column-2 {
+	width: 459px;
+	float: left;
+	margin-top: 10px;
+}
+
+#contactUs form .column-1 {
+	border-right: 1px dashed #CDCDCD;
+}
+
+#contactUs form fieldset {
+	border: none;
+}
+
+#contactUs form .column-1 fieldset {
+	margin: 0 20px 15px 0;
+}
+
+#contactUs form .column-2 fieldset {
+	margin: 0 0 15px 20px;
+}
+
+#contactUs .form-item {
+	clear: both;
 }
 
 form p {
@@ -978,8 +1004,6 @@ legend {
 	background: url("bg_label.jpg") no-repeat scroll left bottom #FFFFFF;
 	border: 1px solid #BBBBBB;
 	color: #3B3B3B;
-	display: block;
-	float: left;
 	/*height: 15px;*/
 	margin: 5px;
 	padding: 2px 4px;
@@ -1011,19 +1035,16 @@ textarea, select {
 
 input.financeCheck, input.infocheck {
 	width: 12px;
+	margin-top: 9px;
 }
 
 #contactUs label {
 	display: block;
 	float: left;
-	margin: 7px 0;
+	margin: 7px 10px 7px 0;
 	width: 150px;
 	clear: both;
 	text-align: right;
-}
-
-#contactDetails, #vehicleDetails {
-	float: left;
 }
 
 #contactUs form {
@@ -1032,17 +1053,43 @@ input.financeCheck, input.infocheck {
 }
 
 span.required {
-	float: right;
 }
 
 p span.required {
-	float: none;
 }
 
 .contact_address {
 	float: right;
 	margin: 60px 70px 0 0;
 	width: 300px;
+}
+
+#quoteSubmit {
+	text-align: center;
+	padding-top: 15px;
+	clear: both;
+}
+
+#quoteSubmit .submitButton {
+	background: #DB2A34;
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: bold;
+	border: none;
+	text-align: center;
+	background: #DA2A34;
+	color: #fff;
+	padding: 5px;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	width: 160px;
+	
+	box-shadow: #999 1px 1px 4px;
+	-webkit-box-shadow: #999 1px 1px 4px;
+	-moz-box-shadow: #999 1px 1px 4px;
+	-ms-box-shadow: #999 1px 1px 4px;
 }
 
 /* Footer
@@ -1553,4 +1600,156 @@ a#about-the-business:hover {
 .product-derivs .vehicle-more:hover {
 	background: #000;
 	text-decoration: none;
+}
+
+.grey {
+	color: #999;
+}
+
+/* Vehicle Detail Page */
+h1 .deriv-name {
+  font-weight: normal;	
+}
+
+table.finance-details {
+	margin: 1em 0 2em 0;
+	font-size: 1.15em;
+}
+
+table.finance-details td.label {
+	padding-right: 15px;
+}
+
+table.finance-details td {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+table.finance-details .finance-rental {
+	font-weight: bold;
+	font-size: 1.15em;
+}
+
+table.finance-details .finance-notice {
+	color: #999;
+}
+
+table.finance-details .finance-notice {
+	font-size: 0.8em;
+}
+
+#vehicle-image {
+	float: right;
+}
+
+#vehicle-title.with-image {
+	margin-right: 370px;
+}
+
+#quote-buttons {
+	padding-top: 28px;
+	width: 200px;
+	float: right;
+}
+
+#quote-buttons input {
+	border: none;
+	display: block;
+	text-align: center;
+	background: #DA2A34;
+	color: #fff;
+	padding: 10px;
+	font-size: 1.8em;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	
+	box-shadow: #999 1px 1px 4px;
+	-webkit-box-shadow: #999 1px 1px 4px;
+	-moz-box-shadow: #999 1px 1px 4px;
+	-ms-box-shadow: #999 1px 1px 4px;
+}
+
+#vehicle-tabs {
+	width: 700px;
+	float: left;
+}
+
+.css-columns {
+	column-count: 2;
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	-ms-column-count: 2;
+	column-gap: 40px;
+	-webkit-column-gap: 40px;
+	-moz-column-gap: 40px;
+	-ms-column-gap: 40px;
+}
+
+.css-columns .group {
+  display: inline-block;
+  width: 100%;
+}
+
+.css-columns .group h3 {
+  margin: 0.7em 0;
+}
+
+#vehicle-options .group ul {
+	padding: 0;
+	margin: 0;
+}
+
+#vehicle-options .group li {
+	display: block;
+	list-style-type: none;
+	padding: 2px 0;
+}
+
+#vehicle-options .group li input {
+	float: left;
+	margin-top: 1px;
+}
+
+#vehicle-options .group li label {
+	margin-left: 20px;
+	display: block;
+	line-height: 1.2;
+}
+
+/* Jquery UI Tabs */
+.ui-tabs-hide {
+	display: none;
+}
+
+ul.ui-tabs-nav {
+	margin: 0;
+	padding: 0;
+}
+
+.ui-tabs-nav li {
+	display: block;
+	float: left;
+	list-style-type: none;
+	margin: 0 3px 0 0;
+	padding: 0;
+}
+
+.ui-tabs-nav li a {
+	display: block;
+	padding: 5px 10px;
+	background: #d4d4d4;
+	text-decoration: none;
+	font-size: 1.1em;
+}
+
+.ui-tabs-nav li.ui-state-active a {
+	background: #DA2A34;
+	color: #fff;
+}
+
+.ui-tabs-panel {
+	border: 1px solid #DA2A34;
+	border-top-width: 5px;
+	padding: 5px 15px;
 }
