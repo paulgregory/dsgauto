@@ -474,6 +474,7 @@ a.last {
 	border-left: 1px solid #fff;
 }
 
+/*
 #nav #blog-link a {
 	background: #565656 url(../images/bg_nav_blog.png) top left repeat-x;
 }
@@ -481,6 +482,7 @@ a.last {
 #nav a:hover {
 	background: #7f1e1c url(../images/bg_nav_over.png) top left repeat-x !important;
 }
+*/
 
 #nav a.dsghome {
 	width: 65px;
@@ -976,14 +978,14 @@ p.dealsText {
 	margin: 10px 0;
 }
 
-#contactUs form .column-1,
-#contactUs form .column-2 {
+#contactUs .column-1,
+#contactUs .column-2 {
 	width: 459px;
 	float: left;
 	margin-top: 10px;
 }
 
-#contactUs form .column-1 {
+#contactUs .column-1 {
 	border-right: 1px dashed #CDCDCD;
 }
 
@@ -1080,8 +1082,7 @@ p span.required {
 }
 
 .contact_address {
-	float: right;
-	margin: 60px 70px 0 0;
+	margin: 30px 0 0 60px;
 	width: 300px;
 }
 
@@ -1091,7 +1092,8 @@ p span.required {
 	clear: both;
 }
 
-#quoteSubmit .submitButton {
+#quoteSubmit .submitButton,
+#contactSubmit .submitButton {
 	background: #DB2A34;
 	color: #fff;
 	text-transform: uppercase;
