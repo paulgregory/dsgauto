@@ -478,11 +478,10 @@ a.last {
 #nav #blog-link a {
 	background: #565656 url(../images/bg_nav_blog.png) top left repeat-x;
 }
-
+*/
 #nav a:hover {
 	background: #7f1e1c url(../images/bg_nav_over.png) top left repeat-x !important;
 }
-*/
 
 #nav a.dsghome {
 	width: 65px;
