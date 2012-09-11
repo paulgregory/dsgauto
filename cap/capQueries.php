@@ -116,7 +116,7 @@ function deriv_finance($capid) {
 
 function cap_format_price($decimal, $finance = 'business') {
 	if ($finance == 'personal') {
-		$vat_multiplier = (1 + (VAT_AMOUNT / 100));
+		$vat_multiplier = $VAT;
 		$decimal *= $vat_multiplier;
 	}
 	return number_format($decimal, 2, '.', '');

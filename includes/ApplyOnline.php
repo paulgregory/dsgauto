@@ -1,27 +1,26 @@
 <?php
-	$type = $_GET['type'];
+	$type = htmlspecialchars($_GET['type']);
 	if(isset($_GET['did']))
 	{
-		$did = $_GET['did'];
-		$qryDID = mysql_query(getVehicleType($did), $dbConnect);
-		$rstDID = mysql_fetch_array($qryDID);
+		$did = intval($_GET['did']);
+		$qryVtype = mysql_query(getVehicleType($did), $dbConnect);
 		
-		$vehicleType = $rstDID['vehicleType'];
-		$Car;
-		if($vehicleType == '1'){
-			$Car = true;
-			$vehicleType = 'c';
+		if ($qryVtype && mysql_num_rows($qryVtype) == 1) {
+			$rstVtype = mysql_fetch_array($qryVtype);
+			$vtype = $rstVtype['vehicleType'];
+			$vehicleType = ($vtype)? 'c' : 'v';
+			
+			$qryDeal = mysql_query(sqlCapDealGet($did, $vtype, 1), $dbConnect);
+			
+			while ($rstDeal = mysql_fetch_assoc($qryDeal)) {
+				
+        $brand = $rstDeal['brand'];
+        $model = $rstDeal['model'];
+        $capid = $rstDeal['vehicleID'];
+        $financeType = $rstDeal['financeType'];	
+
+			}
 		}
-		else {
-			$Car = false;
-			$vehicleType = 'v';
-		}		
-		$qryGetAQuote = mysql_query(sqlDealGet($did, $Car, 1), $dbConnect);
-		$rstGetAQuote = mysql_fetch_array($qryGetAQuote);
-		$brandID = $rstGetAQuote['brandID'];
-		$modelID = $rstGetAQuote['modelID'];
-		$derivID = $rstGetAQuote['derivID'];
-		$financeType = $rstGetAQuote['financeType'];		
 	}
 ?>
 <script type="text/javascript" src="/javascript/ApplyOnlineScript.js"></script>
@@ -39,14 +38,15 @@ if(!isset($did))
 }
 ?>
 <h1>Apply Online Form - <?php echo ucwords($type); ?> Application</h1>
-<form id="Form" name="Form" method="post" action="">
-<fieldset>
-	<p><span class="required" id="helper">*</span>&nbsp; Indicates a required field. If you do not have information for a required field (e.g. VAT Number), please type N/A instead.</p>
-</fieldset>
+<p><span class="required" id="helper">*</span>&nbsp; Indicates a required field. If you do not have information for a required field (e.g. VAT Number), please type N/A instead.</p>
+<form id="Form" name="Form" method="post" action="" class="clearfix">
+	<div class="column-1">
+	
 <?php if($type == 'business') {?>
 	<fieldset>
 		<legend>Business Details</legend>
-		<div id="companyDetails">		
+		<div id="companyDetails">
+			<div class="form-item">
 			<label>Business Type</label>
 				<select class="businessType" name="businessType" onchange="changeBType(this.value);">
 					<option value="0">Please Select</option>
@@ -55,9 +55,13 @@ if(!isset($did))
 					<option value="limitedCompany">Limited Company</option>
 				</select>
 				<span class="required" id="businessTypeReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Full Trading Name</label>
 				<input type="text" name="businessName" class="companyLine" value=""  maxlength="255"/>
 				<span class="required" id="businessNameReq">*</span>
+			</div>
+			<div class="form-item">
 			<div id="BusinessAddress">
 				<label>Address Line 1</label>
 					<input type="text" name="businessAddressA" class="addressLine" value="" maxlength="255"/>
@@ -71,27 +75,42 @@ if(!isset($did))
 					<input type="text" name="businessPostcode" class="addressLine" value="" maxlength="255"/>
 					<span class="required" id="businessPostcodeReq">*</span>
 			</div>
-			<label>Business Landline Number</label>
+			</div>
+			<div class="form-item">
+			<label>Business Landline</label>
 				<input type="text" name="businessTelNo" class="companyLine" value="" maxlength="255"/>
 				<span class="required" id="businessTelNoReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Trading Since</label>
 				<input type="text" name="businessTradingSince" class="companyLine" value="" maxlength="12"/>
 				<span class="required" id="businessTradingSinceReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Nature of Business</label>
 				<input type="text" name="businessNature" class="companyLine" value="" maxlength="255"/>
 				<span class="required" id="businessNatureReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Number of Employees</label>
 				<input type="text" name="businessEmployees" class="companyLine" value="" maxlength="10"/>
 				<span class="required" id="businessEmployeesReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Annual Turnover (&pound;)</label>
 				<input type="text" name="businessFinanceBudget" class="companyLine" value="" maxlength="10"/>
 				<span class="required" id="businessFinanceBudgetReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>VAT Number</label>
 				<input type="text" name="businessVATNo" class="companyLine" value="" maxlength="10"/>
 				<span class="required" id="businessVATNoReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Company Reg Number</label>
 				<input type="text" name="businessRegNo" class="companyLine" value="" maxlength="10"/>
 				<span class="required" id="businessRegNoReq">*</span>
+			</div>
 		</div>
 	</fieldset>
 	<div id="businessDiv">
@@ -236,111 +255,119 @@ if(!isset($did))
 					<option value="cars" <?php if(isset($vehicleType) && $vehicleType == 'c') echo "selected=\"selected\"";?>>Car</option>
 					<option value="vans" <?php if(isset($vehicleType) && $vehicleType == 'v') echo "selected=\"selected\"";?>>Van</option>
 				</select><br />
-			<label>Manufacturer</label>
-				<select name="brandSelection" id="brandSelection" class="vehicleLine" <?php if(!isset($did)) echo "disabled=\"disabled\"";?> onchange="getModelList(this.value, updateModelSelection);">
-				<?php
-					$strBrandList = "<option value=\"0\" selected=\"selected\">Please Select</option>";
-					if(isset($did))
-					{
-						$qryBrand = $qryBrand = mysql_query($sqlCarBrand,$dbConnect);
+				
+				<div class="form-item">
+	  			<label>Manufacturer</label>
+					<select name="brandSelection" id="brandSelection" class="vehicleLine" <?php if(!isset($brand)) echo "disabled=\"disabled\"";?> onchange="getModelList(this.value, updateModelSelection);" >
+					<?php 
+						$strBrandList = "<option value=\"0\" selected=\"selected\">Please Select</option>";
+						$qryBrand = "";
 						if(isset($vehicleType))
 						switch($vehicleType)
 						{
 							case 'c':
-								$qryBrand = mysql_query($sqlCarBrand,$dbConnect);
+								$qryBrand = mysql_query($sqlCapCarBrand,$dbConnect);
 							break;
 							case 'v':
-								$qryBrand = mysql_query($sqlVanBrand,$dbConnect);
+								$qryBrand = mysql_query($sqlCapVanBrand,$dbConnect);
 							break;
 							default:;
 						}
 						while ($rstBrand = mysql_fetch_array($qryBrand))
 						{
-							$strBrandID = $rstBrand["id"];
+							$strBrandID = str_replace(' ', '+', $rstBrand["brand"]);
 							$strBrandName = $rstBrand["brand"];
-							if($strBrandName != "BMW")
-								$strBrandName = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstBrand["brand"]))); 
-							
-							if(isset($brandID) && $brandID == $strBrandID)
+
+							if(isset($brand) && $brand == $rstBrand["brand"])
 								$strBrandList .= "<option value=\"$strBrandID\" selected=\"selected\">$strBrandName</option>";
 							else
 								$strBrandList .= "<option value=\"$strBrandID\">$strBrandName</option>";
 						}
-					}
-					echo $strBrandList;
-				?>
-				</select><br />
-			<label>Model</label>
-				<select name="modelSelection" id="modelSelection" class="vehicleLine" <?php if(!isset($did)) echo "disabled=\"disabled\"";?> onchange="getDerivList(this.value, updateDerivSelection);">
-				<?php
-					$strModels = "<option value=\"0\" selected=\"selected\">Please Select</option>";
-					if(isset($brandID))
-					{	
-						$qryModels = "";
-						switch($vehicleType)
-						{
-							case 'c':
-								$qryModels = mysql_query(getEnabledModels($brandID, 1, true),$dbConnect);
-								break;
-							case 'v':
-								$qryModels = mysql_query(getEnabledModels($brandID, 1, false),$dbConnect);
-								break;
-							default:$qryModels = mysql_query(getEnabledModels($brandID, 1, true),$dbConnect); 
-						}
-						if($qryModels)
-						while ($rstBrand = mysql_fetch_array($qryModels))
-						{
-							$strModelID = $rstBrand['id'];
-							$strModel = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstBrand['model']))); 
-							
-							if(isset($modelID) && $modelID == $strModelID)
-								$strModels .= "<option value=\"$strModelID\" selected=\"selected\">$strModel</option>";
-							else
-								$strModels .= "<option value=\"$strModelID\">$strModel</option>";
-						}
-					}
-					echo $strModels;
-				?>
-				</select><br />
-			<label>Derivative</label>
-				<select name="derivSelection" id="derivSelection" <?php if(!isset($did)) echo "disabled=\"disabled\"";?> onchange="required(this, 'combobox');" class="vehicleLine"><option value="0">Please Select</option>
-				<?php
-					if(isset($modelID))
-					{
-						$strDerivs = "<option value=\"0\" selected=\"selected\">Please Select</option>";
-						$qryModels = "";
-						switch($vehicleType)
-						{
-							case 'c':
-								$qryModels = mysql_query(getEnabledDerivs($modelID, 1, true),$dbConnect);
-								break;
-							case 'v':
-								$qryModels = mysql_query(getEnabledDerivs($modelID, 1, false),$dbConnect);
-								break;
-							default:$qryModels = mysql_query(getEnabledDerivs($modelID, 1, true),$dbConnect); 
-						}
-						if($qryModels)
-						while ($rstBrand = mysql_fetch_array($qryModels))
-						{
-							$strDerivID = $rstBrand['id'];
-							$strDeriv = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstBrand['derivative']))); 
-							
-							if(isset($derivID) && $derivID == $strDerivID)
-								$strDerivs .= "<option value=\"$strDerivID\" selected=\"selected\">$strDeriv</option>";
-							else
-								$strDerivs .= "<option value=\"$strDerivID\">$strDeriv</option>";
-						}
-						echo $strDerivs;
-					}
+						echo $strBrandList;
 					?>
-				</select><span class="required" id="derivSelectionReq"><?php if(!isset($did)) echo "*";?></span><br />
+					</select>
+				</div>
+	      <div class="form-item">
+				  <label>Model</label>
+					<select name="modelSelection" id="modelSelection" class="vehicleLine" <?php if(!isset($model)) echo "disabled=\"disabled\"";?> onchange="getDerivList(this.value, updateDerivSelection);">
+					<?php
+						$strModels = "<option value=\"0\" selected=\"selected\">Please Select</option>";
+						if(isset($brand))
+						{	
+							$qryModels = "";
+							switch($vehicleType)
+							{
+								case 'c':
+									$qryModels = mysql_query(getCapModels($brand, 1, true),$dbConnect);
+									break;
+								case 'v':
+									$qryModels = mysql_query(getCapModels($brand, 1, false),$dbConnect);
+									break;
+								default:$qryModels = mysql_query(getCapModels($brand, 1, true),$dbConnect); 
+							}
+
+							if($qryModels)
+							while ($rstModels = mysql_fetch_array($qryModels))
+							{
+								$strModelID = str_replace(' ', '+', $rstModels['model']);
+								$strModel = $rstModels['model'];
+
+								if(isset($model) && $model == $rstModels['model'])
+									$strModels .= "<option value=\"$strModelID\" selected=\"selected\">$strModel</option>";
+								else
+									$strModels .= "<option value=\"$strModelID\">$strModel</option>";
+							}
+						}
+						echo $strModels;
+					?>
+					</select>
+				</div>
+				<div class="form-item">
+	  			<label>Derivative</label>
+					<select name="derivSelection" id="derivSelection" class="vehicleLine" <?php if(!isset($capid)) echo "disabled=\"disabled\"";?> onchange="required(this, 'combobox');">
+						<option value="0">Please Select</option>
+					<?php
+						if(isset($model))
+						{
+							$qryDerivs = "";
+							switch($vehicleType)
+							{
+								case 'c':
+									$qryDerivs = mysql_query(getCapDerivs($model, 1, true),$dbConnect);
+									break;
+								case 'v':
+									$qryDerivs = mysql_query(getCapDerivs($model, 1, false),$dbConnect);
+									break;
+								default:$qryDerivs = mysql_query(getCapDerivs($model, 1, true),$dbConnect); 
+							}
+							if($qryDerivs)
+							while ($rstDerivs = mysql_fetch_array($qryDerivs))
+							{
+								$strDerivID = $rstDerivs['CAPID'];
+								$strDeriv = $rstDerivs['derivative'];
+
+								if(isset($capid) && $capid == $strDerivID)
+									$strDerivs .= "<option value=\"$strDerivID\" selected=\"selected\">$strDeriv</option>";
+								else
+									$strDerivs .= "<option value=\"$strDerivID\">$strDeriv</option>";
+							}
+							echo $strDerivs;
+						}
+						?>
+					</select><span class="required" id="derivSelectionReq"><?php if(!isset($did)) echo "*";?></span>
+				</div>	
+		
 			<label>Options</label>
 				<textarea name="vehicleOptions" class="vehicleOptions" rows="7" cols="25"></textarea>
 		</div>
 	</fieldset>
+	</div>
+	
+	<div class="column-2">
 	<fieldset>
 		<legend>Finance Details</legend>
 		<div id="Finance">
+			<div class="form-item">
 			<label>Finance Type</label>
 				<?php if($type == 'personal') {?>
 				<select class="basis" name="financeType">
@@ -355,7 +382,8 @@ if(!isset($did))
 				</select>
 				<?php }?>
 				<span class="required" id="financeTypeReq"><?php if (!isset($did)) echo "*"; ?></span>
-				
+			</div>
+			<div class="form-item">
 			<label>Term</label>
 				<select class="basis" name="financeTerm">
 					<option value="">Please Select</option>
@@ -372,14 +400,22 @@ if(!isset($did))
 					?>
 				</select>
 				<span class="required" id="financeTermReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Maintenace Package</label>
 				<input type="checkbox" name="financeMaintenance" class="financeCheck" value=""/>
+			</div>
+			<div class="form-item">
 			<label>Mileage Per Year</label>
 				<input type="text" name="financeMileage" class="financeLine" value="" maxlength="10"/>
 				<span class="required" id="financeMileageReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Monthly Budget (&pound;)</label>
 				<input type="text" name="financeBudget" class="financeLine" value="" maxlength="10"/>
 				<span class="required" id="financeBudgetReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Have you had a history of bad credit?</label>
 				<select class="basis" name="financeCredit">
 					<option value="">Please Select</option>
@@ -387,6 +423,8 @@ if(!isset($did))
 					<option value="no">No</option>
 				</select>
 				<span class="required" id="financeCreditReq">*</span>
+			</div>
+			<div class="form-item">
 			<label>Have you been declined credit in the last 12 months?</label>
 				<select class="basis" name="financeDecline">
 					<option value="">Please Select</option>
@@ -394,6 +432,7 @@ if(!isset($did))
 					<option value="no">No</option>
 				</select>
 				<span class="required" id="financeDeclineReq">*</span>
+			</div>
 		</div>
 	</fieldset>
 	<fieldset>
@@ -434,7 +473,10 @@ if(!isset($did))
 				<span class="required" id="infoDisclaimerReq">*</span>
 		</div>
 	</fieldset>
+	</div>
+	<div id="quoteSubmit">
 	<input type="submit" class="submitButton" name="Submit" id="Submit" value="Apply Now" />
+	</div>
 	<!--<a href="#" name="Submit" class="submitButton" onclick="submitForm(); return false;">Apply Now</a>-->
 	<!--<a href="#" name="Submit" class="submitButton" onclick="checkHistory(); return false;">Check History</a>-->
 </form>

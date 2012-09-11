@@ -72,9 +72,9 @@ if (isset($_SESSION['status']))
 			$qryVT = mysql_query(getVehicleType($did ,$dbConnect));
 			$rstVT = mysql_fetch_array($qryVT);
 			if ($rstVT['vehicleType'] == 1)
-				$qryDeal = mysql_query(sqlDealGet($did, true, 1),$dbConnect);
+				$qryDeal = mysql_query(sqlCapDealGet($did, true, 1),$dbConnect);
 			else
-				$qryDeal = mysql_query(sqlDealGet($did, false, 1),$dbConnect);
+				$qryDeal = mysql_query(sqlCapDealGet($did, false, 1),$dbConnect);
 			$rstDeal = mysql_fetch_array($qryDeal);
 			$vehicleType = stripslashes($rstDeal['vehicleType']);
 			$strBrand = stripslashes($rstDeal["brand"]);
@@ -124,7 +124,7 @@ if (isset($_SESSION['status']))
 				$vehicleType = 0;
 			$imageID = addslashes($_POST['imageID']);
 			
-			//$qryDeal = mysql_query(addDeal($vehicleType, $VehicleID, $notes, $profile1, $profile2, $initialPayment, $monthlyPayment, $term, $annualMileage, $docFee, true, $business, $personal, $imageID, $financeType, $finalPayment, $specialOffer), $dbConnect);
+			$qryDeal = mysql_query(addDeal($vehicleType, $VehicleID, $notes, $profile1, $profile2, $initialPayment, $monthlyPayment, $term, $annualMileage, $docFee, true, $business, $personal, $imageID, $financeType, $finalPayment, $specialOffer), $dbConnect);
 			if ($qryDeal)
 				$strUpdated = "Deal Added";			
 			else
@@ -133,61 +133,92 @@ if (isset($_SESSION['status']))
 ?>
 <div id="administrationTop"></div>
 <div id="administration">
+	<h1>Edit Deal</h1>
 	<script type="text/javascript" src="javascript/Ajax.js"></script>
 <?php
 if(!$deleted) {
 if (isset($strUpdated)) echo $strUpdated;?>
 	<form action="" method="post" id="DealForm">
 <?php if($add) {?>
+	<div class="form-item">
 	<label>Vehicle Type</label>
 		<select id="vehicleTypeID" name="vehicleType" onchange="getBrandList(this.value, updateBrandSelection);">
 			<option value="">&mdash; &mdash;</option>
 			<option value="cars">Car</option>
 			<option value="vans">Van</option>
-		</select><br />
+		</select>
+	</div>
+	<div class="form-item">
 	<label>Brand</label>
-		<select name="brandSelection" id="brandSelection" disabled="disabled" onchange="getModelList(this.value, updateModelSelection);" ><option value="">Please Select</option></select><br />
+		<select name="brandSelection" id="brandSelection" disabled="disabled" onchange="getModelList(this.value, updateModelSelection);" ><option value="">Please Select</option></select>
+	</div>
+	<div class="form-item">
 	<label>Model</label>
-		<select name="modelSelection" id="modelSelection" disabled="disabled" onchange="getDerivList(this.value, updateDerivSelection);" ><option value="">Please Select</option></select><br />
+		<select name="modelSelection" id="modelSelection" disabled="disabled" onchange="getDerivList(this.value, updateDerivSelection);" ><option value="">Please Select</option></select>
+	</div>
+	<div class="form-item">
 	<label>Derivative</label>
-		<select name="derivSelection" id="derivSelection" disabled="disabled"><option value="">Please Select</option></select><br />
+		<select name="derivSelection" id="derivSelection" disabled="disabled"><option value="">Please Select</option></select>
+	</div>
 <?php 
 	} else {
-		echo "$strBrand, $strModel, $strDeriv <br/>";
+		print "<p><strong>$strBrand, $strModel, $strDeriv</strong></p>";
 	}
 ?>
+  <div class="form-item">
 	<label>Finance Type</label>
 	<select name="financeType" onchange="selectFinanceType(this.value);">
 		<option value="">Please Select</option>
 		<option value="hire"<?php if($financeType == 1) echo "selected=\"selected\""; ?>>Contract Hire</option>
 		<option value="lease"<?php if($financeType == 0) echo "selected=\"selected\""; ?>>Finance Lease</option>
-	</select><br/>
+	</select>
+	</div>
+	<div class="form-item">
 	<label>Initial Payment</label>
-		<input type="text" name="initialPayment" class="both" value="<?php echo $initialPayment; ?>" maxlength="255"/><br />
+		<input type="text" name="initialPayment" class="both" value="<?php echo $initialPayment; ?>" maxlength="255"/>
+	</div>
+	<div class="form-item">
 	<label>Monthly Payment</label>
-		<input type="text" name="monthlyPayment" class="both" value="<?php echo $monthlyPayment; ?>" maxlength="255"/><br />
+		<input type="text" name="monthlyPayment" class="both" value="<?php echo $monthlyPayment; ?>" maxlength="255"/>
+	</div>
+	<div class="form-item">
 	<label>Term</label>
-		<input type="text" name="term" class="both" value="<?php echo $term; ?>" maxlength="255"/><br />
-	<label class="contractHire" <?php if($financeType == 0) echo "style=\"visibility:hidden;\"" ?>>Annual Mileage</label>
-		<input type="text" name="annualMileage" class="contractHire" value="<?php echo $annualMileage; ?>" maxlength="255" <?php if($financeType == 0) echo "style=\"visibility:hidden;\"" ?>/><br />
-	<label class="financeLease" <?php if($financeType == 1) echo "style=\"visibility:hidden;\"" ?>>Final Payment</label>
-		<input type="text" name="finalPayment" class="financeLease" value="<?php echo $finalPayment; ?>" maxlength="255" <?php if($financeType == 1) echo "style=\"visibility:hidden;\"" ?>/><br />
+		<input type="text" name="term" class="both" value="<?php echo $term; ?>" maxlength="255"/>
+	</div>
+	<div class="form-item" <?php if($financeType == 0) print 'style="display: none"'; ?>>
+	  <label class="contractHire">Annual Mileage</label>
+		<input type="text" name="annualMileage" class="contractHire" value="<?php echo $annualMileage; ?>" maxlength="255" />
+	</div>
+	<div class="form-item" <?php if($financeType == 1) echo 'style="display: none"'; ?>>
+	<label class="financeLease">Final Payment</label>
+		<input type="text" name="finalPayment" class="financeLease" value="<?php echo $finalPayment; ?>" maxlength="255" />
+	</div>
+	<div class="form-item">
 	<label>Doc Fee</label>
-		<input type="text" name="docFee" class="both" value="<?php echo $docFee; ?>" maxlength="255"/><br />
+		<input type="text" name="docFee" class="both" value="<?php echo $docFee; ?>" maxlength="255"/>
+	</div>
+	<div class="form-item">
 	<label>Front Page Profile</label>
-		<input type="text" name="profile1" class="both" value="<?php echo $profile1; ?>" maxlength="70"/><br />
+		<input type="text" name="profile1" class="both" value="<?php echo $profile1; ?>" maxlength="70"/>
+	</div>
+	<div class="form-item">
 	<label>Deal Page Profile</label>
-		<input type="text" name="profile2" class="both" value="<?php echo $profile2; ?>" maxlength="70"/><br />
-	<label>Business</label>
-		<input type="checkbox" name="business" class="both" <?php if($business) echo "checked=\"checked\""; ?> value="1"/><br />
-	<label>Personal</label>
-		<input type="checkbox" name="personal" class="both" <?php if($personal) echo "checked=\"checked\""; ?> value="1"/><br />
+		<input type="text" name="profile2" class="both" value="<?php echo $profile2; ?>" maxlength="70"/>
+	</div>
+	<div class="form-item">
+		<input type="checkbox" name="business" class="both" <?php if($business) echo "checked=\"checked\""; ?> value="1"/> <strong>Business</strong><br />
+		<input type="checkbox" name="personal" class="both" <?php if($personal) echo "checked=\"checked\""; ?> value="1"/> <strong>Personal</strong>
+	</div>
+	<div class="form-item">
 	<label>Notes</label>
-	<textarea cols="30" rows="5" name="notes"><?php echo $notes ?></textarea><br />
-	<label>Special Offer of the week?</label>
-		<input type="checkbox" name="specialOffer" class="both" <?php if($specialOffer) echo "checked=\"checked\" disabled=\"disabled\" "; ?> value="1" /><br />
-	<label>Image</label>
-	<select name="imageID" onchange="getVehicleImage(this.value, showImage);">
+	<textarea cols="30" rows="5" name="notes"><?php echo $notes ?></textarea>
+	</div>
+	<div class="form-item">
+		<input type="checkbox" name="specialOffer" class="both" <?php if($specialOffer) echo "checked=\"checked\" disabled=\"disabled\" "; ?> value="1" /> <strong>Special Offer of the week?</strong>
+	</div>
+  <div class="form-item">
+	  <label>Image</label>
+	  <select name="imageID" onchange="getVehicleImage(this.value, showImage);">
 		<?php
 			$qryImages = mysql_query($sqlGetImageNames, $dbConnect);
 			$strOut = "";
@@ -203,17 +234,18 @@ if (isset($strUpdated)) echo $strUpdated;?>
 			}
 			echo $strOut;
 		?>
-	</select>
+	  </select>
+	</div>
 	<div id="imageHolder">
 	</div>
-<?php if($add) {?>
-	<input type="submit" value="Add Deal" name="addDeal" />
-<?php 
-	} else { ?>
-		<input type="submit" value="Save Deal" name="editDeal" />
-		<input type="submit" value="Delete Deal" name="deleteDeal" />
-<?php
-	} 
+	
+	
+<?php if($add): ?>
+	<p><input type="submit" value="Add Deal" name="addDeal" /> &nbsp;&nbsp;&nbsp;<a href="/administration.html">Cancel</a></p>
+<?php else: ?>
+	<p><input type="submit" value="Save Deal" name="editDeal" /> &nbsp;&nbsp;&nbsp; <input type="submit" value="Delete Deal" name="deleteDeal" /> &nbsp;&nbsp;&nbsp;<a href="/administration.html">Cancel</a></p>
+<?php endif;
+ 
 } else {
 	echo "Deal deleted <a href=\"administration-deals.html\">Go back to deals</a>";
 }

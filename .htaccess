@@ -1,6 +1,10 @@
 # Helicon ISAPI_Rewrite configuration file
 # Version 3.1.0.77
 
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+php_value max_execution_time 40
+
 #This File controls Rewrites within the site
 RewriteEngine on
 
@@ -109,7 +113,7 @@ RewriteCond %{REQUEST_URI} (car_leasing-business-get_quote.*\.html)
 #RewriteRule .? https://%1/%2 [R,L]
 RewriteRule  ^car_leasing-business-get_quote\.html$ index.php?stype=contactus&level=getquote
 RewriteRule  ^car_leasing-business-get_quote-([0-9]+)\.html$ index.php?stype=contactus&level=getquote&did=$1 
-RewriteRule  ^car_leasing-business-get_quote-(.+)-([c|v][0-9]+)\.html$ index.php?stype=contactus&level=getquote&brand=$2
+RewriteRule  ^car_leasing-business-get_quote-(.+)-([c|v])([0-9]+)\.html$ index.php?stype=contactus&level=getquote&brand=$1&vtype=$2
 
 ###SITEMAP###
 #Requires No HTTPS

@@ -9,12 +9,12 @@
 		$Car = true;
 	else
 		$Car = false;
-	$qrySpecialOffer = mysql_query(sqlDealGet($sodid, $Car, 1), $dbConnect);
+	$qrySpecialOffer = mysql_query(sqlCapDealGet($sodid, $Car, 1), $dbConnect);
 	if($qrySpecialOffer)
 	{
 		$rstSpecialOffer = mysql_fetch_array($qrySpecialOffer);
 		$vehicleID = $rstSO['vehicleID'];
-		$qryVehicle = mysql_query(getVehicle($Car ,$vehicleID) ,$dbConnect);
+		$qryVehicle = mysql_query(getCapVehicle($Car ,$vehicleID) ,$dbConnect);
 		$rstVehicle = mysql_fetch_array($qryVehicle);			
 		$strBrand = $rstVehicle["brand"];
 		$strModel = $rstVehicle["model"];
@@ -49,32 +49,27 @@
 		else{
 			$offer = "van";
 		}
+		
 		$strDerivative = $rstVehicle["derivative"];
-		$strD = explode(' ', $rstVehicle["derivative"]);
-		$strDeriv = "";
-		for($x = 0; $x < 3; $x ++)
-		{
-			if (count($strD) > $x)
-				$strDeriv .= $strD[$x] . " ";
-		}
-		if($strBrand != "BMW")
-			$strBrand = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstVehicle["brand"]))); 
-		$strModel = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstVehicle["model"])));
+		$strBrand = $rstVehicle["brand"];
+		$strModel = $rstVehicle["model"];
+		
 		$dealSpecialOffer = "
-			<div class=\"dealContainer\">
+			<div class=\"deal-week-special\">
 				<h2>Special Offer of the Week</h2>
-				<span class=\"$offer\"></span>
-				<span class=\"$fType\"></span>
-				<span class=\"description\">$strBrand<br />$strModel $strDeriv</span>
-				<a href=\"/car_leasing-business-contract_hire-".$strBrand."_".$strModel."-".$sodid.".html\">
+				<a href=\"/car_leasing-business-contract_hire-".str_replace(' ', '+', $strBrand)."-".$sodid.".html\">
 					<img class=\"carImage\" src=\"images/vehicles/$imageLoc\" title=\"$strBrand $strModel $strDerivative\" alt=\"$strBrand $strModel $strDerivative\"/>
 				</a>
-				<div class=\"price\">&pound;$monthlyPayment
+				<div class=\"price\">
+				  <br /><br />
+				  <strong>$strBrand<br />
+				  $strModel $strDerivative</strong><br /><br />
+				  &pound;$monthlyPayment
 					<small> + VAT per month</small>
-					<small><br />$profile1</small>
+					<small><br />$profile1</small><br /><br />
 				</div>									
 				<div class=\"buttons\">
-					<a class=\"info\" href=\"car_leasing-business-contract_hire-".$strBrand."-".$sodid.".html\" title=\"Get more info on $strBrand $strModel $strDerivative\" >More Info</a>
+					<a class=\"info\" href=\"car_leasing-business-contract_hire-".str_replace(' ', '+', $strBrand)."-".$sodid.".html\" title=\"Get more info on $strBrand $strModel $strDerivative\" >More Info</a>
 					<a class=\"quote\" href=\"/car_leasing-business-get_quote-$sodid.html\" title=\"Get a quote for $strBrand $strModel $strDerivative\">Quote Now</a>
 				</div>
 		</div>";
@@ -102,6 +97,6 @@ Ordering your new car with DSG is easy, our personal service will ensure you enj
 ?>
 <p class="dealsText">
 	All the special offer car and van leasing deals on this page are displayed and offered for Business Users Only and Exclude VAT. 
-	Personal Contract Hire is also available – Click on More Info. Visit <a target="_blank" href="http://www.newcar4me.com">www.newcar4me.com</a> for Personal Contract Purchase deals. 
+	Personal Contract Hire is also available - Click on More Info. Visit <a target="_blank" href="http://www.newcar4me.com">www.newcar4me.com</a> for Personal Contract Purchase deals. 
 </p>
 </div>

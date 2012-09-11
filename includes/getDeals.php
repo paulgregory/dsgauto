@@ -12,8 +12,9 @@ function getDeals()
 		$strDealID = $rstDeal['id'];
 		$strVehicleID = $rstDeal["vehicleID"];
 		$strVehicleType = $rstDeal["vehicleType"];
-		$qryVehicle = mysql_query(getVehicle($strVehicleType ,$strVehicleID) ,$dbConnect);
-		$rstVehicle = mysql_fetch_array($qryVehicle);			
+		$qryVehicle = mysql_query(getCapVehicle($strVehicleType ,$strVehicleID) ,$dbConnect);
+		$rstVehicle = mysql_fetch_array($qryVehicle);
+		
 		$strBrand = $rstVehicle["brand"];
 		$strModel = $rstVehicle["model"];
 		$monthlyPayment = $rstDeal['monthly_payment'];
@@ -41,24 +42,9 @@ function getDeals()
 			$offer = "van";
 		}
 		$strDerivative = $rstVehicle["derivative"];
-		$strD = explode(' ', $rstVehicle["derivative"]);
-		$strDeriv = "";
-		if (count($strD) >= 5)
-		{
-			for($x = 0; $x < 5; $x ++)
-			{
-				$strDeriv .= $strD[$x] . " ";
-				if(strlen($strD[$x]) > 9)
-					$x = 5;
-			}
-			$strDeriv .= "...";
-		}
-		else
-		 $strDeriv = $strDerivative;
+		$strBrand = $rstVehicle["brand"];
+		$strModel = $rstVehicle["model"];
 		
-		if($strBrand != "BMW")
-			$strBrand = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstVehicle["brand"]))); 
-		$strModel = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstVehicle["model"])));
 		if($rstDeal['special_offer'] == 0)
 		{
 		if ($count%3 == 0) {
@@ -69,10 +55,8 @@ function getDeals()
 		$strDeals .= "
 				<div class=\"$class\">
 					<div class=\"dealContainer\">
-						<span class=\"$offer\"></span>
-						<span class=\"$fType\"></span>
-						<span class=\"description\">$strBrand $strModel $strDeriv</span>
-						<a href=\"/car_leasing-business-contract_hire-".$strBrand."-".$strDealID.".html\">
+						<span class=\"description\">$strBrand $strModel $strDerivative</span>
+						<a href=\"/car_leasing-business-contract_hire-".str_replace(' ', '+', $strBrand)."-".$strDealID.".html\">
 							<img class=\"carImage\" src=\"images/vehicles/$imageLoc\" title=\"$strBrand $strModel $strDerivative\" alt=\"$strBrand $strModel $strDerivative\"/>
 						</a>
 						<div class=\"price\">&pound;$monthlyPayment
@@ -80,7 +64,7 @@ function getDeals()
 							<small>$profile1</small>
 						</div>									
 						<div class=\"buttons\">
-							<a class=\"info\" href=\"car_leasing-business-contract_hire-".$strBrand."-".$strDealID.".html\" title=\"Get more info on $strBrand $strModel $strDerivative\" >More Info</a>
+							<a class=\"info\" href=\"car_leasing-business-contract_hire-".str_replace(' ', '+', $strBrand)."-".$strDealID.".html\" title=\"Get more info on $strBrand $strModel $strDerivative\" >More Info</a>
 							<a class=\"quote\" href=\"/car_leasing-business-get_quote-$strDealID.html\" title=\"Get a quote for $strBrand $strModel $strDerivative\">Quote Now</a>
 						</div>
 					</div>

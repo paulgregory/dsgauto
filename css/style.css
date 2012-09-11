@@ -832,7 +832,8 @@ a.order_btn:hover {
 
 .description {
 	font-weight: bold;
-	float: left;
+	display: block;
+	margin: 5px !important;
 }
 
 #whyDSG {
@@ -859,9 +860,11 @@ a.order_btn:hover {
 	clear: both;
 }
 
-.dealContainer span, .dealContainer .price, .dealContainer .buttons {
+.dealContainer span, 
+.dealContainer .price, 
+.dealContainer .buttons {
 	float: right;
-	margin: 5px 5px 0 0;
+	margin: 0 5px 0 0;
 }
 
 .dealContainer h2 {
@@ -869,17 +872,31 @@ a.order_btn:hover {
 	margin: 10px;
 }
 
-#specialOffer .dealContainer .carImage {
+.deal-week-special {
+	padding: 10px;
+}
+
+.deal-week-special h2 {
+	margin: 0;
+}
+
+#specialOffer .dealContainer .carImage,
+.deal-week-special .carImage {
 	float: left;
+}
+
+.deal-week-special .carImage {
+	margin-right: 15px;
 }
 
 .carDealBox, .vanDealBox {
 	width: 290px;
-	height: 185px;
+	height: 195px;
 	float: left;
 	margin: 5px;
 	padding: 5px;
 	border: 1px solid #cdcdcd;
+	overflow: hidden;
 }
 
 .carDealBox .dealContainer span, .vanDealBox .dealContainer span {
@@ -915,6 +932,10 @@ a:hover.info, a:hover.quote, a:hover.applyNow, a:hover.getQuote, a:hover.callNow
 p.dealsText {
 	float: left;
 	font-style: italic;
+}
+
+#details {
+	width: 100%;
 }
 
 #details, #details .carImage {
@@ -1090,6 +1111,20 @@ p span.required {
 	-webkit-box-shadow: #999 1px 1px 4px;
 	-moz-box-shadow: #999 1px 1px 4px;
 	-ms-box-shadow: #999 1px 1px 4px;
+}
+
+#administration .form-item {
+	margin: 1em 0;
+}
+
+#administration .form-item label {
+	display: block;
+	font-weight: bold;
+}
+
+#administration .form-item textarea {
+	width: 100%;
+	margin: 0;
 }
 
 /* Footer
@@ -1752,4 +1787,43 @@ ul.ui-tabs-nav {
 	border: 1px solid #DA2A34;
 	border-top-width: 5px;
 	padding: 5px 15px;
+}
+
+/* Admin */
+.admin-options {
+	list-style-type: none;
+	padding: 0;
+	margin: 1em 0;
+	width: 250px;
+}
+
+.admin-options li {
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+
+.admin-options li a {
+	display: block;
+	padding: 5px 10px;
+	border: 1px solid #CDCDCD;
+	text-decoration: none;
+	background: #e0e0e0;
+	font-weight: bold;
+}
+
+.admin-list {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#adminEdit, #addArticle, #addDeal {
+	border: 1px solid #CDCDCD;
+	text-decoration: none;
+	background: #e0e0e0;
+	padding: 5px 10px;
+	font-weight: bold;
+	display: block;
+	width: 90px;
+	text-align: center;
+	clear: both;
 }

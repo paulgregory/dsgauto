@@ -19,7 +19,7 @@
 		</div>
 		<div class="showcase-slide">
 			<div class="showcase-content">
-			<a href="/car_leasing-business-get_quote-70.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>
+			<a href="/car_leasing-business-get_quote.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>
 				<img src="images/02.jpg" alt="Mercedes Benz E Class E220 CDI SE 4dr" />
 			</div>
 			<div class="showcase-thumbnail">
@@ -32,7 +32,7 @@
 		</div>
 		<div class="showcase-slide">
 			<div class="showcase-content">
-			<a href="/car_leasing-business-get_quote-70.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>            
+			<a href="/car_leasing-business-get_quote.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>            
 				<img src="images/03.jpg" alt="Mercedes Benz E220 CDI SE Auto Cabriolet" />
 			</div>
 			<div class="showcase-thumbnail">
@@ -44,7 +44,7 @@
 		</div>
 		<div class="showcase-slide">
 			<div class="showcase-content">
-			<a href="/car_leasing-business-get_quote-70.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>            
+			<a href="/car_leasing-business-get_quote.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>            
 				<img src="images/04.jpg" alt="Mercedes Benz CLS350 CDI Auto" />
 			</div>
 			<div class="showcase-thumbnail">
@@ -56,7 +56,7 @@
 		</div>
 		<div class="showcase-slide">
 			<div class="showcase-content">
-			<a href="/car_leasing-business-get_quote-70.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>            
+			<a href="/car_leasing-business-get_quote.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>            
 				<img src="images/05.jpg" alt="Mercedes Benz ML300 CDI SE Auto" />
 			</div>
 			<div class="showcase-thumbnail">
@@ -68,7 +68,7 @@
 		</div>
 		<div class="showcase-slide">
 			<div class="showcase-content">
-			<a href="/car_leasing-business-get_quote-70.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>            
+			<a href="/car_leasing-business-get_quote.html" coords="737,220" class="order_btn" title="Click here to order now!"></a>            
 				<img src="images/06.jpg" alt="Mercedes Benz C Class C200 CDI SE 4dr Auto Edition 125" />
 			</div>
 			<div class="showcase-thumbnail">

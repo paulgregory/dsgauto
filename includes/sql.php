@@ -109,6 +109,62 @@ $sqlDealGet .=
 return $sqlDealGet;
 }
 
+function sqlCapDealGet($dealID, $Car, $Enabled = 1){
+  if($Car){
+	  $tblDerivs = TBL_CAP_CAR;
+  }
+  else{
+	  $tblDerivs = TBL_CAP_VAN;
+  }
+
+  $sqlDealGet=
+    "SELECT 
+		  Manufacturer AS brand, 
+		  ModelShort AS model, 
+		  DerivativeLong As derivative, 
+		  ".TBL_DEALS.".* 
+		FROM 
+		  ".TBL_DEALS."
+		INNER JOIN 
+		  ".$tblDerivs." ON (vehicleID = CAPID) 
+		WHERE ";
+  if ($dealID > 0)
+	  $sqlDealGet .= "(".TBL_DEALS.".id = $dealID) ";
+  else
+	  $sqlDealGet .= "(".TBL_DEALS.".enabled = $Enabled) ";
+
+  $sqlDealGet .= "ORDER BY ".TBL_DEALS.".monthly_payment";
+  return $sqlDealGet;
+}
+
+function sqlCapGetDeals($Car){
+  if($Car){
+	  $tblDerivs = TBL_CAP_CAR;
+  }
+  else{
+	  $tblDerivs = TBL_CAP_VAN;
+  }
+
+  $sqlDealGet=
+    "SELECT 
+		  Manufacturer AS brand, 
+		  ModelShort AS model, 
+		  DerivativeLong As derivative, 
+		  ".TBL_DEALS.".* 
+		FROM 
+		  ".TBL_DEALS."
+		INNER JOIN 
+		  ".$tblDerivs." ON (vehicleID = CAPID) 
+		WHERE ";
+  if ($dealID > 0)
+	  $sqlDealGet .= "(".TBL_DEALS.".id = $dealID) ";
+  else
+	  $sqlDealGet .= "(".TBL_DEALS.".enabled = 1) ";
+
+  $sqlDealGet .= "ORDER BY ".TBL_DEALS.".monthly_payment";
+  return $sqlDealGet;
+}
+
 function updateDeal($dealID, $notes, $profile1, $profile2, $initialPayment, $monthlyPayment, $term, $annualMileage, $docFee, $Enabled, $business, $personal, $imageID, $financeType, $finalPayment, $SpecialOffer){
 $updateDeal = 
 "UPDATE 
@@ -266,6 +322,24 @@ WHERE
 	".$modelTable.".id = '$ID'
 LIMIT 1";
 return $sqlModel;
+}
+
+function getDerivFromCapid($Car, $capid){
+$derivTable = "";
+if($Car)
+	$derivTable = TBL_CAP_CARS;
+else
+	$derivTable = TBL_CAP_VANS;
+	
+$sqlDeriv = 
+"SELECT DISTINCT
+	".$derivTable.".DerivativeLong as derivative
+FROM
+	".$derivTable."
+WHERE
+	".$derivTable.".CAPID = '$capid'
+LIMIT 1";
+return $sqlDeriv;
 }
 
 $sqlVanBrand = 
@@ -478,6 +552,25 @@ FROM
 WHERE
 	(".$tblDerivs.".id = $VehicleID) LIMIT 1";
 return $getVehicle;
+}
+
+function getCapVehicle($VehicleType, $capid){
+  if($VehicleType){
+	  $tblDerivs = TBL_CAP_CAR;
+  }
+  else{
+	  $tblDerivs = TBL_CAP_VAN;
+  }
+  $getVehicle = 
+  "SELECT
+	  ".$tblDerivs.".Manufacturer as brand,
+	  ".$tblDerivs.".ModelShort as model,
+	  ".$tblDerivs.".DerivativeLong as derivative
+  FROM
+	  ".$tblDerivs."
+  WHERE
+	  (".$tblDerivs.".CAPID = $capid) LIMIT 1";
+  return $getVehicle;
 }
 
 function addTestimonial($Name, $Vehicle, $Testimonial){

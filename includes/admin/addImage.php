@@ -14,6 +14,7 @@ if (isset($_SESSION['status']))
 				$strAdded = "Image Added";
 		}
 ?>
+<h1>Images</h1>
 <div id="administrationTop"></div>
 <div id="administration">
 <?php if(isset($strAdded)) echo $strAdded;?>
@@ -24,6 +25,7 @@ if (isset($_SESSION['status']))
 </form>
 </div>
 <div id="administrationBottom"></div>
+<p><strong><a href="/administration.html">Return to admin menu</a></strong></p>
 <?php
 	}
 }

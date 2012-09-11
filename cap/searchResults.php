@@ -79,7 +79,8 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 				<?php
 				
 				if ($finance == 'personal') {
-					print '<p>Personal finance deals are inclusive of VAT at '.VAT_AMOUNT.'%.</p>';
+					$vat_percentage = 100 * ($VAT - 1);
+					print '<p>Personal finance deals are inclusive of VAT at '.$vat_percentage.'%.</p>';
 				}
 		}
 		else {

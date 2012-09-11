@@ -73,6 +73,9 @@
 					break;
 				case "testimonials":
 					include ("admin/testimonials.php"); 
+					break;
+				case "ratebook":
+					include ("admin/ratebook.php"); 
 					break;	
 				default:;
 			}

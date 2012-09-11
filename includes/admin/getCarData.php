@@ -4,6 +4,8 @@ if (isset($_SESSION['status']))
 	if ($_SESSION['status'] == 'authenticated')
 	{
 ?>
+
+<h1>Manage Car Data</h1>
 <div id="administrationTop"></div>
 <div id="administration">
 
@@ -117,12 +119,14 @@ if (isset($_SESSION['status']))
 		{
 ?>
 <ul>
-<li><a href="/administration-cardata-brands.html">Car Brands</a></li>
-<li><a href="/administration-cardata-models.html">Car Models</a></li>
-<li><a href="/administration-vandata-brands.html">Van Brands</a></li>
-<li><a href="/administration-vandata-models.html">Van Models</a></li>
+<li><a href="/administration-cardata-brands.html">Enabled Car Brands</a></li>
+<li style="margin-bottom: 15px"><a href="/administration-cardata-models.html">Enabled Car Models</a></li>
+<li><a href="/administration-vandata-brands.html">Enabled Van Brands</a></li>
+<li><a href="/administration-vandata-models.html">Enabled Van Models</a></li>
 </ul>
 <?php } ?>
+
+<p><strong><a href="/administration.html">Return to admin menu</a></strong></p>
 </div>
 <div id="administrationBottom"></div>
 <?php

@@ -1,11 +1,3 @@
-<pre>
-<?php print_r($_POST); ?>
-</pre>
-
-<pre>
-<?php print_r($_GET); ?>
-</pre>
-
 <?php
 
   // Check if the POST contains vehicle details
@@ -21,53 +13,34 @@
   }
 
 
-	if(isset($_GET['did']))
+	if (isset($_GET['did']))
 	{
-		$did = $_GET['did'];
-		$qryDID = mysql_query(getVehicleType($did), $dbConnect);
-		$rstDID = mysql_fetch_array($qryDID);
+		$did = intval($_GET['did']);
+		$qryVtype = mysql_query(getVehicleType($did), $dbConnect);
 		
-		$vehicleType = $rstDID['vehicleType'];
-		$Car;
-		if($vehicleType == '1'){
-			$Car = true;
-			$vehicleType = 'c';
+		if ($qryVtype && mysql_num_rows($qryVtype) == 1) {
+			$rstVtype = mysql_fetch_array($qryVtype);
+			$vtype = $rstVtype['vehicleType'];
+			$vehicleType = ($vtype)? 'c' : 'v';
+			
+			$qryDeal = mysql_query(sqlCapDealGet($did, $vtype, 1), $dbConnect);
+			
+			while ($rstDeal = mysql_fetch_assoc($qryDeal)) {
+				
+        $brand = $rstDeal['brand'];
+        $model = $rstDeal['model'];
+        $capid = $rstDeal['vehicleID'];
+        $financeType = $rstDeal['financeType'];	
+
+			}
 		}
-		else {
-			$Car = false;
-			$vehicleType = 'v';
-		}		
-		$qryGetAQuote = mysql_query(sqlDealGet($did, $Car, 1), $dbConnect);
-		$rstGetAQuote = mysql_fetch_array($qryGetAQuote);
-		$brandID = $rstGetAQuote['brandID'];
-		$modelID = $rstGetAQuote['modelID'];
-		$derivID = $rstGetAQuote['derivID'];
-		$bop = $rstGetAQuote['financeType'];
-		$financeType = $rstGetAQuote['financeType'];
 	}
 	
-	if(isset($_GET['brand']))
-	{
-		$get = $_GET['brand'];
-		//$vehicleType = substr($get, 0, 1);
-		$brandID = substr($get, 0);
+	if (isset($_GET['brand']) && isset($_GET['vtype'])) {
+		$brand = strtoupper(htmlspecialchars($_GET['brand']));
+	  $vehicleType = (htmlspecialchars($_GET['vtype']) == 'c')? 'c' : 'v';
 	}
-	if(isset($_GET['vehicleType']))
-	{
-		$get = $_GET['vehicleType'];
-		$vehicleType = substr($get, 0, 1);
-	}
-	if(isset($_GET['modelSelection']))
-	{
-		$get = $_GET['modelSelection'];
-		$modelID = substr($get, 0);
-	}
-	if(isset($_GET['derivSelection']))
-	{
-		$get = $_GET['derivSelection'];
-		$derivID = substr($get, 0);
-	}
-	
+
 ?>
 <script type="text/javascript" src="/javascript/formValidation.js"></script>
 <script type="text/javascript" src="/javascript/Ajax.js"></script>
@@ -121,7 +94,7 @@ If you are unsure about the type of finance package best suits you then <a href=
 			</div>
 			<div class="form-item">
   			<label>Manufacturer</label>
-				<select name="brandSelection" id="brandSelection" class="vehicleLine" onchange="getModelList(this.value, updateModelSelection);" >
+				<select name="brandSelection" id="brandSelection" class="vehicleLine" <?php if(!isset($brand)) echo "disabled=\"disabled\"";?> onchange="getModelList(this.value, updateModelSelection);" >
 				<?php 
 					$strBrandList = "<option value=\"0\" selected=\"selected\">Please Select</option>";
 					$qryBrand = "";
@@ -152,7 +125,7 @@ If you are unsure about the type of finance package best suits you then <a href=
 			</div>
       <div class="form-item">
 			  <label>Model</label>
-				<select name="modelSelection" id="modelSelection" class="vehicleLine" onchange="getDerivList(this.value, updateDerivSelection);">
+				<select name="modelSelection" id="modelSelection" class="vehicleLine" <?php if(!isset($model)) echo "disabled=\"disabled\"";?> onchange="getDerivList(this.value, updateDerivSelection);">
 				<?php
 					$strModels = "<option value=\"0\" selected=\"selected\">Please Select</option>";
 					if(isset($brand))
@@ -168,13 +141,14 @@ If you are unsure about the type of finance package best suits you then <a href=
 								break;
 							default:$qryModels = mysql_query(getCapModels($brand, 1, true),$dbConnect); 
 						}
+
 						if($qryModels)
 						while ($rstModels = mysql_fetch_array($qryModels))
 						{
-							$strModelID = str_replace(' ', '+', $rstDerivs['model']);
-							$strModel = $rstDerivs['model'];
+							$strModelID = str_replace(' ', '+', $rstModels['model']);
+							$strModel = $rstModels['model'];
 							
-							if(isset($model) && $model == $rstDerivs['model'])
+							if(isset($model) && $model == $rstModels['model'])
 								$strModels .= "<option value=\"$strModelID\" selected=\"selected\">$strModel</option>";
 							else
 								$strModels .= "<option value=\"$strModelID\">$strModel</option>";

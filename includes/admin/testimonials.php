@@ -13,6 +13,7 @@ if (isset($_SESSION['status']))
 				$strAdded = "<h1>Testimonial Added</h1>";
 		}
 ?>
+<h1>Add a testimonial</h1>
 <div id="administrationTop"></div>
 <div id="administration">
 <?php 
@@ -21,15 +22,21 @@ if(!isset($strAdded))
 	
 ?>
 <form action="" method="post">
-	<fieldset><legend>Add a testimonial</legend>
+  <div class="form-item">
 	<label>Name</label>
-	<input type="text" name="name" value="" maxlength="100"/><br/>
+	<input type="text" name="name" value="" maxlength="100"/>
+	</div>
+	<div class="form-item">
 	<label>Vehicle</label>
-	<input type="text" name="vehicle" value="" maxlength="100"/><br/>
+	<input type="text" name="vehicle" value="" maxlength="100"/>
+	</div>
+	<div class="form-item">
 	<label>Comment</label>
-	<textarea name="testimonial" cols="25" rows="15"></textarea><br/>
+	<textarea name="testimonial" cols="25" rows="15"></textarea>
+	</div>
+	<div class="form-item">
 	<input type="submit" name="submit" value="Add testimonial"/>
-	</fieldset>
+  </div>
 </form>
 <?php
 }
@@ -39,6 +46,7 @@ else {
 ?>
 </div>
 <div id="administrationBottom"></div>
+<p><strong><a href="/administration.html">Return to admin menu</a></strong></p>
 <?php
 	}
 }

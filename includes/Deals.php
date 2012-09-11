@@ -9,12 +9,12 @@
 		$Car = true;
 	else
 		$Car = false;
-	$qrySpecialOffer = mysql_query(sqlDealGet($sodid, $Car, 1), $dbConnect);
+	$qrySpecialOffer = mysql_query(sqlCapDealGet($sodid, $Car, 1), $dbConnect);
 	if($qrySpecialOffer)
 	{
 		$rstSpecialOffer = mysql_fetch_array($qrySpecialOffer);
 		$vehicleID = $rstSO['vehicleID'];
-		$qryVehicle = mysql_query(getVehicle($Car ,$vehicleID) ,$dbConnect);
+		$qryVehicle = mysql_query(getCapVehicle($Car ,$vehicleID) ,$dbConnect);
 		$rstVehicle = mysql_fetch_array($qryVehicle);			
 		$strBrand = $rstVehicle["brand"];
 		$strModel = $rstVehicle["model"];

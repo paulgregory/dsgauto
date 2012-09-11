@@ -3,6 +3,7 @@
 	include('init.php');
 	$today = date("d/m/Y");
 	$OutputMessage = "Nothing happened";
+	
 	if (isset($_POST['Submit'])){     //Will always be YES as this is only imported if Submitted
 		$OutputMessage = "<h2>Thank You</h2>";
 		$dom = new DomDocument('1.0', 'utf-8');
@@ -55,7 +56,7 @@
 					}
 				};
 			break;
-			case "getquote":
+			case "getquote":			
 				$root->appendChild($dom->createElement("Type", $EnqType));
 				$root->appendChild($dom->createElement("FullName", $_POST['FullName']));
 				$root->appendChild($dom->createElement("TelephoneDay", $_POST['TelephoneDay']));
@@ -70,33 +71,26 @@
 					$Car = true;
 					switch($VTYPE)
 					{
-						case 'cars': $Car = true;break;
-						case 'vans': $Car = false;break;
+						case 'cars': $Car = true; break;
+						case 'vans': $Car = false; break;
 						default:;
 					}
 					if(isset($_POST['brandSelection']))
 					{
-						$brandID = $_POST['brandSelection'];
-						$qryBrand = mysql_query(getBrandFromId($Car, $brandID), $dbConnect);
-						if($qryBrand){
-							$rstBrand = mysql_fetch_array($qryBrand);
-							$root->appendChild($dom->createElement("BrandName", $rstBrand['brand']));
-						}
-						if(isset($_POST['modelSelection'])){
-							$modelID = $_POST['modelSelection'];
-							$qryModel = mysql_query(getModelFromId($Car, $modelID), $dbConnect);
-							if($qryModel){
-								$rstModel = mysql_fetch_array($qryModel);
-								$root->appendChild($dom->createElement("VehicleModel", $rstModel['model']));
-							}
-							if(isset($_POST['derivSelection'])){
-								$derivID = $_POST['derivSelection'];
-								$qryDeriv = mysql_query(getDerivFromId($Car, $derivID), $dbConnect);
-								if($qryDeriv){
-									$rstDeriv = mysql_fetch_array($qryDeriv);
-									$root->appendChild($dom->createElement("VehicleSpec", $rstDeriv['derivative']));
-								}
-							}
+						$brand = htmlspecialchars(str_replace('+', ' ', $_POST['brandSelection']));
+						$root->appendChild($dom->createElement("BrandName", $brand));
+					}
+					if(isset($_POST['modelSelection']))
+					{
+						$model = htmlspecialchars(str_replace('+', ' ', $_POST['modelSelection']));
+						$root->appendChild($dom->createElement("VehicleModel", $model));
+					}
+					if(isset($_POST['derivSelection']) && intval($_POST['derivSelection']))
+					{
+						$qryDeriv = mysql_query(getDerivFromCapid($Car, intval($_POST['derivSelection'])), $dbConnect);
+						if($qryDeriv){
+							$rstDeriv = mysql_fetch_array($qryDeriv);
+							$root->appendChild($dom->createElement("VehicleSpec", $rstDeriv['derivative']));
 						}
 					}
 				}
@@ -394,7 +388,7 @@
 				
 				### AdditionalInformation 
 				$addInfo = $root->appendChild($dom->createElement("AdditionalInformation"));
-					$addInfo->appendChild($dom->createElement("Notes", $_POST['infoComments']));
+				  $addInfo->appendChild($dom->createElement("Notes", $_POST['infoComments']));
 			
 			break;
 		}
@@ -403,10 +397,10 @@
 			case "contactus":
 			case "phoneme":
 			case "custtest":
-			case "getquote":
+			case "getquote":		
 				$dom->formatOutput = true;
-				$blnSent = SendMail($DEFAULT_MAIL_FROM,$CONTACT_ENQUIRIES, $subject, $dom->saveXML(), $DEFAULT_SMTP_HOST, $DEFAULT_SMTP_USERNAME, $DEFAULT_SMTP_PASSWORD);
-				$blnSent = SendMail($DEFAULT_MAIL_FROM,$DSG_XML, $subject, $dom->saveXML(), $DEFAULT_SMTP_HOST, $DEFAULT_SMTP_USERNAME, $DEFAULT_SMTP_PASSWORD);
+				$blnSent = SendMail($DEFAULT_MAIL_FROM, $CONTACT_ENQUIRIES, $subject, $dom->saveXML(), $DEFAULT_SMTP_HOST, $DEFAULT_SMTP_USERNAME, $DEFAULT_SMTP_PASSWORD);
+				$blnSent = SendMail($DEFAULT_MAIL_FROM, $DSG_XML, $subject, $dom->saveXML(), $DEFAULT_SMTP_HOST, $DEFAULT_SMTP_USERNAME, $DEFAULT_SMTP_PASSWORD);
 				break;
 			case "applyonline":
 				$surname = "";

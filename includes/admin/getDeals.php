@@ -6,56 +6,40 @@ if (isset($_SESSION['status']))
 ?>
 <div id="administrationTop"></div>
 <div id="administration">
+	<h1>Manage Deals</h1>
+	
+	<p><a href="/administration-deal.html" id="addDeal">Add Deal</a></p>
 <?php 
-	function getVehicles($Car)
+	function getVehicles($car)
 	{
 		include('dbConnect.php');
-		$qryDeal = mysql_query(sqlGetDeals() ,$dbConnect);
-		$count = 1; //3 colums if last one no margin-right
-		$strDeals = "";
-		$i=1;
-		if($qryDeal)
-		while ($rstDeal = mysql_fetch_array($qryDeal))
-		{
-			$strDealID = $rstDeal['id'];
-			$strVehicleID = $rstDeal["vehicleID"];
-			$strVehicleType = $rstDeal["vehicleType"];
-			$qryVehicle = mysql_query(getVehicle($strVehicleType ,$strVehicleID) ,$dbConnect);
-			$rstVehicle = mysql_fetch_array($qryVehicle);			
-			$strBrand = $rstVehicle["brand"];
-			$strModel = $rstVehicle["model"];
-			$strDealPaymentMonth = $rstDeal["monthly_payment"];
-			$strTerm = $rstDeal["monthly_payments"];
-			$strPayments = $rstDeal["initial_payment"];
-			$class = "carDealBox";
-			$offer = "car";
-			$financeType = "hire";
-			if($strVehicleType){
-				$class = "carDealBox";
-				$offer = "car";
-			}
-			else{
-				$class = "vanDealBox";
-				$offer = "van";
-			}
-			
-			$strD = explode(' ', $rstVehicle["derivative"]);
-			$strDeriv = "";
-			for($x = 0; $x < 5; $x ++)
-			{
-				if (count($strD) > $x)
-					$strDeriv .= $strD[$x] . " ";
-			}
-			
-			if($strBrand != "BMW")
-				$strBrand = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstVehicle["brand"]))); 
-			$strVehicleModel = preg_replace('/(.+)-(.?)/e',"ucfirst('$1').'-'.ucfirst('$2')",ucwords(strtolower($rstVehicle["model"])));
-			if($Car == $strVehicleType)
+
+    $strDeals = '';		
+		$vtype = ($car)? 'car' : 'van';
+		$qryDeals = mysql_query(sqlCapGetDeals($car), $dbConnect);
+
+		if ($qryDeals) {
+			while ($rstDeal = mysql_fetch_assoc($qryDeals)) {
+
+			  $strDealID = $rstDeal['id'];
+			  $strBrand = $rstDeal["brand"];
+				$strModel = $rstDeal["model"];
+				$strDeriv = $rstDeal["derivative"];
+				if($strVehicleType){
+					$class = "carDealBox";
+					$offer = "car";
+				}
+				else{
+					$class = "vanDealBox";
+					$offer = "van";
+				}
+				
 				$strDeals .= "
 				<li>
-				<a href=\"car_leasing-business-contract_hire-".$strBrand."-".$strDealID.".html\"> ".$strDealID." ".$strBrand." ".$strModel." ".$strDeriv."</a>
-				<a class=\"editDeal\" href=\"/administration-deal-$strDealID.html\">Edit Deal</a>
-				</li>";  
+				<a href=\"car_leasing-business-contract_hire-".str_replace(' ', '+', $strBrand)."-".$strDealID.".html\">[".$strDealID."] ".$strBrand." ".$strModel." ".$strDeriv."</a>
+				&nbsp;&nbsp;&nbsp; <a class=\"editDeal\" href=\"/administration-deal-$strDealID.html\">Edit Deal</a>
+				</li>";
+			}
 		}
 		if (empty($strDeals))
 			return "<li>No deals</li>";
@@ -63,16 +47,14 @@ if (isset($_SESSION['status']))
 			return $strDeals;
 	}
 	
-	echo "<fieldset>
-					<legend>Car Deals</legend>
-					<ul id=\"currentCarDeals\">". getVehicles(true)."</ul>
-				</fieldset>
-				<fieldset>
-					<legend>Van Deals</legend>
-					<ul id=\"currentVanDeals\">". getVehicles(false)."</ul>
-				</fieldset>";
+	print '<h2>Car Deals</h2>';
+	print "<ul class=\"admin-list\" id=\"currentCarDeals\">". getVehicles(true)."</ul>";
+	
+	print '<h2>Van Deals</h2>';
+	print "<ul class=\"admin-list\" id=\"currentVanDeals\">". getVehicles(false)."</ul>";
+
 ?>
-<a href="/administration-deal.html" id="addDeal">Add Deal</a>
+<p><strong><a href="/administration.html">Return to admin menu</a></strong></p>
 </div>
 <div id="administrationBottom"></div>
 <?php
