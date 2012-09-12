@@ -69,8 +69,6 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 			<?php 
 			$with_img = FALSE;
 			
-			print capVehicleImage($capid);
-			
 			$qryVehicleImage = mssql_query(capVehicleImage($capid));
 			
 			if ($qryVehicleImage) {
