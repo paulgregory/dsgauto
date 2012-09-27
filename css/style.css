@@ -496,16 +496,20 @@ a.last {
 
 form#search {
 	width: 920px;
-	background: #3a3a3a;
-	margin: 10px 0 0 0;
-	padding: 8px 10px;
+	background: #CC372D url(../images/bg_nav.png) bottom left repeat-x;
+	margin: 20px 0;
+	padding: 7px 10px;
 	color: #fff;
+	box-shadow: #555 0 0 4px;
+	-moz-box-shadow: #555 0 0 4px;
+	-webkit-box-shadow: #555 0 0 4px;
+	-ms-box-shadow: #555 0 0 4px;
 }
 
 form#search .form-error {
 	font-style: italic;
 	font-weight: bold;
-	color: #DB2A34;
+	color: yellow;
 	padding: 0 0 5px 10px;
 }
 
@@ -515,22 +519,22 @@ form#search label {
 }
 
 form#search .search-label {
-	font-size: 1.3em;
+	font-size: 1.2em;
 	font-weight: bold;
 	margin: 0 20px 0 10px;
 	position: relative;
-	top: 2px;
+	top: 1px;
 }
 
 form#search select {
-	width: 150px;
+	width: 140px;
 	height: 25px;
 	margin: 0 10px;
 	padding: 0;
 }
 
 form#search .submit {
-	background: #DB2A34;
+	background: #1EA000;
 	border: 1px solid #CDCDCD;
 	color: #FFFFFF;
 	font-size: 10px;
@@ -1168,6 +1172,15 @@ h1.footer_title {
 	border: none;
 }
 
+h1.front-title {
+	border-bottom-style: dotted;
+}
+
+h1 span.subtitle {
+	font-weight: normal;
+	color: #3A3A3A;
+}
+
 #like, #follow {
 	float: right;
 	height: 25px;
@@ -1576,6 +1589,7 @@ a#about-the-business:hover {
 /* Derivatives Table */
 .product-derivs {
 	width: 100%;
+	clear: both;
 }
 
 .product-derivs td {
@@ -1608,6 +1622,11 @@ a#about-the-business:hover {
 	color: #999;
 }
 
+.deriv-finance .subtle {
+	font-size: 0.8em;
+	font-weight: normal;
+}
+
 .product-derivs th {
 	text-align: left;
 	padding: 7px 5px;
@@ -1615,6 +1634,7 @@ a#about-the-business:hover {
   color: #fff;
 }
 
+.product-derivs .deriv-mpg,
 .product-derivs .deriv-co2,
 .product-derivs .deriv-p11d,
 .product-derivs .deriv-finance {
@@ -1640,6 +1660,15 @@ a#about-the-business:hover {
 
 .grey {
 	color: #999;
+}
+
+.sorttable_header {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.sorttable_header:hover {
+	color: #DDD;
 }
 
 /* Vehicle Detail Page */
@@ -1680,6 +1709,16 @@ table.finance-details .finance-notice {
 
 #vehicle-title.with-image {
 	margin-right: 370px;
+}
+
+#brand-image {
+  float: right;
+  margin: 0 0 20px 20px;
+  border: 1px solid #ddd;	
+}
+
+#deriv-list-title.with-image {
+	margin-right: 270px;
 }
 
 #quote-buttons {

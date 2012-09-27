@@ -630,6 +630,7 @@ function derivsByModel($VehicleType, $ModelName) {
 		  d.Manufacturer,
 		  d.ModelShort,
 		  d.DerivativeLong AS Derivative,
+		  r.MPG,
 		  r.P11D,
 		  r.CO2,
 		  r.BasicListPrice,

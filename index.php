@@ -24,13 +24,28 @@
 	// Process Vehicle Search
 	$form_error = false;
 	if (isset($_POST['vehicleType'])) {
+		$_SESSION['search_finance_type'] = $_POST['financeType'];
+		$_SESSION['search_vehicle_type'] = $_POST['vehicleType'];
+		$_SESSION['search_brand'] = $_POST['brand'];
+		$_SESSION['search_model'] = $_POST['modelSelection'];
+		
 		// validate the post
-		if (($_POST['financeType'] == 'personal' || $_POST['financeType'] == 'business') && ($_POST['vehicleType'] == 'cars' || $_POST['vehicleType'] == 'vans') && $_POST['brand'] !== 0 && $_POST['modelSelection'] !== 0) {
+		if (($_POST['financeType'] == 'personal' || $_POST['financeType'] == 'business') && ($_POST['vehicleType'] == 'cars' || $_POST['vehicleType'] == 'vans') && $_POST['brand'] !== '0' && $_POST['modelSelection'] !== '0') {
+			// Redirect to an aliased URL
 			header( 'Location: /search_'.mysql_real_escape_string($_POST['financeType']).'_'.mysql_real_escape_string($_POST['vehicleType']).'_'.mysql_real_escape_string($_POST['brand']).'_'.mysql_real_escape_string($_POST['modelSelection']).'.html');
 		}
 		else {
 			$form_error = 'Please select a vehicle type, make and model';
 		}
+	}
+	else {
+		/*
+		// Maybe we should unset the session when the search page is loaded normally??
+		unset($_SESSION['search_finance_type']);
+		unset($_SESSION['search_vehicle_type']);
+		unset($_SESSION['search_brand']);
+		unset($_SESSION['search_model']);
+		*/
 	}
 	
 ?>
@@ -39,33 +54,17 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
   <title><?php echo getTitle(); ?></title>
   <meta name="description" content="Car leasing, contract hire and lease purchase for business or personal use. Cheap van and company car leasing deals on all vehicles with great service." />
   <meta name="keywords" content="car leasing, car leasing uk, company car leasing, cheap, car lease, UK, personal, business, car finance, vehicle finance, lease cars, vehicle leasing, contract hire uk, leasing a car, leasing cars, personal car leasing, commercial vehicles, van leasing, van lease, vehicle leasing uk, contract hire, car leasing companies, renault, vauxhall, citroen, bmw" />
   <meta name="rating" content="Safe For Kids" />
   <meta name="google-site-verification" content="vS3ghjZwpmOOqaEb6YUQj2HRtZ8EP5ofAqvT8HdyKhs" />
-
-  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Place favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
-  <link rel="icon" href="http://www.dsgauto.com/favicon.ico" type="image/vnd.microsoft.icon" /><link rel="shortcut icon" href="http://www.dsgauto.com/favicon.ico" type="image/vnd.microsoft.icon" />
-  <!--<link rel="shortcut icon" href="http://www.dsgauto.com/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">-->
-
-
-  <!-- CSS: implied media="all" -->
-  <link rel="stylesheet" href="css/style.css?v=2">
-
-  <!-- Uncomment if you are specifically targeting less enabled mobile browsers
-  <link rel="stylesheet" media="handheld" href="css/handheld.css?v=2">  -->
-
-  <!-- All JavaScript at the bottom, except for Modernizr which enables HTML5 elements & feature detects -->
-  <script src="js/libs/modernizr-1.7.min.js"></script>
-  
+  <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" /><link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
+  <link rel="stylesheet" href="/css/style.css?v=2">
+  <script type="text/javascript" src="/js/libs/jquery-1.5.1.min.js"></script>
+  <script src="/js/libs/modernizr-1.7.min.js"></script>
 </head>
-
 <body>
 
   <div id="container">

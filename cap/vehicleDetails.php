@@ -73,14 +73,22 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 			
 			if ($qryVehicleImage) {
 			  $imgResult = mssql_fetch_assoc($qryVehicleImage);
-				$img = $_SERVER['DOCUMENT_ROOT'].'/cap/images/'.$imgResult['ImageID'].'.jpg';
-			  if (file_exists($img)) {
+			
+				$vehicleImg = '/cap/images/'.$imgResult['ImageID'].'.jpg';
+				$brandImg = '/images/brands-large/'.$vehicle['Manufacturer'].'.png';
+			
+			  if (file_exists($_SERVER['DOCUMENT_ROOT'].$vehicleImg)) {
 				  $with_img = TRUE;
-				  print '<div id="vehicle-image"><img src="/cap/images/'.$imgResult['ImageID'].'.jpg" /></div>';
-			  }	
+				  print '<div id="vehicle-image"><img src="'.$vehicleImg.'" alt="'.$vehicle['DerivativeLong'].'" /></div>';
+			  }
+			  elseif (file_exists($_SERVER['DOCUMENT_ROOT'].$brandImg)) {
+				  $with_img = TRUE;
+				  print '<div id="brand-image"><img src="'.$brandImg.'" alt="'.$vehicle['Manufacturer'].'" /></div>';
+			  }
+			
 			} ?>
 
-			<h1 id="vehicle-title" <?php if ($with_img) { print 'class="with-image"'; } ?>><span class="make-model"><?php print $vehicle['Manufacturer']; ?> <?php print $vehicle['ModelLong']; ?><span><br /><span class="deriv-name"><?php print $vehicle['DerivativeLong']; ?></span></h1>
+			<h1 id="vehicle-title" <?php if ($with_img) { print 'class="with-image"'; } ?>><span class="make-model"><?php print $vehicle['Manufacturer']; ?> <?php print $vehicle['ModelLong']; ?><span><br /><span class="subtitle"><?php print $vehicle['DerivativeLong']; ?></span></h1>
 			
 			<table class="finance-details">
 				<tr class="co2">
@@ -96,7 +104,7 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 					<td class="value">&pound;<?php print cap_format_price($vehicle['FinanceRental'], $finance); ?> pm</td>
 				</tr>
         <tr class="finance-notice">
-	        <td colspan="2">Finance based on a 3+35 months profile with 10k miles per annum.<br /><?php if ($finance == 'personal') { print 'Personal finance rental includes VAT at '.VAT_AMOUNT.'%.'; } ?></td>
+	        <td colspan="2">Finance based on a 3+35 months profile with 10k miles per annum.<br /><?php if ($finance == 'personal') { print 'Personal finance rental includes VAT at '.(($VAT-1)*100).'%.'; } ?></td>
 	      </tr>
 			</table>
 
@@ -114,9 +122,30 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 
       <div id="vehicle-tabs">
 	      <ul id="tabs" class="clearfix">
-		      <li><a href="#vehicle-standard-equipment">Standard Equipment</a></li>
 		      <li><a href="#vehicle-options">Select Vehicle Options</a></li>
+		      <li><a href="#vehicle-standard-equipment">Standard Equipment</a></li>
+		      <li><a href="#vehicle-tech-spec">Technical Specification</a></li>
 		    </ul>
+			
+			  <div id="vehicle-options">
+				<?php
+				$qryOptions = mssql_query(capVehicleOptions($capid));
+				if (mssql_num_rows($qryOptions)) {
+					$items = array_options_by_category($qryOptions);
+					
+					print '<p><em>Tick the options you would like to add to your quote.</em></p><div class="css-columns">';
+					
+					foreach ($items as $cat_name => $group) {
+						print_otpion_group($group, $cat_name);
+					}
+
+					print '</div>';
+				}
+				else {
+					print '<p><em>No options available for this vehicle</em></p>';
+				}
+				?>
+				</div>
 			
 				<div id="vehicle-standard-equipment">
 					<?php
@@ -145,26 +174,10 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 					?>
         </div>
 
-	      <div id="vehicle-options">
-			
-				<?php
-				$qryOptions = mssql_query(capVehicleOptions($capid));
-				if (mssql_num_rows($qryOptions)) {
-					$items = array_options_by_category($qryOptions);
-					
-					print '<p><em>Tick the options you would like to add to your quote.</em></p><div class="css-columns">';
-					
-					foreach ($items as $cat_name => $group) {
-						print_otpion_group($group, $cat_name);
-					}
+        <div id="vehicle-tech-spec">
+	        Tech spec to go here
+        </div>
 
-					print '</div>';
-				}
-				else {
-					print '<p><em>No options available for this vehicle</em></p>';
-				}
-				?>
-				</div>
 
       </div>
 

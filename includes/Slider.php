@@ -80,8 +80,7 @@
 		</div>
 	</div>
 	
-      <!-- JavaScript at the bottom for fast page loading -->
-  <script type="text/javascript" src="js/libs/jquery-1.5.1.min.js"></script>
+<!-- JavaScript at the bottom for fast page loading -->
 <script type="text/javascript" src="js/jquery.aw-showcase.js"></script>
 <script type="text/javascript">
 

@@ -20,7 +20,23 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 	$manufacturer = htmlspecialchars($_GET['brandSelection']);
 	$model = mysql_real_escape_string($_GET['modelSelection']);
 
-  print '<h1> Search results for '.$manufacturer.' '.$model.'</h1>';
+  $img = $_SERVER['DOCUMENT_ROOT'].'/images/brands-large/'.$manufacturer.'.png';
+	if (file_exists($img)) {
+		$with_img = TRUE;
+	  print '<div id="brand-image"><img src="/images/brands-large/'.$manufacturer.'.png" /></div>';
+  }
+
+  $h1_string = ($finance == 'personal')? $manufacturer.' '.$model.'<br /><span class="subtitle">Personal Finance Deals</span>' : $manufacturer.' '.$model.'<br /><span class="subtitle">Business Finance Deals</span>';
+  
+  if ($with_img) {
+    print '<h1 id="deriv-list-title" class="with-image">'.$h1_string.'</h1>';	
+  }
+  else {
+    print '<h1 id="deriv-list-title">'.$h1_string.'</h1>';
+  }
+
+  // Re-include the search bar?
+  // require_once('includes/SearchBarCap.php');
 
 	$derivs = mysql_query(derivsByModel($vtype, $model));
 	if (!mysql_num_rows($derivs)) {
@@ -28,26 +44,25 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 	}
 	else {
     
+    /*
     // If available, pull notes about this brand (and vtype) from the brand notes table
     $brand_notes_qry = mysql_query(brandNotes($manufacturer, $vtypeSingular));
     if (mysql_num_rows($brand_notes_qry)) {	
 	    $brandInfo = mysql_fetch_assoc($brand_notes_qry);
-	/*
-			$img = $_SERVER['DOCUMENT_ROOT'].'/cap/images/'.$brandInfo['imageid'].'.jpg';
-		  if (file_exists($img)) {
-			  $with_img = TRUE;
-			  print '<div id="vehicle-image"><img alt="'.$manufacturer.'" src="/cap/images/'.$brandInfo['imageid'].'.jpg" /></div>';
-		  }
-	*/
+			// $img = $_SERVER['DOCUMENT_ROOT'].'/cap/images/'.$brandInfo['imageid'].'.jpg';
+		  // if (file_exists($img)) {
+			//  $with_img = TRUE;
+			//  print '<div id="vehicle-image"><img alt="'.$manufacturer.'" src="/cap/images/'.$brandInfo['imageid'].'.jpg" /></div>';
+		  // }
 	    print $brandInfo['notes'];
     }
     else {
 	    // print some fallback content?
     }
+    */
 
-    $finance_string = ($finance == 'personal')? '<h2 style="clear: both">Personal Finance Deals</h2>' : '<h2 style="clear: both">Business Finance Deals</h2>';
-    $finance_column_header = ($finance == 'personal')? 'Monthly finance rental price including VAT' : 'Monthly finance rental price excluding VAT';
-    print $finance_string;
+    $finance_vat = ($finance == 'personal')? 'inc VAT' : '+VAT';
+    $finance_details = ($finance == 'personal')? 'These vehicle leasing deals are based on a payment profile of 3+35, allowing 10,000 miles per annum and exclude service, maintenance and tyres package. All prices shown include VAT. Maintenance packages, alternative mileage allowances and other contract term periods are available.' : 'These vehicle leasing deals are based on a payment profile of 3+35, allowing 10,000 miles per annum and exclude service, maintenance and tyres package.<br />All prices shown exclude VAT. Maintenance packages, alternative mileage allowances and other contract term periods are available.';
 
 		while ($deriv = mysql_fetch_assoc($derivs)) {
 			$derivs_full[$deriv['Derivative']] = $deriv;
@@ -56,32 +71,31 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 
 		if (count($derivs_full)) {
 			?>
-			<p>These <?php $brand_range['brand'].' '.$brand_range['range']; ?> deals are based on a 3+35 months profile with 10k miles per annum.</p>
+			<p><?php print $finance_details; ?></p>
 			
-			<table class="product-derivs">
+			<script src="/js/libs/sorttable.js"></script>
+			<table class="product-derivs sortable">
 				<thead>
-					<th width="58%" class="deriv-name">Vehicle</th>
-					<th width="10%" class="deriv-co2"><abbr title="Carbon dioxide emmissions as g/km">CO<sub>2</sub></abbr></th>
-					<th width="10%" class="deriv-p11d"><abbr title="Tax benefit value">P11D</abbr></th>
-					<th width="12%" class="deriv-finance"><abbr title="<?php print $finance_column_header; ?>">Finance Rental</abbr></th>
-					<th width="10%" class="deriv-more">&nbsp;</th>
+					<th width="50%" class="deriv-name sorttable_header">Vehicle</th>
+					<th width="8%" class="deriv-mpg sorttable_header">MPG</th>
+					<th width="8%" class="deriv-co2 sorttable_header">CO<sub>2</sub></th>
+					<th width="10%" class="deriv-p11d sorttable_header">P11D</th>
+					<th width="15%" class="deriv-finance sorttable_header">Finance Rental</th>
+					<th width="9%" class="deriv-more sorttable_nosort">&nbsp;</th>
 				</thead>
 				<?php foreach($derivs_full as $deriv) {?>
 					<tr>
 						<td class="deriv-name"><a href="<?php print vehicle_url($manufacturer, $model, $deriv['CAPID'], $vtypeSingular, $finance); ?>"><?php print $manufacturer . ' ' . $model . ' ' . $deriv['Derivative']; ?></a></td>
+						<td class="deriv-mpg subtle"><?php print $deriv['MPG']; ?></td>
 						<td class="deriv-co2 subtle"><?php print $deriv['CO2']; ?></td>
 						<td class="deriv-p11d subtle">&pound;<?php print number_format($deriv['P11D'], 2, '.', ''); ?></td>
-						<td class="deriv-finance"><strong>&pound;<?php print cap_format_price($deriv['FinanceRental'], $finance); ?></strong></td>
+						<td class="deriv-finance"><strong>&pound;<?php print cap_format_price($deriv['FinanceRental'], $finance); ?> <span class="subtle"><?php print $finance_vat; ?></span></strong></td>
 						<td class="deriv-more"><a class="vehicle-more" href="<?php print vehicle_url($manufacturer, $model, $deriv['CAPID'], $vtypeSingular, $finance); ?>">More Info</a></td>
 					</tr>
 					<?php } ?>
 				</table>
 				<?php
 				
-				if ($finance == 'personal') {
-					$vat_percentage = 100 * ($VAT - 1);
-					print '<p>Personal finance deals are inclusive of VAT at '.$vat_percentage.'%.</p>';
-				}
 		}
 		else {
 			print 'No vehicles found. <a href="/">Search again</a>';

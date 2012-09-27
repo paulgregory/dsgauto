@@ -91,8 +91,7 @@
 	<?php include ('SearchBarCap.php'); ?>
 	</div>
 
-<h1 class="front-title">Welcome to DSG Auto Contracts</h1>
-<h2>Your first point of contact for all car leasing, van leasing and contract hire</h2>
+<h1 class="front-title">Welcome to DSG Auto Contracts<br /><span class="subtitle">Your first point of contact for all car leasing, van leasing and contract hire</span></h1>
 <ul id="main_list">
 <li>Business Contract Hire, Personal Contract Hire, PCP, Lease Purchase and Finance Lease all available</li>
 <li>Flexible Business and Personal car leasing deals</li>
