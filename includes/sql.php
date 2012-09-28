@@ -707,7 +707,7 @@ function capVehicleInfo($capid) {
 
 // Get a list of all the available options for this vehicle
 function capVehicleOptions($capid) {
-	$sql = "SELECT CAPIDNumber, tblNVDOptions.OptionCode, CatCode, CategoryDesc, LongDesc ".
+	$sql = "SELECT CAPIDNumber, tblNVDOptions.OptionCode, CatCode, CategoryDesc, LongDesc, BasicPrice ".
 	       "FROM tblNVDOptions INNER JOIN ".
 	       "tblNVDDictionaryOption ON tblNVDOptions.OptionCode = tblNVDDictionaryOption.OptionCode INNER JOIN ".
 	       "tblNVDDictionaryCategory ON tblNVDDictionaryOption.CatCode = tblNVDDictionaryCategory.CategoryCode ".
@@ -726,6 +726,20 @@ function capVehicleStandardEquipment($capid) {
 	       "WHERE DateOptionEffectiveTo IS NULL ".
 	       "AND CAPIDNumber = $capid ".
 	       "ORDER BY CatCode, LongDesc";
+	
+	return $sql;
+}
+
+// Get the technical specification list for the vehicle deriv defined by $capid
+function capVehicleTechSpecs($capid) {	
+	$sql = "SELECT CAPID, tblNVDTechnical.TechDataCode, FloatValue, StingValue, CharValue, Description, DataType, Category, CategoryDesc ".
+			   "FROM tblNVDTechnical INNER JOIN ".
+			   "tblNVDDictionaryTechnical ON tblNVDTechnical.TechDataCode = tblNVDDictionaryTechnical.TechDataCode INNER JOIN ".
+			   "tblNVDDictionaryCategory ON tblNVDDictionaryTechnical.Category = tblNVDDictionaryCategory.CategoryCode ".
+			   "WHERE DateEffectiveTo = NULL ".
+			   "AND CAPID = $capid ".
+			   "AND StingValue <> 'N' ".
+			   "ORDER BY CategoryDesc, Description";
 	
 	return $sql;
 }

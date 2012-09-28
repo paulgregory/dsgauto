@@ -1622,8 +1622,9 @@ a#about-the-business:hover {
 	color: #999;
 }
 
-.deriv-finance .subtle {
+.deriv-finance .vat {
 	font-size: 0.8em;
+	color: #999;
 	font-weight: normal;
 }
 
@@ -1733,8 +1734,8 @@ table.finance-details .finance-notice {
 	text-align: center;
 	background: #DA2A34;
 	color: #fff;
-	padding: 10px;
-	font-size: 1.8em;
+	padding: 6px 10px;
+	font-size: 1.5em;
 	text-transform: uppercase;
 	text-decoration: none;
 	font-weight: bold;
@@ -1745,12 +1746,35 @@ table.finance-details .finance-notice {
 	-ms-box-shadow: #999 1px 1px 4px;
 }
 
+#running-total {
+	width: 178px;
+  border: 1px solid #DA2A34;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+
+#running-total-value {
+	font-weight: bold;
+	margin: 5px 0 8px 0;
+	font-size: 1.2em;
+}
+
+#running-total-value .vat {
+	font-weight: normal;
+	color: #888;
+	font-size: 0.7em;
+}
+
 #vehicle-tabs {
 	width: 700px;
 	float: left;
 }
 
 .css-columns {
+	width: 670px;
 	column-count: 2;
 	-webkit-column-count: 2;
 	-moz-column-count: 2;
@@ -1790,6 +1814,14 @@ table.finance-details .finance-notice {
 	margin-left: 20px;
 	display: block;
 	line-height: 1.2;
+}
+
+#vehicle-options .option-label {
+}
+
+#vehicle-options .option-price {
+	font-size: 0.8em;
+	color: #999;
 }
 
 /* Jquery UI Tabs */

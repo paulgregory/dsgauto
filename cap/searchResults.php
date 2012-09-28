@@ -76,11 +76,11 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 			<script src="/js/libs/sorttable.js"></script>
 			<table class="product-derivs sortable">
 				<thead>
-					<th width="50%" class="deriv-name sorttable_header">Vehicle</th>
+					<th width="47%" class="deriv-name sorttable_header">Vehicle</th>
 					<th width="8%" class="deriv-mpg sorttable_header">MPG</th>
 					<th width="8%" class="deriv-co2 sorttable_header">CO<sub>2</sub></th>
 					<th width="10%" class="deriv-p11d sorttable_header">P11D</th>
-					<th width="15%" class="deriv-finance sorttable_header">Finance Rental</th>
+					<th width="18%" class="deriv-finance sorttable_header">Monthly Finance Rental</th>
 					<th width="9%" class="deriv-more sorttable_nosort">&nbsp;</th>
 				</thead>
 				<?php foreach($derivs_full as $deriv) {?>
@@ -89,7 +89,7 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 						<td class="deriv-mpg subtle"><?php print $deriv['MPG']; ?></td>
 						<td class="deriv-co2 subtle"><?php print $deriv['CO2']; ?></td>
 						<td class="deriv-p11d subtle">&pound;<?php print number_format($deriv['P11D'], 2, '.', ''); ?></td>
-						<td class="deriv-finance"><strong>&pound;<?php print cap_format_price($deriv['FinanceRental'], $finance); ?> <span class="subtle"><?php print $finance_vat; ?></span></strong></td>
+						<td class="deriv-finance"><span class="subtle">From</span> <strong><?php print cap_format_price($deriv['FinanceRental'], $finance); ?> </strong></td>
 						<td class="deriv-more"><a class="vehicle-more" href="<?php print vehicle_url($manufacturer, $model, $deriv['CAPID'], $vtypeSingular, $finance); ?>">More Info</a></td>
 					</tr>
 					<?php } ?>

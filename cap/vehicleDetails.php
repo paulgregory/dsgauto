@@ -8,10 +8,37 @@ $(document).ready(function() {
 
 <?php
 
+function array_tech_spec_by_category($qryTechSpec) {
+	$items = array();
+  while ($item = mssql_fetch_assoc($qryTechSpec)) {
+	  $formatted = $item['Description'] . ':&nbsp; <strong><em>';
+	  switch ($item['DataType']) {
+		  case 'B':
+		    $formatted .= ($item['CharValue'])? 'Yes' : 'No';
+		  break;
+		  case 'C':
+		    $formatted .= $item['CharValue'];
+		  break;
+		  case 'F':
+		    $formatted .= $item['FloatValue'];
+		  break;
+		  case 'F':
+		    $formatted .= $item['FloatValue'];
+		  break;
+		  default:
+			  $formatted .= $item['StingValue'];
+	  }
+	  $formatted .= '</em></strong>';
+	  $items[$item['CategoryDesc']][] = $formatted;
+  }
+
+  return $items;
+}
+
 function array_equipment_by_category($qryEquipment) {
 	$items = array();
   while ($item = mssql_fetch_assoc($qryEquipment)) {
-	  $items[$item['CatCode']][] = $item;
+	  $items[$item['CatCode']][] = $item['LongDesc'];
   }
 
   return $items;
@@ -32,19 +59,20 @@ function print_equipment_group($items, $title) {
 		print '<h3>'.$title.'</h3>';
 		print '<ul>';
 		foreach ($items as $item) {
-			print '<li>'.$item['LongDesc'].'</li>';
+			print '<li>'.$item.'</li>';
 		}
 		print '</ul></div>';
 	}
 }
 
-function print_otpion_group($items, $title) {
+function print_option_group($items, $title) {
 	if (count($items)) {
 		print '<div class="group">';
 		print '<h3>'.$title.'</h3>';
 		print '<ul>';
 		foreach ($items as $item) {
-			print '<li><input type="checkbox" name="vehicleOptions['.$item['OptionCode'].']" id="option-'.$item['OptionCode'].'" value="'.$title.' &rsaquo; '.$item['LongDesc'].'" /> <label for="option-'.$item['OptionCode'].'">'.$item['LongDesc'].'</label></li>';
+			$monthlyPrice = round($item['BasicPrice']/38, 2);
+			print '<li><input type="checkbox" name="vehicleOptions['.$item['OptionCode'].']" id="option-'.$item['OptionCode'].'" value="'.$title.' &rsaquo; '.$item['LongDesc'].'" /> <label for="option-'.$item['OptionCode'].'"><span class="option-label">'.$item['LongDesc'].'</span> <span class="option-price">+ '.cap_format_price($monthlyPrice, 'business').'</span></label><input type="hidden" name="vehicleOptionsPrice['.$item['OptionCode'].']" value="'. $monthlyPrice .'" /></li>';
 		}
 		print '</ul></div>';
 	}
@@ -100,8 +128,8 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 					<td class="value">&pound;<?php print number_format($vehicle['P11D'], 2, '.', ''); ?></td>
 				</tr>
 				<tr class="finance-rental">
-					<td class="label">Finance Rental:</td>
-					<td class="value">&pound;<?php print cap_format_price($vehicle['FinanceRental'], $finance); ?> pm</td>
+					<td class="label">Vehicle Finance Rental:</td>
+					<td class="value"><?php print cap_format_price($vehicle['FinanceRental'], $finance); ?></td>
 				</tr>
         <tr class="finance-notice">
 	        <td colspan="2">Finance based on a 3+35 months profile with 10k miles per annum.<br /><?php if ($finance == 'personal') { print 'Personal finance rental includes VAT at '.(($VAT-1)*100).'%.'; } ?></td>
@@ -110,6 +138,7 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 
       <form action="/car_leasing-business-get_quote.html" method="post" style="clear: both">
 	
+	    <input type="hidden" name="vehicleFinanceRental" value="<?php print $vehicle['FinanceRental']; ?>" />
 	    <input type="hidden" name="vehicleType" value="<?php print $vtype; ?>">
 	    <input type="hidden" name="vehicleBrand" value="<?php print $vehicle['Manufacturer']; ?>">
 	    <input type="hidden" name="vehicleModel" value="<?php print $vehicle['ModelShort']; ?>">
@@ -117,9 +146,14 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 	    <input type="hidden" name="vehicleFinance" value="<?php print $finance; ?>">
 
       <div id="quote-buttons">
-	      <input type="submit" value="Get quote" />
+	      <div id="running-total-anchor"></div>
+	      <div id="running-total">
+		    	Monthly finance rental<br />with selected options:
+		      <div id="running-total-value"><?php print cap_format_price($vehicle['FinanceRental'], $finance); ?></div>
+		      <input type="submit" value="Get quote" />
+		    </div>
 	    </div>
-
+	
       <div id="vehicle-tabs">
 	      <ul id="tabs" class="clearfix">
 		      <li><a href="#vehicle-options">Select Vehicle Options</a></li>
@@ -136,7 +170,7 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 					print '<p><em>Tick the options you would like to add to your quote.</em></p><div class="css-columns">';
 					
 					foreach ($items as $cat_name => $group) {
-						print_otpion_group($group, $cat_name);
+						print_option_group($group, $cat_name);
 					}
 
 					print '</div>';
@@ -174,13 +208,82 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 					?>
         </div>
 
-        <div id="vehicle-tech-spec">
-	        Tech spec to go here
+				<div id="vehicle-tech-spec">
+					<?php
+					$qryTechSpecs = mssql_query(capVehicleTechSpecs($capid));
+					if (mssql_num_rows($qryTechSpecs)) {
+						$items = array_tech_spec_by_category($qryTechSpecs);
+						
+						print '<div class="css-columns">';
+						
+						foreach ($items as $cat_name => $group) {
+							print_equipment_group($group, $cat_name);
+						}
+						
+						print '</div>';
+					}
+					else {
+						print '<p><em>No technical specification available for this vehicle</em></p>';
+					}
+					?>
         </div>
-
 
       </div>
 
+      <script type="text/javascript">
+      function moveScroller() {
+			    var move = function() {
+			        var st = $(window).scrollTop();
+			        var ot = $("#running-total-anchor").offset().top;
+			        var s = $("#running-total");
+			        if(st > ot) {
+			            s.css({
+			                position: "fixed",
+			                top: "10px"
+			            });
+			        } else {
+			            if(st <= ot) {
+			                s.css({
+			                    position: "relative",
+			                    top: ""
+			                });
+			            }
+			        }
+			    };
+			    $(window).scroll(move);
+			    move();
+			}
+
+      $(document).ready(function() {
+	      moveScroller();
+	
+			  $('#vehicle-options input:checkbox').change(function() {
+				  var total = 0;
+				  var optionTotal = 0;
+				  var postfix = ' <span class="vat">+VAT</span>';
+				  var priceCalc = { "vatMultiplier":<?php print $VAT; ?>, 
+				                    "includeVat": <?php print ($finance == 'personal')? 'true' : 'false'; ?>,
+				                    "vehiclePrice": <?php print $vehicle['FinanceRental']; ?> }
+		      // total the monthly prices of the selected options
+				  $('#vehicle-options input:checked').each(function() {
+					  optionTotal += parseFloat($(this).siblings('input:hidden').val());
+				  });
+				  // sum the vehicle price and the option total
+				  total = priceCalc['vehiclePrice'] + optionTotal;
+				  // add VAT where necessary
+          if (priceCalc['includeVat']) {
+	          total = (total * priceCalc['vatMultiplier']);
+	          postfix = ' <span class="vat">inc VAT</span>';
+          }
+          // correct decimal places
+          roundedTotal = total.toFixed(2);
+				  // update the running total
+				  $('#running-total-value').fadeOut('fast', function() { $('#running-total-value').html('&pound'+roundedTotal+postfix); });				  
+				  $('#running-total-value').fadeIn('fast');
+				
+			  });
+			});
+      </script>
       </form>
 
 		<?php

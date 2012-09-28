@@ -10,9 +10,18 @@ define("MSSQL_NAME", "CAPEnhanced");
 function cap_format_price($decimal, $finance = 'business') {
 	global $VAT;
 	
+	$prefix = '&pound;';
+	
 	if ($finance == 'personal') {
 		$vat_multiplier = $VAT;
 		$decimal *= $vat_multiplier;
+		$postfix = ' <span class="vat">inc VAT</span>';
 	}
-	return number_format($decimal, 2, '.', ',');
+	else {
+		$postfix = ' <span class="vat">+VAT</span>';
+	}
+	
+	$number = number_format($decimal, 2, '.', ',');
+	
+	return $prefix.$number.$postfix;
 }
