@@ -104,7 +104,7 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 				$vehicleImg = '/cap/images/'.$imgResult['ImageID'].'.jpg';
 				$brandImg = '/images/brands-large/'.$vehicle['Manufacturer'].'.png';
 			
-			  if (file_exists($_SERVER['DOCUMENT_ROOT'].$vehicleImg)) {
+			  if (file_exists($_SERVER['DOCUMENT_ROOT'].$vehicleImg) && $vtype == 'car') {
 				  $with_img = TRUE;
 				  print '<div id="vehicle-image"><img src="'.$vehicleImg.'" alt="'.$vehicle['DerivativeLong'].'" /></div>';
 			  }
