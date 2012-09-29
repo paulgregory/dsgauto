@@ -81,7 +81,6 @@ function print_option_group($items, $title) {
 require_once('includes/constants.php');
 require_once('includes/sql.php');
 require_once('includes/dbConnect.php');
-require_once('capConfig.php');
 require_once('mssqlConnect.php');
 
 if ($_GET['capid'] && $_GET['vehicleType']) {
@@ -138,12 +137,12 @@ if ($_GET['capid'] && $_GET['vehicleType']) {
 
       <form action="/car_leasing-business-get_quote.html" method="post" style="clear: both">
 	
-	    <input type="hidden" name="vehicleFinanceRental" value="<?php print $vehicle['FinanceRental']; ?>" />
-	    <input type="hidden" name="vehicleType" value="<?php print $vtype; ?>">
-	    <input type="hidden" name="vehicleBrand" value="<?php print $vehicle['Manufacturer']; ?>">
-	    <input type="hidden" name="vehicleModel" value="<?php print $vehicle['ModelShort']; ?>">
-	    <input type="hidden" name="vehicleCAPID" value="<?php print $capid; ?>">
-	    <input type="hidden" name="vehicleFinance" value="<?php print $finance; ?>">
+	    <input type="hidden" name="quoteVehicleFinanceRental" value="<?php print $vehicle['FinanceRental']; ?>" />
+	    <input type="hidden" name="quoteVehicleType" value="<?php print $vtype; ?>">
+	    <input type="hidden" name="quoteVehicleBrand" value="<?php print $vehicle['Manufacturer']; ?>">
+	    <input type="hidden" name="quoteVehicleModel" value="<?php print $vehicle['ModelShort']; ?>">
+	    <input type="hidden" name="quoteVehicleCAPID" value="<?php print $capid; ?>">
+	    <input type="hidden" name="quoteVehicleFinance" value="<?php print $finance; ?>">
 
       <div id="quote-buttons">
 	      <div id="running-total-anchor"></div>

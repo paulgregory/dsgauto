@@ -1,16 +1,8 @@
 <?php
 
-// Build a readable URL for the vehicle detail page
-function vehicle_url($manufacturer, $model, $capid, $vtype = 'car', $finance = 'business') {
-	$url = 'vehicle-details_'.$finance.'_'.$vtype.'_'.$manufacturer.'_'.$model.'_'.$capid.'.html';
-	$url = str_replace(' ', '+', $url);
-	return $url;
-}
-
 require_once('includes/constants.php');
 require_once('includes/sql.php');
 require_once('includes/dbConnect.php');
-require_once('capConfig.php');
 
 if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['modelSelection']) && isset($_GET['brandSelection'])) {
 
@@ -62,7 +54,7 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
     */
 
     $finance_vat = ($finance == 'personal')? 'inc VAT' : '+VAT';
-    $finance_details = ($finance == 'personal')? 'These vehicle leasing deals are based on a payment profile of 3+35, allowing 10,000 miles per annum and exclude service, maintenance and tyres package. All prices shown include VAT. Maintenance packages, alternative mileage allowances and other contract term periods are available.' : 'These vehicle leasing deals are based on a payment profile of 3+35, allowing 10,000 miles per annum and exclude service, maintenance and tyres package.<br />All prices shown exclude VAT. Maintenance packages, alternative mileage allowances and other contract term periods are available.';
+    $finance_details = ($finance == 'personal')? 'These vehicle leasing deals are based on a payment profile of 3+35, allowing 10,000 miles per annum and exclude service, maintenance and tyres package. All prices shown include VAT. Maintenance packages, alternative mileage allowances and other contract term periods are available.' : 'These vehicle leasing deals are based on a payment profile of 3+35, allowing 10,000 miles per annum and exclude service, maintenance and tyres package. All prices shown exclude VAT. Maintenance packages, alternative mileage allowances and other contract term periods are available.';
 
 		while ($deriv = mysql_fetch_assoc($derivs)) {
 			$derivs_full[$deriv['Derivative']] = $deriv;

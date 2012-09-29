@@ -1,6 +1,5 @@
 <?php
 
-require_once('capConfig.php');
 require_once('mssqlConnect.php');
 
 function run_mssql_query($sql) {

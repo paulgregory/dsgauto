@@ -677,6 +677,25 @@ function brandNotes($brand, $vtype) {
 	return $sql;
 }
 
+// Get vehicle info and rate book values given a capid and vtype
+function enabledBrandModels($vtype) {
+	if($vtype == 'car'){
+		$tblBrands = TBL_BRANDS;
+		$tblModels = TBL_MODELS;
+	}
+	else{
+		$tblBrands = TBL_VANBRANDS;
+		$tblModels = TBL_VANMODELS;
+	}
+	
+	$sql = "SELECT brand, model FROM ".
+	       "$tblBrands INNER JOIN ".
+         "$tblModels ON $tblBrands.id = brandID ".
+	       "WHERE $tblBrands.enabled = 1 ".
+	       "AND $tblModels.enabled = 1";
+
+	return $sql;
+}
 
 // --------------- MSSQL Queries ---------------
 

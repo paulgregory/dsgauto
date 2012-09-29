@@ -31,8 +31,9 @@
 		
 		// validate the post
 		if (($_POST['financeType'] == 'personal' || $_POST['financeType'] == 'business') && ($_POST['vehicleType'] == 'cars' || $_POST['vehicleType'] == 'vans') && $_POST['brand'] !== '0' && $_POST['modelSelection'] !== '0') {
+			$url = search_page_url($_POST['brand'], $_POST['modelSelection'], $_POST['vehicleType'], $_POST['financeType']);
 			// Redirect to an aliased URL
-			header( 'Location: /search_'.mysql_real_escape_string($_POST['financeType']).'_'.mysql_real_escape_string($_POST['vehicleType']).'_'.mysql_real_escape_string($_POST['brand']).'_'.mysql_real_escape_string($_POST['modelSelection']).'.html');
+			header( 'Location: /'.$url);
 		}
 		else {
 			$form_error = 'Please select a vehicle type, make and model';
@@ -64,6 +65,9 @@
   <link rel="stylesheet" href="/css/style.css?v=2">
   <script type="text/javascript" src="/js/libs/jquery-1.5.1.min.js"></script>
   <script src="/js/libs/modernizr-1.7.min.js"></script>
+  <script type="text/javascript">var switchTo5x=true;</script>
+	<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+	<script type="text/javascript" src="http://s.sharethis.com/loader.js"></script>
 </head>
 <body>
 
@@ -93,14 +97,19 @@
   </div> <!--! end of #container -->
   
   <!-- google code -->
-			<script type="text/javascript">
-				var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-				document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-			</script>
-			<script type="text/javascript">
-				var pageTracker = _gat._getTracker("UA-3586219-1");
-				pageTracker._initData();
-				pageTracker._trackPageview();
-			</script>
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-3586219-1");
+	pageTracker._initData();
+	pageTracker._trackPageview();
+	</script>
+	<script type="text/javascript">stLight.options({publisher: "ur-f4c8371d-a27a-2b21-5295-7b55a8523c6"});</script>
+	<script>
+	var options={ "publisher": "ur-f4c8371d-a27a-2b21-5295-7b55a8523c6", "position": "left", "ad": { "visible": false, "openDelay": 5, "closeDelay": 0}, "chicklets": { "items": ["facebook", "twitter", "linkedin", "email", "sharethis"]}};
+	var st_hover_widget = new sharethis.widgets.hoverbuttons(options);
+	</script>
 </body>
 </html>

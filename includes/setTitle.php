@@ -80,9 +80,10 @@ function getTitle() {
       case "vehicledetails": // search results
         $capid = intval($_GET['capid']);
 			  $vtype = ($_GET['vehicleType'] == 'car')? 'car' : 'van'; // a form of query sanitisation
+			  $financeType = ($_GET['financeType'] == 'business')? 'Business finance deal' : 'Personal finance deal';
 			  $qryVehicle = mysql_query(vehicleInfoAndFinance($capid, $vtype));
 			  if ($vehicle = mysql_fetch_assoc($qryVehicle)) {
-          $title .= "Vehicle finance details for " . htmlspecialchars($vehicle['Manufacturer']) . ' ' . htmlspecialchars($vehicle['ModelShort']) . ' ' . htmlspecialchars($vehicle['DerivativeLong']) . ' | DSG Auto Contracts';
+          $title .= $financeType." | " . htmlspecialchars($vehicle['Manufacturer']) . ' ' . htmlspecialchars($vehicle['ModelShort']) . ' ' . htmlspecialchars($vehicle['DerivativeLong']) . ' | DSG Auto Contracts';
           $title = str_replace('+', ' ', $title);
         }
         else {

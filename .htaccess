@@ -27,6 +27,9 @@ RewriteRule ^(.*)$ http://www.dsgauto.com/$1 [R=301,L]
 
 RewriteBase /
 
+# XML Sitemap
+RewriteRule sitemap.xml /sitemap-generator.php [L]
+
 #Default Page
 #Requires No HTTPS
 RewriteCond %{HTTP:Host} (.*)

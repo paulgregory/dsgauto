@@ -1,14 +1,25 @@
 <?php
 
   // Check if the POST contains vehicle details
-  if (isset($_POST['vehicleCAPID']) && is_numeric($_POST['vehicleCAPID'])) {
-	  $capid = intval($_POST['vehicleCAPID']);
-	  $vehicleType = ($_POST['vehicleType'] == 'car')? 'c' : 'v';
-	  $brand = htmlspecialchars($_POST['vehicleBrand']);
-	  $model = htmlspecialchars($_POST['vehicleModel']);
+  if (isset($_POST['quoteVehicleCAPID']) && is_numeric($_POST['quoteVehicleCAPID'])) {
+	  $capid = intval($_POST['quoteVehicleCAPID']);
+	  $vehicleType = ($_POST['quoteVehicleType'] == 'car')? 'c' : 'v';
+	  $brand = htmlspecialchars($_POST['quoteVehicleBrand']);
+	  $model = htmlspecialchars($_POST['quoteVehicleModel']);
 	  $options = array();
 	  foreach ($_POST['vehicleOptions'] as $optid => $opt) {
 		  $options[$optid] = htmlspecialchars($opt);
+	  }
+	
+	  // Calculate the finance rental with selected options
+	  $financeTotal = FALSE;
+	  if (isset($_POST['quoteVehicleFinanceRental'])) {
+		  $financeTotal = (float) $_POST['quoteVehicleFinanceRental'];
+	  }
+	  if (isset($_POST['vehicleOptions'])) {
+		  foreach($_POST['vehicleOptions'] as $optid => $label) {
+			  $financeTotal += (float) $_POST['vehicleOptionsPrice'][$optid];
+		  }
 	  }
   }
 
@@ -86,7 +97,7 @@ If you are unsure about the type of finance package best suits you then <a href=
 		<div id="Vehicle">
 			<div class="form-item">
 			  <label>Vehicle Type</label>
-				<select id="vehicleTypeID" name="vehicleType" class="vehicleLine"  onchange="getBrandList(this.value, updateBrandSelection);">
+				<select id="vehicleTypeID" name="vehicleType" class="vehicleLine"  onchange="getBrandList(this.value, updateBrandSelection);" <?php if(isset($vehicleType)) echo "disabled=\"disabled\"";?>>
 					<option value= "">Please Select</option>
 					<option value="cars" <?php if(isset($vehicleType) && $vehicleType == 'c') echo "selected=\"selected\"";?>>Car</option>
 					<option value="vans" <?php if(isset($vehicleType) && $vehicleType == 'v') echo "selected=\"selected\"";?>>Van</option>
@@ -94,7 +105,7 @@ If you are unsure about the type of finance package best suits you then <a href=
 			</div>
 			<div class="form-item">
   			<label>Manufacturer</label>
-				<select name="brandSelection" id="brandSelection" class="vehicleLine" <?php if(!isset($brand)) echo "disabled=\"disabled\"";?> onchange="getModelList(this.value, updateModelSelection);" >
+				<select name="brandSelection" id="brandSelection" class="vehicleLine" <?php if(isset($brand)) echo "disabled=\"disabled\"";?> onchange="getModelList(this.value, updateModelSelection);" >
 				<?php 
 					$strBrandList = "<option value=\"0\" selected=\"selected\">Please Select</option>";
 					$qryBrand = "";
@@ -125,7 +136,7 @@ If you are unsure about the type of finance package best suits you then <a href=
 			</div>
       <div class="form-item">
 			  <label>Model</label>
-				<select name="modelSelection" id="modelSelection" class="vehicleLine" <?php if(!isset($model)) echo "disabled=\"disabled\"";?> onchange="getDerivList(this.value, updateDerivSelection);">
+				<select name="modelSelection" id="modelSelection" class="vehicleLine" <?php if(isset($model)) echo "disabled=\"disabled\"";?> onchange="getDerivList(this.value, updateDerivSelection);">
 				<?php
 					$strModels = "<option value=\"0\" selected=\"selected\">Please Select</option>";
 					if(isset($brand))
@@ -160,7 +171,7 @@ If you are unsure about the type of finance package best suits you then <a href=
 			</div>
 			<div class="form-item">
   			<label>Derivative</label>
-				<select name="derivSelection" id="derivSelection" class="vehicleLine" <?php if(!isset($capid)) echo "disabled=\"disabled\"";?> onchange="required(this, 'combobox');">
+				<select name="derivSelection" id="derivSelection" class="vehicleLine" <?php if(isset($capid)) echo "disabled=\"disabled\"";?> onchange="required(this, 'combobox');">
 					<option value="0">Please Select</option>
 				<?php
 					if(isset($model))
@@ -194,13 +205,19 @@ If you are unsure about the type of finance package best suits you then <a href=
 			</div>
 			<div class="form-item">
 			  <label>Options</label>
-				<textarea name="vehicleOptions" class="vehicleOptions" rows="7" cols="25"><?php 
+				<textarea name="vehicleOptions" class="vehicleOptions" rows="7" cols="25" <?php if ($financeTotal) { print 'disabled'; } ?>><?php 
+					if ($financeTotal) {
+						print 'QUOTED FINANCE RENTAL: '."\n".strip_tags(cap_format_price($financeTotal))."\n\n";
+					}
 					if (count($options)) {
+						print 'SELECTED OPTIONS:'."\n";
 						foreach ($options as $optid => $opt) {
-							print $opt."\n".'----------------------------'."\n";
+							print "&bull; ".$opt."\n";
 						}
-					} ?></textarea>
+					} ?>
+				</textarea>
 			</div>
+			
 		</div>
 	</fieldset>
 	</div>
