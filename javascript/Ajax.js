@@ -117,7 +117,7 @@ function updateLeftBrandsList() {
 		var newResponse = "";
 		var cv;
 		var left = document.getElementById("VehicleType");
-		if (VType == "cars") {
+		if (VType == "carsVans") {
 			cv = 'c';
 			left.setAttribute("class", "carsVans");
 		}

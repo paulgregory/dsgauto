@@ -252,8 +252,8 @@ if(!isset($did))
 			<label>Vehicle Type</label>
 				<select id="vehicleTypeID" name="vehicleType" class="vehicleLine" onchange="getBrandList(this.value, updateBrandSelection);">
 					<option value="">Please Select</option>
-					<option value="cars" <?php if(isset($vehicleType) && $vehicleType == 'c') echo "selected=\"selected\"";?>>Car</option>
-					<option value="vans" <?php if(isset($vehicleType) && $vehicleType == 'v') echo "selected=\"selected\"";?>>Van</option>
+					<option value="car" <?php if(isset($vehicleType) && $vehicleType == 'c') echo "selected=\"selected\"";?>>Car</option>
+					<option value="van" <?php if(isset($vehicleType) && $vehicleType == 'v') echo "selected=\"selected\"";?>>Van</option>
 				</select><br />
 				
 				<div class="form-item">

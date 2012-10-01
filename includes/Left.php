@@ -4,11 +4,11 @@ $query = "";
 $cv = 'c';
 switch($vtype)
 {
-	case 'cars':
+	case 'car':
 		$query = $sqlCarBrand;
 		$cv = 'c';
 	break;
-	case 'vans':
+	case 'van':
 		$query = $sqlVanBrand;
 		$cv = 'v';
 	break;
@@ -30,9 +30,9 @@ while ($rstBrand = mysql_fetch_array($qryBrand))
 <h3>Get A Quote</h3>
 </div>
 <div id="Left">
-<div id="VehicleType" <?php if($vtype == 'vans') echo "class=\"vansCars\""; else echo  "class=\"carsVans\""; ?>>
-	<h4><a href="#" name="Cars" class="cars" onclick="getBrandList('cars', updateLeftBrandsList); return false;">Cars</a></h4>
-	<h4><a href="#" name="Vans" class="vans" onclick="getBrandList('vans', updateLeftBrandsList); return false;">Vans</a></h4>
+<div id="VehicleType" <?php if($vtype == 'van') echo "class=\"vansCars\""; else echo  "class=\"carsVans\""; ?>>
+	<h4><a href="#" name="Cars" class="car" onclick="getBrandList('car', updateLeftBrandsList); return false;">Cars</a></h4>
+	<h4><a href="#" name="Vans" class="van" onclick="getBrandList('van', updateLeftBrandsList); return false;">Vans</a></h4>
 </div>
 <ul id="BrandList">
 <?php echo $strLeftBrands; ?>

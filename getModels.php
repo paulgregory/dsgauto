@@ -13,10 +13,10 @@ if (isset($_SESSION['dsgauto']))
 		$qryModels = "";
 		switch($vtype)
 		{
-			case 'cars':
+			case 'car':
 				$qryModels = mysql_query(getCapModels($brandID, 1, true),$dbConnect);
 				break;
-			case 'vans':
+			case 'van':
 				$qryModels = mysql_query(getCapModels($brandID, 1, false),$dbConnect);
 				break;
 			default:; 

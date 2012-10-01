@@ -69,22 +69,14 @@ RewriteCond %{REQUEST_URI} (car_leasing-special-offers.*\.html)
 RewriteRule .? http://%1/%2 [R,L]
 RewriteRule ^car_leasing-special-offers\.html$ index.php?stype=specials
 
-##Vehicle Search##
+##Vehicle Search ##
 #Requires No HTTPS
 RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} on
-RewriteCond %{REQUEST_URI} (search_results.*\.html)
+RewriteCond %{REQUEST_URI} ((car|van)-leasing/.*)
 RewriteRule .? http://%1/%2 [R,L]
-RewriteRule ^search_(personal|business)_(cars|vans)_([A-Z0-9-+]+)_([A-Z0-9-+]+)\.html$ index.php?stype=vehiclesearch&financeType=$1&vehicleType=$2&brandSelection=$3&modelSelection=$4
-
-##Vehicle Details##
-#Requires No HTTPS
-RewriteCond %{HTTP:Host} (.*)
-RewriteCond %{HTTPS} on
-RewriteCond %{REQUEST_URI} (vehicle_details.*\.html)
-RewriteRule .? http://%1/%2 [R,L]
-RewriteRule ^vehicle-details_(personal|business)_(car|van)_([A-Z0-9-+]+)_([A-Z0-9-+]+)_([0-9]+)\.html$ index.php?financeType=$1&stype=vehicledetails&vehicleType=$2&capid=$5
-
+RewriteRule ^(car|van)-leasing/(personal|business)/([a-z0-9-+\.]+)/([a-z0-9-+\.]+)(/?)$ index.php?stype=vehiclesearch&financeType=$2&vehicleType=$1&brandSelection=$3&modelSelection=$4 [L]
+RewriteRule ^(car|van)-leasing/(personal|business)/([a-z0-9-+\.]+)/([a-z0-9-+\.]+)/([a-z0-9-+\.]+)/([0-9]+)(/?)$ index.php?stype=vehicledetails&financeType=$2&vehicleType=$1&brandSelection=$3&modelSelection=$4&capid=$6 [L]
 
 #Contact Us#
 #Requires HTTPS

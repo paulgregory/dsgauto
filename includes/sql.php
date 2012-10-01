@@ -617,7 +617,7 @@ return $sqlGetImage;
 }
 
 function derivsByModel($VehicleType, $ModelName) {
-	if($VehicleType == 'cars'){
+	if($VehicleType == 'car'){
 		$tblDerivs = TBL_CAP_CAR;
 	}
 	else{

@@ -1,5 +1,5 @@
 <ul id="nav">
-		<li><a href="/" class="dsghome"><img src="images/nav_logo.png" alt="DSG Auto Contracts Home"></a></li>    
+		<li><a href="/" class="dsghome"><img src="/images/nav_logo.png" alt="DSG Auto Contracts Home"></a></li>    
 		<li><a href="/car_leasing-special-offers.html" title="Specials">Specials</a></li>
 		<li id="blog-link"><a href="/blog">Blog</a></li>
 		<li><a href="/car_leasing-business-articles-which_finance_package.html">Finance Info</a></li>

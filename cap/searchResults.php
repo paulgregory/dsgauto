@@ -7,10 +7,10 @@ require_once('includes/dbConnect.php');
 if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['modelSelection']) && isset($_GET['brandSelection'])) {
 
   $finance = ($_GET['financeType'] == 'personal')? 'personal' : 'business'; // a form of query sanitisation
-	$vtype = ($_GET['vehicleType'] == 'vans')? 'vans' : 'cars';
-	$vtypeSingular = ($_GET['vehicleType'] == 'vans')? 'van' : 'car'; 
-	$manufacturer = htmlspecialchars($_GET['brandSelection']);
-	$model = mysql_real_escape_string($_GET['modelSelection']);
+	$vtype = ($_GET['vehicleType'] == 'van')? 'van' : 'car';
+	$vtypeSingular = ($_GET['vehicleType'] == 'van')? 'van' : 'car'; 
+	$manufacturer = strtoupper(htmlspecialchars($_GET['brandSelection']));
+	$model = strtoupper(mysql_real_escape_string($_GET['modelSelection']));
 
   $img = $_SERVER['DOCUMENT_ROOT'].'/images/brands-large/'.$manufacturer.'.png';
 	if (file_exists($img)) {
@@ -18,7 +18,7 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 	  print '<div id="brand-image"><img src="/images/brands-large/'.$manufacturer.'.png" /></div>';
   }
 
-  $h1_string = ($finance == 'personal')? $manufacturer.' '.$model.'<br /><span class="subtitle">Personal Finance Deals</span>' : $manufacturer.' '.$model.'<br /><span class="subtitle">Business Finance Deals</span>';
+  $h1_string = ($finance == 'personal')? $manufacturer.' '.$model.'<br /><span class="subtitle">Personal Car Leasing Deals</span>' : $manufacturer.' '.$model.'<br /><span class="subtitle">Business Car Leasing Deals</span>';
   
   if ($with_img) {
     print '<h1 id="deriv-list-title" class="with-image">'.$h1_string.'</h1>';	
@@ -77,12 +77,12 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 				</thead>
 				<?php foreach($derivs_full as $deriv) {?>
 					<tr>
-						<td class="deriv-name"><a href="<?php print vehicle_url($manufacturer, $model, $deriv['CAPID'], $vtypeSingular, $finance); ?>"><?php print $manufacturer . ' ' . $model . ' ' . $deriv['Derivative']; ?></a></td>
+						<td class="deriv-name"><a href="/<?php print vehicle_url($manufacturer, $model, $deriv['Derivative'], $deriv['CAPID'], $vtypeSingular, $finance); ?>"><?php print $model . ' ' . $deriv['Derivative']; ?></a></td>
 						<td class="deriv-mpg subtle"><?php print $deriv['MPG']; ?></td>
 						<td class="deriv-co2 subtle"><?php print $deriv['CO2']; ?></td>
 						<td class="deriv-p11d subtle">&pound;<?php print number_format($deriv['P11D'], 2, '.', ''); ?></td>
 						<td class="deriv-finance"><span class="subtle">From</span> <strong><?php print cap_format_price($deriv['FinanceRental'], $finance); ?> </strong></td>
-						<td class="deriv-more"><a class="vehicle-more" href="<?php print vehicle_url($manufacturer, $model, $deriv['CAPID'], $vtypeSingular, $finance); ?>">More Info</a></td>
+						<td class="deriv-more"><a class="vehicle-more" href="/<?php print vehicle_url($manufacturer, $model, $deriv['Derivative'], $deriv['CAPID'], $vtypeSingular, $finance); ?>">More Info</a></td>
 					</tr>
 					<?php } ?>
 				</table>

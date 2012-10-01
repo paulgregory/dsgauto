@@ -17,8 +17,8 @@
   <span class="vehicleType">
 	<select name="vehicleType" id="vehicleType" onchange="getBrandList(this.value);">
 		<option value="0">Vehicle Type</option>
-		<option value="cars" <?php if(isset($_SESSION['search_vehicle_type']) && $_SESSION['search_vehicle_type'] == 'cars') echo "selected=\"selected\"";?>>CARS</option>
-		<option value="vans" <?php if(isset($_SESSION['search_vehicle_type']) && $_SESSION['search_vehicle_type'] == 'vans') echo "selected=\"selected\"";?>>VANS</option>
+		<option value="car" <?php if(isset($_SESSION['search_vehicle_type']) && $_SESSION['search_vehicle_type'] == 'car') echo "selected=\"selected\"";?>>CARS</option>
+		<option value="van" <?php if(isset($_SESSION['search_vehicle_type']) && $_SESSION['search_vehicle_type'] == 'van') echo "selected=\"selected\"";?>>VANS</option>
 	</select>
 	</span>
 
@@ -29,10 +29,10 @@
 			if(isset($_SESSION['search_vehicle_type']))
 			switch($_SESSION['search_vehicle_type'])
 			{
-				case 'cars':
+				case 'car':
 					$qryBrand = mysql_query($sqlCapCarBrand,$dbConnect);
 				break;
-				case 'vans':
+				case 'van':
 					$qryBrand = mysql_query($sqlCapVanBrand,$dbConnect);
 				break;
 				default:;
@@ -62,10 +62,10 @@
 				$qryModels = "";
 				switch($_SESSION['search_vehicle_type'])
 				{
-					case 'cars':
+					case 'car':
 						$qryModels = mysql_query(getCapModels($_SESSION['search_brand'], 1, true),$dbConnect);
 						break;
-					case 'vans':
+					case 'van':
 						$qryModels = mysql_query(getCapModels($_SESSION['search_brand'], 1, false),$dbConnect);
 						break;
 					default:$qryModels = mysql_query(getCapModels($_SESSION['search_brand'], 1, true),$dbConnect); 

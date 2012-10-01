@@ -87,16 +87,29 @@ function cap_format_price($decimal, $finance = 'business') {
 	return $prefix.$number.$postfix;
 }
 
+// Takes in 'FORD FOCUS 1.6 [TDI/DIESEL]' and returns 'ford+focus+1.6+tdi+diesel'
+function sanitiseUrlPart($part) {
+	$glue = '+';
+	$delete = array('[', ']', '(', ')', ','); // delete these characters
+	$replace = array(' ', '/', '\\'); // replace these with the glue character
+	
+	$santised = str_replace($delete, '', trim($part));
+	$santised = str_replace($replace, $glue, $santised);
+	$santised = strtolower($santised);
+	
+	return $santised;
+}
+
 // Build a readable URL for the search results page
+// EG: /car-leasing/personal/land+rover/range+rover+evoque
 function search_page_url($manufacturer, $model, $vtype = 'car', $finance = 'business') {
-	$url = 'search_'.$finance.'_'.$vtype.'_'.$manufacturer.'_'.$model.'.html';
-	$url = str_replace(' ', '+', $url);
+	$url = $vtype.'-leasing/'.$finance.'/'.sanitiseUrlPart($manufacturer).'/'.sanitiseUrlPart($model);
 	return $url;
 }
 
 // Build a readable URL for the vehicle detail page
-function vehicle_url($manufacturer, $model, $capid, $vtype = 'car', $finance = 'business') {
-	$url = 'vehicle-details_'.$finance.'_'.$vtype.'_'.$manufacturer.'_'.$model.'_'.$capid.'.html';
-	$url = str_replace(' ', '+', $url);
+// EG: /car-leasing/personal/land+rover/range+rover+evoque/land+rover+range+rover+evoque+2.2+sd4+dynamic+3dr+auto+lux+pack/51571
+function vehicle_url($manufacturer, $model, $deriv, $capid, $vtype = 'car', $finance = 'business') {
+	$url = $vtype.'-leasing/'.$finance.'/'.sanitiseUrlPart($manufacturer).'/'.sanitiseUrlPart($model).'/'.sanitiseUrlPart($deriv).'/'.$capid;
 	return $url;
 }

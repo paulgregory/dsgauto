@@ -1,12 +1,22 @@
 <?php
+  $goBackURL = FALSE;
 
   // Check if the POST contains vehicle details
-  if (isset($_POST['quoteVehicleCAPID']) && is_numeric($_POST['quoteVehicleCAPID'])) {
+  if (isset($_POST['quoteVehicleCAPID']) && is_numeric($_POST['quoteVehicleCAPID']) && isset($_POST['quoteVehicleType'])) {
+	
+	  $vtype = ($_POST['quoteVehicleType'] == 'car')? 'car' : 'van';
+	  $vehicleType = ($vtype == 'car')? 'c' : 'v';
 	  $capid = intval($_POST['quoteVehicleCAPID']);
-	  $vehicleType = ($_POST['quoteVehicleType'] == 'car')? 'c' : 'v';
-	  $brand = htmlspecialchars($_POST['quoteVehicleBrand']);
-	  $model = htmlspecialchars($_POST['quoteVehicleModel']);
-	  $options = array();
+	
+	  $qryVehicle = mysql_query(vehicleInfoAndFinance($capid, $vtype));
+	  if ($vehicle = mysql_fetch_assoc($qryVehicle)) {
+		  $brand = $vehicle['Manufacturer'];
+		  $model = $vehicle['ModelShort'];
+		  $deriv = $vehicle['DerivativeLong'];
+		  $finance = htmlspecialchars($_POST['quoteVehicleFinance']);
+		}
+		
+		$options = array();
 	  foreach ($_POST['vehicleOptions'] as $optid => $opt) {
 		  $options[$optid] = htmlspecialchars($opt);
 	  }
@@ -21,6 +31,9 @@
 			  $financeTotal += (float) $_POST['vehicleOptionsPrice'][$optid];
 		  }
 	  }
+	
+	  $goBackURL = vehicle_url($brand, $model, $deriv, $capid, $vtype, $finance);
+	
   }
 
 
@@ -65,6 +78,19 @@ personal contact purchase,
 lease purchase and hire purchase.  
 If you are unsure about the type of finance package best suits you then <a href="/car_leasing-business-contact_us.html" title="Contact Us">contact us</a>.</p>
 
+<?php if ($goBackURL): ?>
+<!-- Go back facility -->
+<form id="go-back" method="post" action="/<?php print $goBackURL; ?>" class="clearfix">
+<?php 
+if (count($options)) {
+	foreach ($options as $optid => $opt) {
+		print '<input type="hidden" name="selectedOptions['.$optid.']" value="selected" />';
+	}
+}?>
+<input type="submit" value="&lsaquo; Back" id="go-back-submit" name="go-back-submit" />
+</form>
+<?php endif; ?>
+
 <form id="Form" method="post" action="" class="clearfix">
 	<div class="column-1">
 	<fieldset>
@@ -99,8 +125,8 @@ If you are unsure about the type of finance package best suits you then <a href=
 			  <label>Vehicle Type</label>
 				<select id="vehicleTypeID" name="vehicleType" class="vehicleLine"  onchange="getBrandList(this.value, updateBrandSelection);" <?php if(isset($vehicleType)) echo "disabled=\"disabled\"";?>>
 					<option value= "">Please Select</option>
-					<option value="cars" <?php if(isset($vehicleType) && $vehicleType == 'c') echo "selected=\"selected\"";?>>Car</option>
-					<option value="vans" <?php if(isset($vehicleType) && $vehicleType == 'v') echo "selected=\"selected\"";?>>Van</option>
+					<option value="car" <?php if(isset($vehicleType) && $vehicleType == 'c') echo "selected=\"selected\"";?>>Car</option>
+					<option value="van" <?php if(isset($vehicleType) && $vehicleType == 'v') echo "selected=\"selected\"";?>>Van</option>
 				</select>
 			</div>
 			<div class="form-item">
@@ -203,6 +229,7 @@ If you are unsure about the type of finance package best suits you then <a href=
 					?>
 				</select><span class="required" id="derivSelectionReq"><?php if(!isset($did)) echo "*";?></span>
 			</div>
+			
 			<div class="form-item">
 			  <label>Options</label>
 				<textarea name="vehicleOptions" class="vehicleOptions" rows="7" cols="25" <?php if ($financeTotal) { print 'disabled'; } ?>><?php 
@@ -214,8 +241,11 @@ If you are unsure about the type of finance package best suits you then <a href=
 						foreach ($options as $optid => $opt) {
 							print "&bull; ".$opt."\n";
 						}
-					} ?>
-				</textarea>
+					} ?></textarea>
+					<?php if ($goBackURL): ?>
+						<p class="go-back-link"><a href="javascript:void(0)" onclick="$('#go-back').submit();">Go back and change these options</a></p>
+					<?php endif; ?>
+
 			</div>
 			
 		</div>

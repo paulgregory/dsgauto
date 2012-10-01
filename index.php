@@ -30,7 +30,7 @@
 		$_SESSION['search_model'] = $_POST['modelSelection'];
 		
 		// validate the post
-		if (($_POST['financeType'] == 'personal' || $_POST['financeType'] == 'business') && ($_POST['vehicleType'] == 'cars' || $_POST['vehicleType'] == 'vans') && $_POST['brand'] !== '0' && $_POST['modelSelection'] !== '0') {
+		if (($_POST['financeType'] == 'personal' || $_POST['financeType'] == 'business') && ($_POST['vehicleType'] == 'car' || $_POST['vehicleType'] == 'van') && $_POST['brand'] !== '0' && $_POST['modelSelection'] !== '0') {
 			$url = search_page_url($_POST['brand'], $_POST['modelSelection'], $_POST['vehicleType'], $_POST['financeType']);
 			// Redirect to an aliased URL
 			header( 'Location: /'.$url);

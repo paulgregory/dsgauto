@@ -71,8 +71,8 @@
 					$Car = true;
 					switch($VTYPE)
 					{
-						case 'cars': $Car = true; break;
-						case 'vans': $Car = false; break;
+						case 'car': $Car = true; break;
+						case 'van': $Car = false; break;
 						default:;
 					}
 					if(isset($_POST['brandSelection']))
@@ -348,10 +348,10 @@
 						$Car = true;
 						switch($VTYPE)
 						{
-							case 'cars': 
+							case 'car': 
 								$Car = true;
 								break;
-							case 'vans': 
+							case 'van': 
 								$Car = false;
 								break;
 							default:;

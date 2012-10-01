@@ -11,10 +11,10 @@ if (isset($_GET['vtype']) && isset($_SESSION['dsgauto']))
 	$qryBrand = "";
 	switch($vtype)
 	{
-		case 'cars':
+		case 'car':
 			$qryBrand = mysql_query($sqlCapCarBrand,$dbConnect);
 		break;
-		case 'vans':
+		case 'van':
 			$qryBrand = mysql_query($sqlCapVanBrand,$dbConnect);
 		break;
 		default: $qryBrand = mysql_query($sqlCapCarBrand,$dbConnect);

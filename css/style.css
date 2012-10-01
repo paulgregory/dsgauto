@@ -1899,3 +1899,28 @@ ul.ui-tabs-nav {
 	text-align: center;
 	clear: both;
 }
+
+/* Quote: go-back facility */
+#go-back #go-back-submit {
+	width: auto;
+	border: none;
+	display: block;
+	text-align: center;
+	background: #DA2A34;
+	color: #fff;
+	padding: 4px 15px;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	
+	box-shadow: #999 1px 1px 4px;
+	-webkit-box-shadow: #999 1px 1px 4px;
+	-moz-box-shadow: #999 1px 1px 4px;
+	-ms-box-shadow: #999 1px 1px 4px;
+}
+
+.go-back-link {
+	margin: 5px 0 0 0 !important;
+	padding: 0 0 0 165px;
+}

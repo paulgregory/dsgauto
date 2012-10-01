@@ -14,10 +14,10 @@ if (isset($_SESSION['dsgauto']))
 		$qryDerivs = "";
 		switch($vtype)
 		{
-			case 'cars':
+			case 'car':
 				$qryDerivs = mysql_query(getCapDerivs($modelID, true),$dbConnect);
 				break;
-			case 'vans':
+			case 'van':
 				$qryDerivs = mysql_query(getCapDerivs($modelID, false),$dbConnect);
 				break;
 			default:; 

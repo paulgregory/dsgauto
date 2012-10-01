@@ -7,9 +7,9 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
-		<a href="<?php echo $SITE_ROOT; ?>" class="logo"><img src="images/dsg_logo.png" alt="Contract Hire, Car Leasing Deals, DSG Auto Contracts" ></a>
+		<a href="<?php echo $SITE_ROOT; ?>" class="logo"><img src="/images/dsg_logo.png" alt="Contract Hire, Car Leasing Deals, DSG Auto Contracts" ></a>
         
-        <img src="images/tagline.png" alt="Contract Hire, Car Leasing Deals, DSG Auto Contracts" class="tag">
+        <img src="/images/tagline.png" alt="Contract Hire, Car Leasing Deals, DSG Auto Contracts" class="tag">
         
         <div id="header_contact">
         <h2><span class="phone-times">MON-FRI<br />9am-5:30pm</span> <?php echo $CONTACT_NUMBER; ?></h2>

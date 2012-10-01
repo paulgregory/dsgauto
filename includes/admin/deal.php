@@ -44,7 +44,7 @@ if (isset($_SESSION['status']))
 				$financeType = 0;
 				$personal = 0;
 			}
-			if($vehicleType == "cars")
+			if($vehicleType == "car")
 				$vehicleType = 1;
 			else
 				$vehicleType = 0;
@@ -144,8 +144,8 @@ if (isset($strUpdated)) echo $strUpdated;?>
 	<label>Vehicle Type</label>
 		<select id="vehicleTypeID" name="vehicleType" onchange="getBrandList(this.value, updateBrandSelection);">
 			<option value="">&mdash; &mdash;</option>
-			<option value="cars">Car</option>
-			<option value="vans">Van</option>
+			<option value="car">Car</option>
+			<option value="van">Van</option>
 		</select>
 	</div>
 	<div class="form-item">
