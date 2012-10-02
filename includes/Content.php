@@ -33,10 +33,10 @@
 				include ("SiteMap.php"); 
 				break;
 			case "vehiclesearch":
-				include ("cap/searchResults.php");
+				include ("searchResults.php");
 				break;
 			case "vehicledetails":
-				include ("cap/vehicleDetails.php");
+				include ("vehicleDetails.php");
 				break;
 			default:;
 		}

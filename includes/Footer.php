@@ -43,6 +43,9 @@ SK6 2SN</p>
 All rights reserved. </p>
 
 <p class="copy">SEO and Web Design by Muba Limited.</p>
+
+<p class="copy"><a href="/car_leasing-business-articles-terms_and_conditions.html" title="Terms &amp; Conditions">Terms &amp; Conditions</a><br /><a href="/car_leasing-business-articles-privacy_policy.html" title="Privacy Policy">Privacy Policy</a></p>
+
 </div>
 
 <div id="sitemap">

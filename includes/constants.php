@@ -4,6 +4,9 @@ switch($_SERVER['SERVER_NAME'])
 { 
 	case 'dsg.dev':
 	{
+		// Paul's localhost
+		
+		// MySQL database
     define("DB_HOST", "localhost");
 		define("DB_USER", "root");
 		define("DB_PASS", "root");
@@ -17,11 +20,14 @@ switch($_SERVER['SERVER_NAME'])
   }
 	case 'dsg.monki.info':
 	{
+		// Monki staging
+		
+		// MySQL database
     define("DB_HOST", "localhost");
     define("DB_USER", "root");
     define("DB_PASS", "zAwEj5SegEz4");
     define("DB_NAME", "dsgac");
-		// MS SQL Database config
+		// MSSQL Database config
 		define('MSSQL_HOST', 'ec2-46-137-67-195.eu-west-1.compute.amazonaws.com');
 		define("MSSQL_USER", "AMAZONA-HMIH3E4\Muba");
 		define("MSSQL_PASS", "mub4cr3at1ve()");
@@ -31,11 +37,13 @@ switch($_SERVER['SERVER_NAME'])
   default:
 	{
 		// Production
+		
+		// MySQL database
     define("DB_HOST", "databasehost.dsgfs.com");
 		define("DB_USER", "services");
 		define("DB_PASS", "d15hcl0th");
 		define("DB_NAME", "dsgac");
-		// MS SQL Database config
+		// MSSQL Database config
 		define('MSSQL_HOST', 'ec2-46-137-67-195.eu-west-1.compute.amazonaws.com');
 		define("MSSQL_USER", "AMAZONA-HMIH3E4\Muba");
 		define("MSSQL_PASS", "mub4cr3at1ve()");

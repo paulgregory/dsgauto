@@ -150,9 +150,9 @@ if (isset($_SESSION['status']))
 
     <p><strong>Filename: <?php print $_FILES["ratebookFile"]['name']; ?></strong></p>
     <p>The CSV file has been successfully uploaded.</p>
-    <p><strong style="color: red">WARNING: This will delete all current ratebook data and replace it with the contents of this file.</strong></p>
+    <p><strong style="color: red">WARNING: This will delete all current ratebook data and replace it with the contents of this file. This might take a few moments...</strong></p>
 
-    <p><input type="submit" name="processSubmit" value="Import Data"> &nbsp;&nbsp;&nbsp;<a href="/administration.html">Cancel</a></p>
+    <p><input type="submit" name="processSubmit" value="Import Data" onclick="$(this).val('...importing...');"> &nbsp;&nbsp;&nbsp;<a href="/administration.html">Cancel</a></p>
 
     <?php else: ?>
     
@@ -162,7 +162,7 @@ if (isset($_SESSION['status']))
 	    <input type="file" id="ratebookFile" name="ratebookFile" accept="text/csv" />	
     </div>  
 
-  	<p><input type="submit" name="uploadSubmit" value="Upload File"/> &nbsp;&nbsp;&nbsp;<a href="/administration.html">Cancel</a></p>
+  	<p><input type="submit" name="uploadSubmit" value="Upload File" onclick="$(this).val('...uploading...');" /> &nbsp;&nbsp;&nbsp;<a href="/administration.html">Cancel</a></p>
 	
 	  <?php endif; ?>
   </form>

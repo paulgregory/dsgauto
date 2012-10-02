@@ -24,7 +24,7 @@ class Admin {
 			$_SESSION['status'] = 'authenticated';
 		}
 		else{
-			return "<p>Please enter a correct username and password ". $uname . " ". sha1($pwd)." </p>";
+			return "<p>Please enter a correct username and password</p>";
 		}
 		
 	}
