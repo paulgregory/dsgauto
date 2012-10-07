@@ -34,6 +34,22 @@ switch($_SERVER['SERVER_NAME'])
 		define("MSSQL_NAME", "CAPEnhanced");
     break;
   }
+	case 'localhost':
+	{
+		// Localhost testing environment
+		
+		// MySQL database
+    define("DB_HOST", "localhost");
+    define("DB_USER", "root");
+    define("DB_PASS", "root");
+    define("DB_NAME", "dsgac");
+		// MSSQL Database config
+		define('MSSQL_HOST', 'ec2-46-137-67-195.eu-west-1.compute.amazonaws.com');
+		define("MSSQL_USER", "AMAZONA-HMIH3E4\Muba");
+		define("MSSQL_PASS", "mub4cr3at1ve()");
+		define("MSSQL_NAME", "CAPEnhanced");
+    break;
+  }
   default:
 	{
 		// Production
