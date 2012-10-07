@@ -97,9 +97,9 @@ function cap_format_price($decimal, $finance = 'business') {
 
 // Takes in 'FORD FOCUS 1.6 [TDI/DIESEL]' and returns 'ford+focus+1.6+tdi+diesel'
 function sanitiseUrlPart($part) {
-	$glue = '+';
+	$glue = '_';
 	$delete = array('[', ']', '(', ')', ','); // delete these characters
-	$replace = array(' ', '/', '\\'); // replace these with the glue character
+	$replace = array(' ', '/', '+', '\\'); // replace these with the glue character
 	
 	$santised = str_replace($delete, '', trim($part));
 	$santised = str_replace($replace, $glue, $santised);

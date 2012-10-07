@@ -9,8 +9,8 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
   $finance = ($_GET['financeType'] == 'personal')? 'personal' : 'business'; // a form of query sanitisation
 	$vtype = ($_GET['vehicleType'] == 'van')? 'van' : 'car';
 	$vtypeSingular = ($_GET['vehicleType'] == 'van')? 'van' : 'car'; 
-	$manufacturer = strtoupper(htmlspecialchars($_GET['brandSelection']));
-	$model = strtoupper(mysql_real_escape_string($_GET['modelSelection']));
+	$manufacturer = strtoupper(htmlspecialchars(str_replace('_', ' ', $_GET['brandSelection'])));
+	$model = strtoupper(mysql_real_escape_string(str_replace('_', ' ', $_GET['modelSelection'])));
 
   $img = $_SERVER['DOCUMENT_ROOT'].'/images/brands-large/'.$manufacturer.'.png';
 	if (file_exists($img)) {
