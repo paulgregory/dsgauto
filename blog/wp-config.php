@@ -19,13 +19,13 @@
 define('DB_NAME', 'dsgac_blog');
 
 /** MySQL database username */
-define('DB_USER', 'root');
+define('DB_USER', 'services');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'root');
+define('DB_PASSWORD', 'd15hcl0th');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'databasehost.dsgfs.com');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
