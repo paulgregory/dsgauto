@@ -25,11 +25,12 @@ if (isset($_SESSION['status']))
 			  $error = 'There was an error uploading the file.';
 			}
 			else {
-			  if ($_FILES["ratebookFile"]['type'] !== 'text/csv') {
+			  if ($_FILES["ratebookFile"]['type'] !== 'text/csv' && $_FILES["ratebookFile"]['type'] !== 'text/plain') {
 				  $error = 'Please upload a suitable CSV file.';
 			  }
 			  else {
-				  $targetPath = $_SERVER['DOCUMENT_ROOT'] . '/uploads/' . basename( $_FILES['ratebookFile']['name']);
+				  $targetPath = $_SERVER['DOCUMENT_ROOT'] . UPLOAD_DIR . date('Y-m-d').'-'.basename( $_FILES['ratebookFile']['name']);
+				  error_reporting(E_ALL);
 					if(move_uploaded_file($_FILES['ratebookFile']['tmp_name'], $targetPath)) {
 					  $fileUploaded = TRUE;
 					  $_SESSION['uploadedFile'] = $targetPath;
@@ -109,6 +110,7 @@ if (isset($_SESSION['status']))
 						  mysql_query($sql);
 						  if (mysql_error() != '') {
 							  $error = 'Error whilst inserting data in to database ('.mysql_error().')';
+							  $error .= '<br /><br /><pre>'.$sql.'</pre>';
 							  break;
 						  }
 						  $dataSet = array();

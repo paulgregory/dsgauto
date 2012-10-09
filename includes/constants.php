@@ -5,7 +5,7 @@ switch($_SERVER['SERVER_NAME'])
 	case 'dsg.dev':
 	{
 		// Paul's localhost
-		
+		define("UPLOAD_DIR", '/uploads/');
 		// MySQL database
     define("DB_HOST", "localhost");
 		define("DB_USER", "root");
@@ -21,7 +21,7 @@ switch($_SERVER['SERVER_NAME'])
 	case 'dsg.monki.info':
 	{
 		// Monki staging
-		
+		define("UPLOAD_DIR", '/uploads/');
 		// MySQL database
     define("DB_HOST", "localhost");
     define("DB_USER", "root");
@@ -37,7 +37,7 @@ switch($_SERVER['SERVER_NAME'])
 	case 'localhost':
 	{
 		// Localhost testing environment
-		
+		define("UPLOAD_DIR", '\\uploads\\');
 		// MySQL database
     define("DB_HOST", "localhost");
     define("DB_USER", "root");
@@ -48,12 +48,13 @@ switch($_SERVER['SERVER_NAME'])
 		define("MSSQL_USER", "AMAZONA-HMIH3E4\Muba");
 		define("MSSQL_PASS", "mub4cr3at1ve()");
 		define("MSSQL_NAME", "CAPEnhanced");
+		
     break;
   }
   default:
 	{
 		// Production
-		
+		define("UPLOAD_DIR", '\\uploads\\');
 		// MySQL database
     define("DB_HOST", "databasehost.dsgfs.com");
 		define("DB_USER", "services");
