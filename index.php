@@ -62,7 +62,7 @@
   <meta name="google-site-verification" content="vS3ghjZwpmOOqaEb6YUQj2HRtZ8EP5ofAqvT8HdyKhs" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" /><link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
-  <link rel="stylesheet" href="/css/style.css?v=2">
+  <link rel="stylesheet" href="/css/style.css?v=3">
   <script type="text/javascript" src="/js/libs/jquery-1.5.1.min.js"></script>
   <script src="/js/libs/modernizr-1.7.min.js"></script>
   <script type="text/javascript">var switchTo5x=true;</script>
