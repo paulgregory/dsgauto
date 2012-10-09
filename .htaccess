@@ -30,70 +30,64 @@ RewriteBase /
 # XML Sitemap
 RewriteRule ^sitemap.xml$ /sitemap-generator.php [L]
 
-#Default Page
+#Default / Front Page
 #Requires No HTTPS
 RewriteCond %{HTTP:Host} (.*)
 RewriteRule ^$ http://%1/car_leasing-business-contract_hire\.html
 
 #####Articles#####
 #Requires No HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} on
 RewriteCond %{REQUEST_URI} (car_leasing-business-articles-(.+)\.html)
-RewriteRule .? http://%1/%2 [R,L]
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R,L,QSA]
 RewriteRule ^car_leasing-business-articles-(.+)\.html$ index.php?stype=article&aURL=$1
 
-###Deals###
-#--Default Redirect to Business Contract Hire--
-#Requires No HTTPS
-RewriteCond %{HTTP:Host} (.*)
-RewriteCond %{HTTPS} on
-RewriteCond %{REQUEST_URI} (car_leasing-business/)
-RewriteRule .? http://%1/%2 [R,L]
-RewriteRule ^car_leasing-business/$ car_leasing-/business-contract_hire\.html [R]
+# Redirect broken link
+RewriteRule ^car_leasing-business(/?)$ / [L,R=301,QSA]
 
 ##Deals Contract Hire##
 #Requires No HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} on
 RewriteCond %{REQUEST_URI} (car_leasing-business-contract_hire.*\.html)
-RewriteRule .? http://%1/%2 [R,L]
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R,L,QSA]
 RewriteRule ^car_leasing-business-contract_hire\.html$ index.php?stype=deals
 RewriteRule ^car_leasing-business-contract_hire-(.+)-([0-9]+)\.html$ index.php?stype=deal&did=$2
 
 ##Specials Contracts Hire##
 #Requires No HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} on
 RewriteCond %{REQUEST_URI} (car_leasing-special-offers.*\.html)
-RewriteRule .? http://%1/%2 [R,L]
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R,L,QSA]
 RewriteRule ^car_leasing-special-offers\.html$ index.php?stype=specials
+
+##Vehicle Details Page##
+#Requires HTTPS
+RewriteCond %{HTTPS} off
+RewriteCond %{REQUEST_URI} ((car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)/([0-9]+)(/?))
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L,QSA]
+RewriteRule ^(car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)/([0-9]+)(/?)$ index.php?stype=vehicledetails&financeType=$2&vehicleType=$1&brandSelection=$3&modelSelection=$4&capid=$6 [L]
 
 ##Vehicle Search ##
 #Requires No HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} on
-RewriteCond %{REQUEST_URI} ((car|van)-leasing/.*)
-RewriteRule .? http://%1/%2 [R,L]
+RewriteCond %{REQUEST_URI} ((car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)(/?))
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R,L,QSA]
 RewriteRule ^(car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)(/?)$ index.php?stype=vehiclesearch&financeType=$2&vehicleType=$1&brandSelection=$3&modelSelection=$4 [L]
-RewriteRule ^(car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)/([0-9]+)(/?)$ index.php?stype=vehicledetails&financeType=$2&vehicleType=$1&brandSelection=$3&modelSelection=$4&capid=$6 [L]
 
 #Contact Us#
 #Requires HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} (car_leasing-business-contact_us.*\.html)
-RewriteRule .? https://%1/%2 [R,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L,QSA]
 RewriteRule  ^car_leasing-business-contact_us\.html$ index.php?stype=contactus
 RewriteRule  ^car_leasing-business-contact_us-phone_me\.html$ index.php?stype=contactus&level=phoneme
 
 ###### APPLY ONLINE #######
 
 #Requires HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} (car_leasing-business-apply_online-.*\.html)
-RewriteRule .? https://%1/%2 [R,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L,QSA]
 RewriteRule  ^car_leasing-business-apply_online-personal-([0-9]+)\.html$ index.php?stype=contactus&level=applyonline&type=personal&did=$1
 RewriteRule  ^car_leasing-business-apply_online-business-([0-9]+)\.html$ index.php?stype=contactus&level=applyonline&type=business&did=$1
 RewriteRule  ^car_leasing-business-apply_online-personal\.html$ index.php?stype=contactus&level=applyonline&type=personal
@@ -102,46 +96,40 @@ RewriteRule  ^car_leasing-business-apply_online-business\.html$ index.php?stype=
 ###### GET A QUOTE #######
 
 #Requires HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} (car_leasing-business-get_quote.*\.html)
-RewriteRule .? https://%1/%2 [R,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L,QSA]
 RewriteRule  ^car_leasing-business-get_quote\.html$ index.php?stype=contactus&level=getquote
 RewriteRule  ^car_leasing-business-get_quote-([0-9]+)\.html$ index.php?stype=contactus&level=getquote&did=$1 
 RewriteRule  ^car_leasing-business-get_quote-(.+)-([c|v][0-9]+)\.html$ index.php?stype=contactus&level=getquote&brand=$2
 
 #Contact Us#
 #Requires HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} (car_leasing-business-contact_us.*\.html)
-RewriteRule .? https://%1/%2 [R,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L,QSA]
 RewriteRule  ^car_leasing-business-contact_us\.html$ index.php?stype=contactus
 RewriteRule  ^car_leasing-business-contact_us-phone_me\.html$ index.php?stype=contactus&level=phoneme
 
 ##CUSTOMER TESTIMONIAL - ADD YOUR TESTIMONIAL##
 #Requires HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} (car_leasing-business-customer_testimonial\.html)
-RewriteRule .? https://%1/%2 [R,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L,QSA]
 RewriteRule ^car_leasing-business-customer_testimonial\.html$ index.php?stype=contactus&level=custtest&ctype=1
 
 ###SUBSRIBE###
 #Requires No HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} on
 RewriteCond %{REQUEST_URI} (car_leasing-newsletter-subscribe\.html)
-RewriteRule .? http://%1/%2 [R,L]
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R,L,QSA]
 RewriteRule ^car_leasing-newsletter-subscribe\.html$ http://eepurl.com/fVGTD
-
 
 ##Admin Area##
 #Requires HTTPS
-RewriteCond %{HTTP:Host} (.*)
 RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} (administration.*\.html)
-RewriteRule .? https://%1/%2 [R,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L,QSA]
 RewriteRule ^administration\.html$ index.php?admin=login
 RewriteRule ^administration-article-(.+)\.html$ index.php?admin=article&aURL=$1
 RewriteRule ^administration-deal-(.+)\.html$ index.php?admin=deal&did=$1
