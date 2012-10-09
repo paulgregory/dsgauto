@@ -20,9 +20,9 @@ function sitemapEntry($url, $lastmod = NULL, $changefreq = 'monthly', $prioty = 
 	return $xml;
 }
 
-$yesterday = date("Y-m-j", strtotime("-1 day"));
-$lastWeek = date("Y-m-j", strtotime("-1 week"));
-$lastMonth = date("Y-m-j", strtotime("-1 month"));
+$yesterday = date("Y-m-d", strtotime("yesterday"));
+$lastWeek = date("Y-m-d", strtotime("last monday"));
+$lastMonth = date("Y-m-d", strtotime("first day of this month"));
 
 header('Content-Type: text/xml');
 print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"."\n".
