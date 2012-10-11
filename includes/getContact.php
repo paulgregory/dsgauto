@@ -85,13 +85,16 @@
 						$model = htmlspecialchars(str_replace('+', ' ', $_POST['modelSelection']));
 						$root->appendChild($dom->createElement("VehicleModel", $model));
 					}
-					if(isset($_POST['derivSelection']) && intval($_POST['derivSelection']))
+					if(isset($_POST['derivSelection']))
 					{
-						$qryDeriv = mysql_query(getDerivFromCapid($Car, intval($_POST['derivSelection'])), $dbConnect);
-						if($qryDeriv){
-							$rstDeriv = mysql_fetch_array($qryDeriv);
-							$root->appendChild($dom->createElement("VehicleSpec", $rstDeriv['derivative']));
-						}
+						$deriv = '';	
+		        $qryVehicle = mysql_query(getCapVehicle($Car, intval($_POST['derivSelection'])), $dbConnect);
+
+	          if ($qryVehicle && mysql_num_rows($qryVehicle)) {
+		          $vehicle = mysql_fetch_assoc($qryVehicle);
+		          $deriv = $vehicle['derivative'];
+		        }
+						$root->appendChild($dom->createElement("VehicleSpec", $deriv));
 					}
 				}
 				$root->appendChild($dom->createElement("Options", $_POST['vehicleOptions']));
@@ -356,38 +359,35 @@
 								break;
 							default:;
 						}
-						if(isset($_POST['brandSelection'])){
-							$brandID = stripslashes($_POST['brandSelection']);
-							$qryBrand = mysql_query(getBrandFromId($Car, $brandID), $dbConnect);
-							if($qryBrand){
-								$rstBrand = mysql_fetch_array($qryBrand);
-								$brandName = $rstBrand['brand'];
-							}
-							if(isset($_POST['modelSelection'])){
-								$modelID = stripslashes($_POST['modelSelection']);
-								$qryModel = mysql_query(getModelFromId($Car, $modelID), $dbConnect);
-								if($qryModel){
-									$rstModel = mysql_fetch_array($qryModel);
-									$modelName = $rstModel['model'];
-								}
-								if(isset($_POST['derivSelection'])){
-									$derivID = stripslashes($_POST['derivSelection']);
-									$qryDeriv = mysql_query(getDerivFromId($Car, $derivID), $dbConnect);
-									if($qryDeriv){
-										$rstDeriv = mysql_fetch_array($qryDeriv);
-										$derivName = $rstDeriv['derivative'];
-									}
-								}
-							}
+						
+						if(isset($_POST['brandSelection']))
+						{
+							$brand = htmlspecialchars(str_replace('+', ' ', $_POST['brandSelection']));
+							$vehicle->appendChild($dom->createElement("Brand", $brand));
 						}
+						if(isset($_POST['modelSelection']))
+						{
+							$model = htmlspecialchars(str_replace('+', ' ', $_POST['modelSelection']));
+							$vehicle->appendChild($dom->createElement("Model", $model));
+						}
+						if(isset($_POST['derivSelection']))
+						{
+							$deriv = '';
+			        $qryVehicle = mysql_query(getCapVehicle($Car, intval($_POST['derivSelection'])), $dbConnect);
+
+		          if ($qryVehicle && mysql_num_rows($qryVehicle)) {
+			          $vehicleRst = mysql_fetch_assoc($qryVehicle);
+			          $deriv = $vehicleRst['derivative'];
+			        }
+			
+							$vehicle->appendChild($dom->createElement("Derivative", $deriv));
+						}
+						
 					}
-					$vehicle->appendChild($dom->createElement("Brand", $brandName));
-					$vehicle->appendChild($dom->createElement("Model", $modelName));
-					$vehicle->appendChild($dom->createElement("Derivative", $derivName));
-					$vehicle->appendChild($dom->createElement("Options", $_POST['vehicleOptions']));
+					$vehicle->appendChild($dom->createElement("Options", htmlspecialchars($_POST['vehicleOptions'])));
 				
-				### AdditionalInformation 
-				$addInfo = $root->appendChild($dom->createElement("AdditionalInformation"));
+				  ### AdditionalInformation 
+				  $addInfo = $root->appendChild($dom->createElement("AdditionalInformation"));
 				  $addInfo->appendChild($dom->createElement("Notes", $_POST['infoComments']));
 			
 			break;

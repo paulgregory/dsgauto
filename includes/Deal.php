@@ -13,6 +13,8 @@
 			
 			$qryDeal = mysql_query(sqlCapDealGet($did, $vtype, 1), $dbConnect);
 
+      if ($qryDeal && mysql_num_rows($qryDeal)) {
+	
 			while ($rstDeal = mysql_fetch_array($qryDeal))
 			{
 				$did = $rstDeal['id'];
@@ -146,9 +148,13 @@
 			</div>
 			<div id="dealBottom"><!-- --></div>
 			<?php
+		  }
+		  else {
+			  print '<h1>Deal Error</h1><p><strong>Sorry deal &amp; vehicle details could not be found. This vehicle may no longer be available. Contact us for more info.</strong></p>';
+		  }
 		}
 		else {
-			print '<h1>Deal Error</h1><p><strong>Sorry, deal not found</strong></p>';			
+			print '<h1>Deal Error</h1><p><strong>Sorry, deal not found. This deal may have expired. Contact us for more information.</strong></p>';			
 		}		
 		
 		

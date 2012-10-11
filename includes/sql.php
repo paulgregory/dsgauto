@@ -140,11 +140,15 @@ function sqlCapDealGet($dealID, $Car, $Enabled = 1){
 function sqlCapGetDeals($Car){
   if($Car){
 	  $tblDerivs = TBL_CAP_CAR;
+	  $vtype = 1;
   }
   else{
 	  $tblDerivs = TBL_CAP_VAN;
+	  $vtype = 0;
   }
 
+  // Use left join so that we return even the deals for 
+  // which the coresponding vehicle cannot be found
   $sqlDealGet=
     "SELECT 
 		  Manufacturer AS brand, 
@@ -153,13 +157,10 @@ function sqlCapGetDeals($Car){
 		  ".TBL_DEALS.".* 
 		FROM 
 		  ".TBL_DEALS."
-		INNER JOIN 
+		LEFT JOIN 
 		  ".$tblDerivs." ON (vehicleID = CAPID) 
-		WHERE ";
-  if ($dealID > 0)
-	  $sqlDealGet .= "(".TBL_DEALS.".id = $dealID) ";
-  else
-	  $sqlDealGet .= "(".TBL_DEALS.".enabled = 1) ";
+		WHERE
+		  ".TBL_DEALS.".vehicleType = '".$vtype."' ";
 
   $sqlDealGet .= "ORDER BY ".TBL_DEALS.".monthly_payment";
   return $sqlDealGet;

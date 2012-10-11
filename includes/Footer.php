@@ -12,7 +12,7 @@
 		if($i == 1){
 			$str .= "<li>";
 		}
-		$str .= "<a href=\"/car_leasing-business-get_quote-$strBrandName-c$strBrandID.html\" title=\"$strBrandName - Get a quote\">
+		$str .= "<a href=\"/car_leasing-business-get_quote-".sanitiseUrlPart($strBrandName)."-c$strBrandID.html\" title=\"$strBrandName - Get a quote\">
 							$strBrandName
 						</a>";
 		if($i == 1){

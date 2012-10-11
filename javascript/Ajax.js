@@ -16,6 +16,7 @@ if (!xmlHttp && typeof XMLHttpRequest != 'undefined') {
 var VType;
 function setVtype(){
 	var vehicleType = document.getElementById('vehicleTypeID').value;
+	vehicleType = vehicleType.toLowerCase();
 	VType = escape(vehicleType);
 	return true;
 }

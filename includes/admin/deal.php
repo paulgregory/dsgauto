@@ -96,7 +96,7 @@ if (isset($_SESSION['status']))
 			$finalPayment = stripslashes($rstDeal['final_payment']);
 		}
 		if(isset($_POST['addDeal']))
-		{
+		{	
 			$vehicleType = addslashes($_POST['vehicleType']);
 			$VehicleID = addslashes($_POST['derivSelection']);
 			$monthlyPayment = addslashes($_POST['monthlyPayment']);
@@ -118,7 +118,7 @@ if (isset($_SESSION['status']))
 				$financeType = 0;
 				$personal = 0;
 			}
-			if($vehicleType == "cars")
+			if($vehicleType == "car")
 				$vehicleType = 1;
 			else
 				$vehicleType = 0;

@@ -60,14 +60,25 @@
 		}
 	}
 	
-	if (isset($_GET['brand']) && isset($_GET['vtype'])) {
-		$brand = strtoupper(htmlspecialchars($_GET['brand']));
-	  $vehicleType = (htmlspecialchars($_GET['vtype']) == 'c')? 'c' : 'v';
+	if(isset($_GET['brand']))
+	{
+		$vehicleType = substr($_GET['brand'], 0, 1);
+		$vtypeBool = ($vehicleType == 'c')? TRUE : FALSE;
+		$brandID = substr($_GET['brand'], 1);
+
+    $qryBrand = mysql_query(getBrandFromId($vtypeBool, $brandID));
+    if ($qryBrand && mysql_num_rows($qryBrand)) {
+	    $rstBrand = mysql_fetch_assoc($qryBrand);
+	    $brand = $rstBrand['brand'];
+    }
+    
 	}
+
 
 ?>
 <script type="text/javascript" src="/javascript/formValidation.js"></script>
 <script type="text/javascript" src="/javascript/Ajax.js"></script>
+<script type="text/javascript" src="/javascript/gen_validatorv4.js"></script>
 <h1>Get a Quote</h1> 
 <p class="smaller">So that we can search all of our finance partners to calculate the very best deal for you please complete your details below.  
 You will then be able to select a quote based on one of the following finance agreements;
@@ -123,15 +134,30 @@ if (count($options)) {
 		<div id="Vehicle">
 			<div class="form-item">
 			  <label>Vehicle Type</label>
-				<select id="vehicleTypeID" name="vehicleType" class="vehicleLine"  onchange="getBrandList(this.value, updateBrandSelection);" <?php if(isset($vehicleType)) echo "disabled=\"disabled\"";?>>
-					<option value= "">Please Select</option>
-					<option value="car" <?php if(isset($vehicleType) && $vehicleType == 'c') echo "selected=\"selected\"";?>>Car</option>
-					<option value="van" <?php if(isset($vehicleType) && $vehicleType == 'v') echo "selected=\"selected\"";?>>Van</option>
+			  <?php 
+        if(isset($vehicleType)) {
+	        $vehicleTypeStr = ($vehicleType == 'c')? 'Car' : 'Van';
+	        print '<input type="text" name="vehicleType" id="vehicleTypeID" class="vehicleLine" value="'.$vehicleTypeStr.'" readonly style="border: 1px dotted #bbb" />';
+        }
+        else { ?>
+			
+				<select id="vehicleTypeID" name="vehicleType" class="vehicleLine"  onchange="getBrandList(this.value, updateBrandSelection);">
+					<option value="">Please Select</option>
+					<option value="car">Car</option>
+					<option value="van">Van</option>
 				</select>
+				
+				<?php } ?>
 			</div>
 			<div class="form-item">
   			<label>Manufacturer</label>
-				<select name="brandSelection" id="brandSelection" class="vehicleLine" <?php if(isset($brand)) echo "disabled=\"disabled\"";?> onchange="getModelList(this.value, updateModelSelection);" >
+        <?php 
+        if(isset($brand)) {
+	        print '<input type="text" name="brandSelection" id="brandSelection" class="vehicleLine" value="'.$brand.'" readonly style="border: 1px dotted #bbb" />';
+        }
+        else { ?>
+
+				<select name="brandSelection" id="brandSelection" class="vehicleLine" <?php if (!isset($vehicleType)) print 'disabled'; ?> onchange="getModelList(this.value, updateModelSelection);" >
 				<?php 
 					$strBrandList = "<option value=\"0\" selected=\"selected\">Please Select</option>";
 					$qryBrand = "";
@@ -150,19 +176,23 @@ if (count($options)) {
 					{
 						$strBrandID = str_replace(' ', '+', $rstBrand["brand"]);
 						$strBrandName = $rstBrand["brand"];
-						
-						if(isset($brand) && $brand == $rstBrand["brand"])
-							$strBrandList .= "<option value=\"$strBrandID\" selected=\"selected\">$strBrandName</option>";
-						else
-							$strBrandList .= "<option value=\"$strBrandID\">$strBrandName</option>";
+						$strBrandList .= "<option value=\"$strBrandID\">$strBrandName</option>";
 					}
 					echo $strBrandList;
 				?>
 				</select>
+				
+				<?php } ?>
 			</div>
       <div class="form-item">
 			  <label>Model</label>
-				<select name="modelSelection" id="modelSelection" class="vehicleLine" <?php if(isset($model)) echo "disabled=\"disabled\"";?> onchange="getDerivList(this.value, updateDerivSelection);">
+			  <?php 
+        if(isset($model)) {
+	        print '<input type="text" name="modelSelection" id="modelSelection" class="vehicleLine" value="'.$model.'" readonly style="border: 1px dotted #bbb" />';
+        }
+        else { ?>
+			
+				<select name="modelSelection" id="modelSelection" class="vehicleLine" <?php if (!isset($brand)) print 'disabled'; ?> onchange="getDerivList(this.value, updateDerivSelection);">
 				<?php
 					$strModels = "<option value=\"0\" selected=\"selected\">Please Select</option>";
 					if(isset($brand))
@@ -184,20 +214,29 @@ if (count($options)) {
 						{
 							$strModelID = str_replace(' ', '+', $rstModels['model']);
 							$strModel = $rstModels['model'];
-							
-							if(isset($model) && $model == $rstModels['model'])
-								$strModels .= "<option value=\"$strModelID\" selected=\"selected\">$strModel</option>";
-							else
-								$strModels .= "<option value=\"$strModelID\">$strModel</option>";
+							$strModels .= "<option value=\"$strModelID\">$strModel</option>";
 						}
 					}
 					echo $strModels;
 				?>
 				</select>
+				<?php } ?>
 			</div>
 			<div class="form-item">
   			<label>Derivative</label>
-				<select name="derivSelection" id="derivSelection" class="vehicleLine" <?php if(isset($capid)) echo "disabled=\"disabled\"";?> onchange="required(this, 'combobox');">
+        <?php 
+        if(isset($capid)) {
+	        $vtypeBool = ($vehicleType == 'c')? TRUE : FALSE;	
+	        $qryVehicle = mysql_query(getCapVehicle($vtypeBool, $capid), $dbConnect);
+
+          if ($qryVehicle && mysql_num_rows($qryVehicle)) {
+	          $vehicle = mysql_fetch_assoc($qryVehicle); 
+	          print '<input type="text" name="derivSelection" id="derivSelection" class="vehicleLine" value="'.$vehicle['derivative'].'" readonly style="border: 1px dotted #bbb" />';
+          }
+        }
+        else { ?>
+
+				<select name="derivSelection" id="derivSelection" class="vehicleLine" <?php if (!isset($model)) print 'disabled'; ?> onchange="required(this, 'combobox');">
 					<option value="0">Please Select</option>
 				<?php
 					if(isset($model))
@@ -218,28 +257,26 @@ if (count($options)) {
 						{
 							$strDerivID = $rstDerivs['CAPID'];
 							$strDeriv = $rstDerivs['derivative'];
-							
-							if(isset($capid) && $capid == $strDerivID)
-								$strDerivs .= "<option value=\"$strDerivID\" selected=\"selected\">$strDeriv</option>";
-							else
-								$strDerivs .= "<option value=\"$strDerivID\">$strDeriv</option>";
+							$strDerivs .= "<option value=\"$strDerivID\">$strDeriv</option>";
 						}
 						echo $strDerivs;
 					}
 					?>
 				</select><span class="required" id="derivSelectionReq"><?php if(!isset($did)) echo "*";?></span>
+				
+				<?php } ?>
 			</div>
 			
 			<div class="form-item">
 			  <label>Options</label>
-				<textarea name="vehicleOptions" class="vehicleOptions" rows="7" cols="25" <?php if ($financeTotal) { print 'disabled'; } ?>><?php 
+				<textarea name="vehicleOptions" class="vehicleOptions" rows="7" cols="25" <?php if ($financeTotal) { print 'readonly style="border: 1px dotted #bbb; resize: none"'; } ?>><?php 
 					if ($financeTotal) {
 						print 'QUOTED FINANCE RENTAL: '."\n".strip_tags(cap_format_price($financeTotal))."\n\n";
 					}
 					if (count($options)) {
 						print 'SELECTED OPTIONS:'."\n";
 						foreach ($options as $optid => $opt) {
-							print "&bull; ".$opt."\n";
+							print "".$opt."\n";
 						}
 					} ?></textarea>
 					<?php if ($goBackURL): ?>
@@ -338,3 +375,10 @@ if (count($options)) {
 	<!--<a href="#" class="submitButton" name="Submit" title="Request Quote" onclick="submitForm(); return false;">Request Quote</a>-->
 	<div id="quoteSubmit"><input type="submit" class="submitButton" name="Submit" value="Request Quote" /></div>
 </form>
+<script type="text/javascript">
+ var frmvalidator  = new Validator("Form");
+frmvalidator.EnableMsgsTogether();
+frmvalidator.addValidation("FullName","req","Please enter your full name.");
+frmvalidator.addValidation("TelephoneDay","req","Please enter your telephone number.");
+frmvalidator.addValidation("EmailAddress","req","Please enter your email address.");
+</script>

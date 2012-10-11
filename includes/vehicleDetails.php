@@ -76,7 +76,7 @@ function print_option_group($items, $title) {
 			$fullPrice = $item['BasicPrice'];
 			$monthlyPrice = round($fullPrice/38, 2);
 			$checked = ($selectedOptions[$item['OptionCode']] == 'selected')? ' checked' : '';		
-			print '<li><input type="checkbox" name="vehicleOptions['.$item['OptionCode'].']" id="option-'.$item['OptionCode'].'" value="'.$title.' &rsaquo; '.$item['LongDesc'].'"'.$checked.' /> <label for="option-'.$item['OptionCode'].'"><span class="option-label">'.$item['LongDesc'].'</span> <span class="option-price">&pound;'.$fullPrice.'</span></label><input type="hidden" name="vehicleOptionsPrice['.$item['OptionCode'].']" value="'. $monthlyPrice .'" /></li>';
+			print '<li><input type="checkbox" name="vehicleOptions['.$item['OptionCode'].']" id="option-'.$item['OptionCode'].'" value="'.$title.' - '.$item['LongDesc'].'"'.$checked.' /> <label for="option-'.$item['OptionCode'].'"><span class="option-label">'.$item['LongDesc'].'</span> <span class="option-price">&pound;'.$fullPrice.'</span></label><input type="hidden" name="vehicleOptionsPrice['.$item['OptionCode'].']" value="'. $monthlyPrice .'" /></li>';
 		}
 		print '</ul></div>';
 	}

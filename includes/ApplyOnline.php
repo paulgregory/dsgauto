@@ -324,7 +324,8 @@ if(!isset($did))
 				</div>
 				<div class="form-item">
 	  			<label>Derivative</label>
-					<select name="derivSelection" id="derivSelection" class="vehicleLine" <?php if(!isset($capid)) echo "disabled=\"disabled\"";?> onchange="required(this, 'combobox');">
+	
+	        <select name="derivSelection" id="derivSelection" class="vehicleLine" <?php if(!isset($capid)) echo "disabled=\"disabled\"";?> onchange="required(this, 'combobox');">
 						<option value="0">Please Select</option>
 					<?php
 						if(isset($model))
@@ -345,11 +346,7 @@ if(!isset($did))
 							{
 								$strDerivID = $rstDerivs['CAPID'];
 								$strDeriv = $rstDerivs['derivative'];
-
-								if(isset($capid) && $capid == $strDerivID)
-									$strDerivs .= "<option value=\"$strDerivID\" selected=\"selected\">$strDeriv</option>";
-								else
-									$strDerivs .= "<option value=\"$strDerivID\">$strDeriv</option>";
+								$strDerivs .= "<option value=\"$strDerivID\">$strDeriv</option>";
 							}
 							echo $strDerivs;
 						}

@@ -51,7 +51,7 @@ RewriteCond %{HTTPS} on
 RewriteCond %{REQUEST_URI} (car_leasing-business-contract_hire.*\.html)
 RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R,L,QSA]
 RewriteRule ^car_leasing-business-contract_hire\.html$ index.php?stype=deals
-RewriteRule ^car_leasing-business-contract_hire-(.+)-([0-9]+)\.html$ index.php?stype=deal&did=$2
+RewriteRule ^car_leasing-business-contract_hire-(.+)?-([0-9]+)\.html$ index.php?stype=deal&did=$2
 
 ##Specials Contracts Hire##
 #Requires No HTTPS
