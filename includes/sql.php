@@ -435,8 +435,6 @@ else {
 	$deriv_table = TBL_CAP_VAN;
 	$model_table = TBL_VANMODELS;
 }
-	
-$BrandID = str_replace('+', ' ', $BrandID);
 
 $sqlModels= 
  "SELECT 
@@ -483,8 +481,6 @@ function getCapDerivs($ModelID, $Car){
 		$tbl = TBL_CAP_CAR;
 	else
 		$tbl = TBL_CAP_VAN;
-
-	$ModelID = str_replace('+', ' ', $ModelID);
 
 	$sqlDerivs = 
 	"SELECT 

@@ -70,9 +70,9 @@ RewriteRule ^(car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\
 ##Vehicle Search ##
 #Requires No HTTPS
 RewriteCond %{HTTPS} on
-RewriteCond %{REQUEST_URI} ((car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)(/?))
+RewriteCond %{REQUEST_URI} ((car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\]\[\.]+)(/?))
 RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R,L,QSA]
-RewriteRule ^(car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\.]+)(/?)$ index.php?stype=vehiclesearch&financeType=$2&vehicleType=$1&brandSelection=$3&modelSelection=$4 [L]
+RewriteRule ^(car|van)-leasing/(personal|business)/([a-z0-9\_\-\.]+)/([a-z0-9\_\-\]\[\.]+)(/?)$ index.php?stype=vehiclesearch&financeType=$2&vehicleType=$1&brandSelection=$3&modelSelection=$4 [L]
 
 #Contact Us#
 #Requires HTTPS

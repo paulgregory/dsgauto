@@ -92,6 +92,33 @@ define("TBL_RATE_BOOK", "tblratebook");
 
 /* Utility Functions */
 
+// Encode manufacturers and models etc to make them safe for a URL
+function dsg_encode($str, $clean_up = FALSE) {
+	$return = $str;
+	// Throw away useless characters to make a neater url
+	if ($clean_up) {
+		$delete = array('[', ']', '(', ')', ',', '+');
+		$return = str_replace($delete, '', $return);
+	}
+	
+	$return = strtolower(trim($return));
+	$return = str_replace('+', '--', $return);
+	$return = str_replace('/', '__', $return);
+	$return = str_replace(' ', '_', $return);
+	
+	return $return;
+}
+
+// Decode strings previously enocoded with dsg_encode
+function dsg_decode($str) {
+	$return = strtoupper(trim($str));
+	$return = str_replace('--', '+', $return);
+	$return = str_replace('__', '/', $return);
+	$return = str_replace('_', ' ', $return);
+	
+	return $return;
+}
+
 // Provide a function to format vehicle price with VAT or not depending on the finance type
 function cap_format_price($decimal, $finance = 'business') {
 	global $VAT;
@@ -116,25 +143,26 @@ function cap_format_price($decimal, $finance = 'business') {
 function sanitiseUrlPart($part) {
 	$glue = '_';
 	$delete = array('[', ']', '(', ')', ','); // delete these characters
-	$replace = array(' ', '/', '+', '\\'); // replace these with the glue character
+	$replace = array(' ', '/', '\\'); // replace these with the glue character
 	
-	$santised = str_replace($delete, '', trim($part));
-	$santised = str_replace($replace, $glue, $santised);
-	$santised = strtolower($santised);
+	$sanitised = str_replace($delete, '', trim($part));
+	$sanitised = str_replace('+', '%2B', $sanitised);
+	$sanitised = str_replace($replace, $glue, $sanitised);
+	$sanitised = urlencode(strtolower($sanitised));
 	
-	return $santised;
+	return $sanitised;
 }
 
 // Build a readable URL for the search results page
 // EG: /car-leasing/personal/land+rover/range+rover+evoque
 function search_page_url($manufacturer, $model, $vtype = 'car', $finance = 'business') {
-	$url = $vtype.'-leasing/'.$finance.'/'.sanitiseUrlPart($manufacturer).'/'.sanitiseUrlPart($model);
+	$url = $vtype.'-leasing/'.$finance.'/'.dsg_encode($manufacturer).'/'.dsg_encode($model);
 	return $url;
 }
 
 // Build a readable URL for the vehicle detail page
 // EG: /car-leasing/personal/land+rover/range+rover+evoque/land+rover+range+rover+evoque+2.2+sd4+dynamic+3dr+auto+lux+pack/51571
 function vehicle_url($manufacturer, $model, $deriv, $capid, $vtype = 'car', $finance = 'business') {
-	$url = $vtype.'-leasing/'.$finance.'/'.sanitiseUrlPart($manufacturer).'/'.sanitiseUrlPart($model).'/'.sanitiseUrlPart($deriv).'/'.$capid;
+	$url = $vtype.'-leasing/'.$finance.'/'.dsg_encode($manufacturer).'/'.dsg_encode($model).'/'.dsg_encode($deriv, TRUE).'/'.$capid;
 	return $url;
 }

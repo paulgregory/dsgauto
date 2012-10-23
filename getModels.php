@@ -4,12 +4,14 @@ if (isset($_SESSION['dsgauto']))
 {
 	if( isset($_GET['vtype']) && isset($_GET['brandID']) )
 	{
-		$vtype = $_GET['vtype'];
-		$brandID = $_GET['brandID'];
-		$strModels = "";
 		include('includes/constants.php');
 		include('includes/sql.php');
 		include('includes/dbConnect.php');
+		
+		$vtype = $_GET['vtype'];
+		$brandID = dsg_decode($_GET['brandID']);
+		$strModels = "";
+		
 		$qryModels = "";
 		switch($vtype)
 		{
@@ -26,7 +28,7 @@ if (isset($_SESSION['dsgauto']))
 			$strModels = "Please Select:0";
 			while ($rstBrand = mysql_fetch_array($qryModels))
 			{
-				$strModelID = str_replace(' ', '+', $rstBrand['model']);
+				$strModelID = dsg_encode($rstBrand['model']);
 				$strModel = $rstBrand['model']; 
 				$strModels .= ",$strModel:$strModelID";
 			}

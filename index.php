@@ -23,7 +23,7 @@
 	
 	// Process Vehicle Search
 	$form_error = false;
-	if (isset($_POST['vehicleType'])) {
+	if (isset($_POST['stype']) && $_POST['stype'] == 'vehiclesearch') {
 		$_SESSION['search_finance_type'] = $_POST['financeType'];
 		$_SESSION['search_vehicle_type'] = $_POST['vehicleType'];
 		$_SESSION['search_brand'] = $_POST['brand'];
@@ -31,7 +31,7 @@
 		
 		// validate the post
 		if (($_POST['financeType'] == 'personal' || $_POST['financeType'] == 'business') && ($_POST['vehicleType'] == 'car' || $_POST['vehicleType'] == 'van') && $_POST['brand'] !== '0' && $_POST['modelSelection'] !== '0') {
-			$url = search_page_url($_POST['brand'], $_POST['modelSelection'], $_POST['vehicleType'], $_POST['financeType']);
+			$url = search_page_url($_POST['brand'], $_POST['modelSelection'], $_POST['vehicleType'], $_POST['financeType']);	
 			// Redirect to an aliased URL
 			header( 'Location: /'.$url);
 		}

@@ -174,7 +174,7 @@ if (count($options)) {
 					}
 					while ($rstBrand = mysql_fetch_array($qryBrand))
 					{
-						$strBrandID = str_replace(' ', '+', $rstBrand["brand"]);
+						$strBrandID = dsg_encode($rstBrand["brand"]);
 						$strBrandName = $rstBrand["brand"];
 						$strBrandList .= "<option value=\"$strBrandID\">$strBrandName</option>";
 					}
@@ -212,7 +212,7 @@ if (count($options)) {
 						if($qryModels)
 						while ($rstModels = mysql_fetch_array($qryModels))
 						{
-							$strModelID = str_replace(' ', '+', $rstModels['model']);
+							$strModelID = dsg_encode($rstModels['model']);
 							$strModel = $rstModels['model'];
 							$strModels .= "<option value=\"$strModelID\">$strModel</option>";
 						}
@@ -231,7 +231,7 @@ if (count($options)) {
 
           if ($qryVehicle && mysql_num_rows($qryVehicle)) {
 	          $vehicle = mysql_fetch_assoc($qryVehicle); 
-	          print '<input type="text" name="derivSelection" id="derivSelection" class="vehicleLine" value="'.$vehicle['derivative'].'" readonly style="border: 1px dotted #bbb" />';
+	          print '<input type="hidden" name="derivSelection" value="'.$capid.'" /><input type="text" name="derivSelectionString" id="derivSelection" class="vehicleLine" value="'.$vehicle['derivative'].'" readonly style="border: 1px dotted #bbb" />';
           }
         }
         else { ?>

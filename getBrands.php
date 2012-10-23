@@ -2,11 +2,13 @@
 session_start();
 if (isset($_GET['vtype']) && isset($_SESSION['dsgauto']))
 {
-	$vtype = $_GET['vtype'];
-	$_SESSION['vtype'] = $vtype;
 	include('includes/constants.php');
 	include('includes/sql.php');
 	include('includes/dbConnect.php');
+	
+	$vtype = $_GET['vtype'];
+	$_SESSION['vtype'] = $vtype;
+	
 	$strBrandList = "";
 	$qryBrand = "";
 	switch($vtype)
@@ -24,7 +26,7 @@ if (isset($_GET['vtype']) && isset($_SESSION['dsgauto']))
 		$strBrandList = "Please Select:0";
 		while ($rstBrand = mysql_fetch_array($qryBrand))
 		{
-			$strBrandID = str_replace(' ', '+', $rstBrand["brand"]);
+			$strBrandID = dsg_encode($rstBrand["brand"]);
 			$strBrandName = $rstBrand["brand"];
 			$strBrandList .= ",$strBrandName:$strBrandID";
 		}

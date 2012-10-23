@@ -39,10 +39,8 @@
 			}
 			while ($rstBrand = mysql_fetch_array($qryBrand))
 			{
-				$strBrandID = str_replace(' ', '+', $rstBrand["brand"]);
+				$strBrandID = dsg_encode($rstBrand["brand"]);
 				$strBrandName = $rstBrand["brand"];
-				
-				print $strBrandID["brand"].'|';
 				
 				if(isset($_SESSION['search_brand']) && $_SESSION['search_brand'] == $strBrandID)
 					$strBrandList .= "<option value=\"$strBrandID\" selected=\"selected\">$strBrandName</option>";
@@ -74,7 +72,7 @@
 				if($qryModels)
 				while ($rstModels = mysql_fetch_array($qryModels))
 				{
-					$strModelID = str_replace(' ', '+', $rstModels['model']);
+					$strModelID = dsg_encode($rstModels['model']);
 					$strModel = $rstModels['model'];
 					
 					if(isset($_SESSION['search_model']) && $_SESSION['search_model'] == $strModelID)

@@ -275,7 +275,7 @@ if(!isset($did))
 						}
 						while ($rstBrand = mysql_fetch_array($qryBrand))
 						{
-							$strBrandID = str_replace(' ', '+', $rstBrand["brand"]);
+							$strBrandID = dsg_encode($rstBrand["brand"]);
 							$strBrandName = $rstBrand["brand"];
 
 							if(isset($brand) && $brand == $rstBrand["brand"])
@@ -309,7 +309,7 @@ if(!isset($did))
 							if($qryModels)
 							while ($rstModels = mysql_fetch_array($qryModels))
 							{
-								$strModelID = str_replace(' ', '+', $rstModels['model']);
+								$strModelID = dsg_encode($rstModels['model']);
 								$strModel = $rstModels['model'];
 
 								if(isset($model) && $model == $rstModels['model'])

@@ -60,7 +60,7 @@ function getDeals() {
 						<div class=\"$class\">
 						<div class=\"dealContainer\">
 						<span class=\"description\">$strBrand $strModel $strDerivative</span>
-					<a href=\"/car_leasing-business-contract_hire-".str_replace(' ', '+', $strBrand)."-".$strDealID.".html\">
+					<a href=\"/car_leasing-business-contract_hire-".str_replace(' ', '_', $strBrand)."-".$strDealID.".html\">
 					<img class=\"carImage\" src=\"images/vehicles/$imageLoc\" title=\"$strBrand $strModel $strDerivative\" alt=\"$strBrand $strModel $strDerivative\"/>
 					</a>
 					<div class=\"price\">&pound;$monthlyPayment
@@ -68,7 +68,7 @@ function getDeals() {
 					<small>$profile1</small>
 					</div>									
 					<div class=\"buttons\">
-						<a class=\"info\" href=\"car_leasing-business-contract_hire-".str_replace(' ', '+', $strBrand)."-".$strDealID.".html\" title=\"Get more info on $strBrand $strModel $strDerivative\" >More Info</a>
+						<a class=\"info\" href=\"car_leasing-business-contract_hire-".str_replace(' ', '_', $strBrand)."-".$strDealID.".html\" title=\"Get more info on $strBrand $strModel $strDerivative\" >More Info</a>
 					<a class=\"quote\" href=\"/car_leasing-business-get_quote-$strDealID.html\" title=\"Get a quote for $strBrand $strModel $strDerivative\">Quote Now</a>
 					</div>
 					</div>

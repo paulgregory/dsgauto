@@ -4,13 +4,14 @@ if (isset($_SESSION['dsgauto']))
 {
 	if( isset($_GET['vtype']) && isset($_GET['modelID']) )
 	{
-		$vtype = $_GET['vtype'];
-		$modelID = $_GET['modelID'];
-		
-		$strDerivs = "";
 		include('includes/constants.php');
 		include('includes/sql.php');
 		include('includes/dbConnect.php');
+		
+		$vtype = $_GET['vtype'];
+		$modelID = dsg_decode($_GET['modelID']);
+		$strDerivs = "";
+		
 		$qryDerivs = "";
 		switch($vtype)
 		{
