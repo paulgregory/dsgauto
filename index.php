@@ -21,6 +21,8 @@
 	require_once('includes/sql.php');
 	require_once('includes/setTitle.php');
 	
+	$header = generateHeader();
+	
 	// Process Vehicle Search
 	$form_error = false;
 	if (isset($_POST['stype']) && $_POST['stype'] == 'vehiclesearch') {
@@ -55,9 +57,9 @@
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title><?php echo getTitle(); ?></title>
-  <meta name="description" content="Car leasing, contract hire and lease purchase for business or personal use. Cheap van and company car leasing deals on all vehicles with great service." />
-  <meta name="keywords" content="car leasing, car leasing uk, company car leasing, cheap, car lease, UK, personal, business, car finance, vehicle finance, lease cars, vehicle leasing, contract hire uk, leasing a car, leasing cars, personal car leasing, commercial vehicles, van leasing, van lease, vehicle leasing uk, contract hire, car leasing companies, renault, vauxhall, citroen, bmw" />
+  <title><?php echo $header['title']; ?></title>
+  <meta name="description" content="<?php echo $header['description']; ?>" />
+  <meta name="keywords" content="<?php echo $header['keywords']; ?>" />
   <meta name="rating" content="Safe For Kids" />
   <meta name="google-site-verification" content="vS3ghjZwpmOOqaEb6YUQj2HRtZ8EP5ofAqvT8HdyKhs" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">

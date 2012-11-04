@@ -166,3 +166,15 @@ function vehicle_url($manufacturer, $model, $deriv, $capid, $vtype = 'car', $fin
 	$url = $vtype.'-leasing/'.$finance.'/'.dsg_encode($manufacturer).'/'.dsg_encode($model).'/'.dsg_encode($deriv, TRUE).'/'.$capid;
 	return $url;
 }
+
+// Properly capitalise brand/model names, preserving some names like BMW
+function capitalise_brand($str) {
+  $preserve = array('BMW', 'LTI', 'SAAB', 'XF', 'XC90', 'Mercedes-Benz');
+  
+  $rtnStr = ucwords(strtolower($str));
+  foreach($preserve as $needle) {
+	  $rtnStr = preg_replace("/\b$needle\b/i", $needle, trim($rtnStr));
+  }
+
+	return $rtnStr;
+}

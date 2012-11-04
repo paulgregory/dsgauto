@@ -1,249 +1,153 @@
 <?php
-  function generateHeader($option)
-  {//This Function Processes User-Unfriendly URL PRIOR to printing output to generate an appropriate Page Title
-   //URL Processing involves Switch matching
-   //Option can be : 1 = Return Page Header, 2 = Return Tab Bottom Half String
-     include("dbConnect.php");
-     switch ($option)
-     {
-      case 1 : //Full Page Header
 
-           $Title = "";
-           switch ($_GET['stype'])
-                {
-                  case "deals": //These can also include deal searches, but not particular deal
-                   #$Title = $Title . "Car Leasing Deals (" . getFinanceTypeFromID($_GET['ftype']) . ")";
-                   $Title = $Title . "Contract Hire and Leasing - Special Offers (" . getFinanceTypeFromID($_GET['ftype']) . ")";
-                   //Check whether search terms have been incorporated
-                   if (isset($_GET['etype'])) //A search has been initiated
-                   {
-                        switch($_GET['etype'])
-                        {
-                            case "brand":
-                            $Title = $Title . " by Brand - " . str_replace("_", " ", $_GET['ekey']);
-                            break;
+/**
+ * Generate the Meta data for the current page
+ */
+function generateHeader() {
+	global $dbConnect;
+		
+	$t = "DSG Auto";
+	$d = "Car Leasing, Contract Hire and Van Leasing specialist for business or personal use. Competitive contract hire and car leasing deals provided throughout the UK on all makes and models.";
+	$k = "car leasing, car leasing uk, company car leasing, cheap, car lease, UK, personal, business, car finance, vehicle finance, lease cars, vehicle leasing, contract hire uk, leasing a car, leasing cars, personal car leasing, commercial vehicles, van leasing, van lease, vehicle leasing uk, contract hire, car leasing companies, renault, vauxhall, citroen, bmw";
+	
+	if(isset($_GET['stype']))
+	{
+		switch ($_GET['stype'])
+		{
+			// Home page
+			case "deals":
+				$t = "Car Leasing Deals, Contract Hire and Van Leasing from DSG Auto Contracts";
+				$d = "Car Leasing, Contract Hire and Van Leasing specialist for business or personal use.  Competitive contract hire and car leasing deals provided throughout the UK on all makes and models.";
+				break;
+				
+			// Special offers page
+			case "specials":
+				$t = "Car Leasing, Contract Hire and Van Leasing special offers from DSG Auto Contracts";
+				$d = "Special Offer Car leasing and Van Leasing deals from DSG Auto Contracts";
+				$k = "Car leasing deals, special offers, personal contract hire, business contract hire, company car leasing, cheap, car lease, car finance, vehicle leasing, personal car leasing, van leasing, van lease"; 
+				break;
+				
+			// Administration pages
+			case "admin":
+				$t = "DSG Administration";
+				$d = "DSG administration system - authorised users only";
+				$k = ""; 
+				break;
+				
+			// Contact Forms
+			case "contactus":
+				switch($_GET['level'])
+				{
+					case "phoneme":
+						$t = "Contact Us | DSG Auto Contracts";
+						break;
+					case "getquote":
+						$t = "Get A Quote | DSG Auto Contracts";
+						break;
+					case "applyonline":
+					  $t = ($_GET['type'] == 'personal')? "Personal Finance Application Form | DSG Auto Contracts" : "Business Finance Application Form | DSG Auto Contracts";
+						break;
+					case "custtest":
+						$t = "Testimonial | DSG Auto Contracts";
+						break;
+					default:
+					  $t = "Contact Us | DSG Auto Contracts";
+				}
+				break;
+				
+			// Article pages
+			case "article":
+			  $aURL = (isset($_GET['aURL'])) ? $_GET['aURL'] : 0;
+				$sql = sqlArticle($aURL);
+				$qryArticle = mysql_query($sql, $dbConnect);
+				if ($qryArticle) {
+  				while ($rstArticle = mysql_fetch_array($qryArticle)) {
+					  $t = $rstArticle['title'] . " | DSG Auto Contracts";
+					  $d = $rstArticle['title'] . " - Competitive contract hire and car leasing deals provided throughout the UK on all makes and models.";
+				  }
+			  }
+				break;
+			
+			// Deal pages
+			case "deal":
+				if(isset($_GET['did']))
+				{
+					$did = intval($_GET['did']);
+					
+					$qryVtype = mysql_query(getVehicleType($did));
+					if ($qryVtype && mysql_num_rows($qryVtype) == 1) {
+						$rstVtype = mysql_fetch_array($qryVtype);
+						$vtype = $rstVtype['vehicleType'];
+						$qryDeal = mysql_query(sqlCapDealGet($did, $vtype, 1), $dbConnect);
 
-                            case "term":
-                            $CorrectTerm = str_replace("_"," ",$_GET['ekey']); //Remove Undescore from URL Variable
-                            $Title = $Title . " by Term Length  - " . titlecase($CorrectTerm);
-                            break;
+			      if ($qryDeal && mysql_num_rows($qryDeal)) {
+				      while ($rstDeal = mysql_fetch_array($qryDeal)) {
+					     	$strVehicleID = $rstDeal["vehicleID"];
+								$strVehicleType = $rstDeal["vehicleType"];
+								$qryVehicle = mysql_query(getCapVehicle($strVehicleType ,$strVehicleID) ,$dbConnect);
+								$rstVehicle = mysql_fetch_array($qryVehicle);
+								$strBrand = $rstVehicle["brand"];
+								$strModel = $rstVehicle["model"];
+								$strDeriv = $rstVehicle["derivative"];
+								
+							  $t = $strBrand . " " . $strModel;
+							  $t = capitalise_brand($t);
+							  $t .= ($vtype == 1)? " Car Leasing Special Offer" : " Van Leasing Special Offer";
+							  $t .= " From DSG Auto Contracts";
+							  $d = capitalise_brand($strBrand . " " . $strModel . " " . $strDeriv);
+							  $d .= ($vtype == 1)? " Car Leasing Special Offer" : " Van Leasing Special Offer";
+							  $d .= " From DSG Auto Contracts. Competitive contract hire and car leasing deals provided throughout the UK on all makes and models.";
+							}
+				    }
+					}	
+				};
+				break;
+				
+      // Sitemap page
+			case "sitemap":
+				$t = "Site Map | DSG Auto Contracts";
+				break;
+				
+			// Vehicle search results
+			case "vehiclesearch":
+			  $brand = capitalise_brand(str_replace('_', ' ', (htmlspecialchars($_GET['brandSelection']))));
+			  $model = capitalise_brand(str_replace('_', ' ', (htmlspecialchars($_GET['modelSelection']))));
+			  $vtype = htmlspecialchars($_GET['vehicleType']);
+			  $vtypeUC = ucwords(htmlspecialchars($_GET['vehicleType']));
+			
+			  $brand_model = $brand . " " . $model;
+        $t = "$brand_model $vtypeUC Leasing Deals and $brand_model Contract Hire | DSG Auto Contracts";
+        $d = "$brand_model Personal or Business $vtypeUC Leasing Deals. Competitive contract hire and $vtype leasing deals provided throughout the UK on all makes and models.";
+        $k = "$brand car leasing deals, $brand contract hire, $model";
+        break;
 
-                            case "price":
-                            $Title = $Title . " by Monthly Price Range";
-                            break;
-                        }
-                   }
-                   break;
+      // Vehicle detail page
+      case "vehicledetails":
+        $capid = intval($_GET['capid']);
+			  $vtype = ($_GET['vehicleType'] == 'car')? 'car' : 'van'; // a form of query sanitisation
+			  $financeType = ($_GET['financeType'] == 'business')? 'Business finance deal' : 'Personal finance deal';
+			  $qryVehicle = mysql_query(vehicleInfoAndFinance($capid, $vtype));
+			
+			  if ($vehicle = mysql_fetch_assoc($qryVehicle)) {
+				  $brand = capitalise_brand($vehicle['Manufacturer']);
+				  $model = capitalise_brand($vehicle['ModelShort']);
+				  $deriv = $vehicle['DerivativeLong'];
+				  $vtypeUC = ucwords($vtype);
 
-                  case "deal": //$_GET['did'] WILL BE SET, So Vehicle Data Can be retreved!!
-                   //Retrieve Vehicle Info based on Deal ID value
-                   $DealID = $_GET['did'];
-                   $sqlGetDealTitle = "SELECT Concat(BrandName, ' ', VehicleModel, ' ', VehicleSpec) AS VehicleDesc, FinanceName
-                                       FROM (tblBrand
-                                       INNER JOIN tblVehicle ON tblBrand.BrandID = tblVehicle.BrandID)
-                                       INNER JOIN tblDeal ON tblVehicle.VehicleCAPID = tblDeal.VehicleCAPID
-                                       INNER JOIN tblFinance ON tblDeal.FinanceID = tblFinance.FinanceID
-                                       WHERE (((tblDeal.DealID)=$DealID))";
-                   $qryGetDealTitle = mysql_query($sqlGetDealTitle, $dbConnect);
-                   $rstGetDealTitle = mysql_fetch_array($qryGetDealTitle);
-                   $Title = $Title . "{$rstGetDealTitle['VehicleDesc']} ({$rstGetDealTitle['FinanceName']} Deal)";
-                   break;
+          $t = "$brand $model $deriv Contract Hire and $vtypeUC Leasing deal | DSG Auto Contracts";
+          $d = "$brand $model $deriv Personal or Business $vtypeUC Leasing Deal. Competitive contract hire and $vtype leasing deals provided throughout the UK on all makes and models.";
+          $k = "$brand $model $deriv $vtype leasing deal, $brand contract hire, $model";
+        }
+        break;
+		}
+	}
 
-                  case "article":  //$_GET['aURL'] WILL BE SET, So Article Data Can be retrieved
-                   $Title = $Title . "Information Zone";
-                   //Retrieve Article Title based on aURL value
-                   $articleURL = $_GET['aURL'];
-                   $sqlGetArticleTitle = "SELECT ArticleTitle FROM tblArticle WHERE ArticleURL = '$articleURL'";
-                   $qryGetArticleTitle = mysql_query($sqlGetArticleTitle, $dbConnect);
-                   $rstGetArticleTitle = mysql_fetch_array($qryGetArticleTitle);
-                   $Title = $Title . " - {$rstGetArticleTitle['ArticleTitle']}";
-                   break;
-
-                  case "contactus": //Generic "Contact New Car 4 Me" Header
-                   $Title = $Title . "Contact Us";
-                   if (isset($_GET['level'])) //if a particular type of contact has been called add extra title
-                       {
-                            switch ($_GET['level'])
-                            {
-                                case "phoneme":
-                                      $Title .= " - Request a Call";
-                                break;
-
-                                case "custtest":
-                                      $Title .= " - Submit Testimonial";
-                                break;
-
-                               case "getquote":
-                                      $Title .= " - Get a Quote";
-                                      if (isset($_GET['did']))
-                                      { //Clicked through from deal, so show vehicle
-                                        $DealID = $_GET['did'];
-                                        $sqlGetDealTitle = "SELECT Concat(BrandName, ' ', VehicleModel) AS VehicleDesc, FinanceName
-                                                              FROM (tblBrand
-                                                              INNER JOIN tblVehicle ON tblBrand.BrandID = tblVehicle.BrandID)
-                                                              INNER JOIN tblDeal ON tblVehicle.VehicleCAPID = tblDeal.VehicleCAPID
-                                                              INNER JOIN tblFinance ON tblDeal.FinanceID = tblFinance.FinanceID
-                                                              WHERE (((tblDeal.DealID)=$DealID))";
-                                          $qryGetDealTitle = mysql_query($sqlGetDealTitle, $dbConnect);
-                                          $rstGetDealTitle = mysql_fetch_array($qryGetDealTitle);
-                                          $Title = $Title . " - {$rstGetDealTitle['VehicleDesc']} ({$rstGetDealTitle['FinanceName']})";
-                                      }
-                                break;
-
-                                case "applyonline":
-                                      $Title .= " - Online Application";
-                                      if (isset($_GET['did']))
-                                      { //Clicked through from deal, so show vehicle
-                                        $DealID = $_GET['did'];
-                                          $sqlGetDealTitle = "SELECT Concat(BrandName, ' ', VehicleModel) AS VehicleDesc, FinanceName
-                                                              FROM (tblBrand
-                                                              INNER JOIN tblVehicle ON tblBrand.BrandID = tblVehicle.BrandID)
-                                                              INNER JOIN tblDeal ON tblVehicle.VehicleCAPID = tblDeal.VehicleCAPID
-                                                              INNER JOIN tblFinance ON tblDeal.FinanceID = tblFinance.FinanceID
-                                                              WHERE (((tblDeal.DealID)=$DealID))";
-                                          $qryGetDealTitle = mysql_query($sqlGetDealTitle, $dbConnect);
-                                          $rstGetDealTitle = mysql_fetch_array($qryGetDealTitle);
-                                          $Title = $Title . " - {$rstGetDealTitle['VehicleDesc']} ({$rstGetDealTitle['FinanceName']})";
-                                      }
-                                break;
-                            }
-                       }
-                   break;
-
-
-                  case "sitemap":  //Generic "Site Map" Header
-                   $Title = $Title . "Site Map";
-                   break;
-                  case "ratebook": //Generic Ratebook header
-                   $Title = $Title . "Online Quoting Facility";
-                   break;
-                  case "ratebooklist":
-                   $Title = $Title . "Models Available for Contract Hire Online Quoting";
-           }//End Switch STYPE
-           break;
-
-      case 2 : //Tab Header
-           switch ($_GET['stype'])
-                {
-                  case "deals": //These can also include deal searches, but not particular deal
-                   $Title = "Special Offers";
-                  //Check whether search terms have been incorporated
-                  if (isset($_GET['etype'])) //A search has been initiated
-                   {
-                        switch($_GET['etype'])
-                        {
-                            case "brand":
-                            $Title = str_replace("_", " ", $_GET['ekey']) . " Offers";
-                            break;
-
-                            case "term":
-                            $CorrectTerm = str_replace("_"," ",$_GET['ekey']); //Remove Undescore from URL Variable
-                            $CorrectTerm = str_replace("s","",$CorrectTerm);   // Remove 's' from MonthS.. to leave month
-                            $Title = titlecase($CorrectTerm) . " Offers";
-                            break;
-
-                            case "price":
-                            $Title = $Title . " by Budget";
-                           break;
-
-
-
-
-                        }
-                   }
-                   break;
-
-                  case "deal": //$_GET['did'] WILL BE SET, So Vehicle Data Can be retreved!!
-                   //Retrieve Vehicle Info based on Deal ID value
-                   $DealID = $_GET['did'];
-                   $sqlGetDealTitle = "SELECT Concat(BrandName, ' ', VehicleModel) AS VehicleDesc, FinanceName
-                                       FROM (tblBrand
-                                       INNER JOIN tblVehicle ON tblBrand.BrandID = tblVehicle.BrandID)
-                                       INNER JOIN tblDeal ON tblVehicle.VehicleCAPID = tblDeal.VehicleCAPID
-                                       INNER JOIN tblFinance ON tblDeal.FinanceID = tblFinance.FinanceID
-                   WHERE (((tblDeal.DealID)=$DealID))";
-                   $qryGetDealTitle = mysql_query($sqlGetDealTitle, $dbConnect);
-                   $rstGetDealTitle = mysql_fetch_array($qryGetDealTitle);
-                   $Title = $Title . "{$rstGetDealTitle['VehicleDesc']} Offer";
-                   break;
-
-                  case "article":  //$_GET['aURL'] WILL BE SET, So Article Data Can be retrieved
-                   //Retrieve Article Title based on aURL value
-                   $articleURL = $_GET['aURL'];
-                   $sqlGetArticleTitle = "SELECT ArticleTitle FROM tblArticle WHERE ArticleURL = '$articleURL'";
-                   $qryGetArticleTitle = mysql_query($sqlGetArticleTitle, $dbConnect);
-                   $rstGetArticleTitle = mysql_fetch_array($qryGetArticleTitle);
-                   $Title = $Title . "{$rstGetArticleTitle['ArticleTitle']}";
-                   break;
-
-                  case "contactus": //Note that Top half of Tab will show actual contact type... These bottom halfs should only show specific detail
-                   if (isset($_GET['level'])) //if a particular type of contact has been called add extra title
-                       {
-                            switch ($_GET['level'])
-                            {
-                                case "phoneme":
-                                      $Title .= "Customer Enquiry";
-                                break;
-
-                                case "getquote":
-                                      if (isset($_GET['did']))
-                                      { //Clicked through from deal, so show vehicle
-                                          $DealID = $_GET['did'];
-                                          $sqlGetDealTitle = "SELECT Concat(BrandName, ' ', VehicleModel) AS VehicleDesc, FinanceName
-                                                              FROM (tblBrand
-                                                              INNER JOIN tblVehicle ON tblBrand.BrandID = tblVehicle.BrandID)
-                                                              INNER JOIN tblDeal ON tblVehicle.VehicleCAPID = tblDeal.VehicleCAPID
-                                                              INNER JOIN tblFinance ON tblDeal.FinanceID = tblFinance.FinanceID
-                                                              WHERE (((tblDeal.DealID)=$DealID))";
-                                          $qryGetDealTitle = mysql_query($sqlGetDealTitle, $dbConnect);
-                                          $rstGetDealTitle = mysql_fetch_array($qryGetDealTitle);
-                                          $Title = $Title . "{$rstGetDealTitle['VehicleDesc']} Offer";
-                                      }
-                                      else
-                                      {$Title .= "Now";}
-                                break;
-
-                                case "applyonline":
-                                      if (isset($_GET['did']))
-                                      { //Clicked through from deal, so show vehicle
-                                          $DealID = $_GET['did'];
-                                          $sqlGetDealTitle = "SELECT Concat(BrandName, ' ', VehicleModel) AS VehicleDesc, FinanceName
-                                                              FROM (tblBrand
-                                                              INNER JOIN tblVehicle ON tblBrand.BrandID = tblVehicle.BrandID)
-                                                              INNER JOIN tblDeal ON tblVehicle.VehicleCAPID = tblDeal.VehicleCAPID
-                                                              INNER JOIN tblFinance ON tblDeal.FinanceID = tblFinance.FinanceID
-                                                              WHERE (((tblDeal.DealID)=$DealID))";
-                                          $qryGetDealTitle = mysql_query($sqlGetDealTitle, $dbConnect);
-                                          $rstGetDealTitle = mysql_fetch_array($qryGetDealTitle);
-                                          $Title = $Title . "{$rstGetDealTitle['VehicleDesc']} Offer";
-                                      }
-                                      else
-                                      {$Title .= "Form";}
-                                break;
-
-                                // customer testimonial tab header
-                                case "custtest":
-                                $Title .= "Submit Testimonial";
-                                break;
-
-
-
-                            }
-                   }
-                   else
-                   {$Title .= "General Enquiries";}
-                   break;
-
-                  case "contact":   //Generic "Contact New Car 4 Me - Results" Header
-                   $Title = $Title . "Contact Us - Results";
-                   break;
-
-                  case "sitemap":  //Generic "Site Map" Header
-                   $Title = $Title . "Site Map";
-                   break;
-           }//End Switch STYPE
-           break;
-     }
-     return $Title;
-  }
+	
+	// Build header array
+	$header['title'] = $t;
+	$header['description'] = $d;
+	$header['keywords'] = $k;
+	
+	return $header;
+}
 ?>
