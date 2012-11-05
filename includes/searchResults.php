@@ -77,7 +77,7 @@ if (isset($_GET['financeType']) && isset($_GET['vehicleType']) && isset($_GET['m
 				</thead>
 				<?php foreach($derivs_full as $deriv) {?>
 					<tr>
-						<td class="deriv-name"><a href="/<?php print vehicle_url($manufacturer, $model, $deriv['Derivative'], $deriv['CAPID'], $vtypeSingular, $finance); ?>"><?php print $model . ' ' . $deriv['Derivative']; ?></a></td>
+						<td class="deriv-name"><a href="/<?php print vehicle_url($manufacturer, $model, $deriv['Derivative'], $deriv['CAPID'], $vtypeSingular, $finance); ?>"><?php print $manufacturer . ' ' . $model . ' ' . $deriv['Derivative']; ?></a></td>
 						<td class="deriv-mpg subtle"><?php print $deriv['MPG']; ?></td>
 						<td class="deriv-co2 subtle"><?php print $deriv['CO2']; ?></td>
 						<td class="deriv-p11d subtle">&pound;<?php print number_format($deriv['P11D'], 2, '.', ''); ?></td>

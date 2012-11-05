@@ -130,10 +130,10 @@ RewriteRule ^car_leasing-newsletter-subscribe\.html$ http://eepurl.com/fVGTD
 RewriteCond %{HTTPS} off
 RewriteCond %{REQUEST_URI} (administration.*\.html)
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R,L,QSA]
-RewriteRule ^administration\.html$ index.php?admin=login&stype=admin
-RewriteRule ^administration-article-(.+)\.html$ index.php?admin=article&aURL=$1&stype=admin
-RewriteRule ^administration-deal-(.+)\.html$ index.php?admin=deal&did=$1&stype=admin
-RewriteRule ^administration-cardata-(.+)\.html$ index.php?admin=cardata&type=$1&stype=admin
-RewriteRule ^administration-vandata-(.+)\.html$ index.php?admin=vandata&type=$1&stype=admin
-RewriteRule ^administration-(.+)\.html$ index.php?admin=$1&stype=admin
-RewriteRule ^administration-editimages\.html$ index.php?admin=editimages&stype=admin
+RewriteRule ^administration\.html$ index.php?admin=login
+RewriteRule ^administration-article-(.+)\.html$ index.php?admin=article&aURL=$1
+RewriteRule ^administration-deal-(.+)\.html$ index.php?admin=deal&did=$1
+RewriteRule ^administration-cardata-(.+)\.html$ index.php?admin=cardata&type=$1
+RewriteRule ^administration-vandata-(.+)\.html$ index.php?admin=vandata&type=$1
+RewriteRule ^administration-(.+)\.html$ index.php?admin=$1
+RewriteRule ^administration-editimages\.html$ index.php?admin=editimages$
