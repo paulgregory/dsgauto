@@ -249,8 +249,6 @@ $sqlCapCarBrand =
 	FROM 
 	  ".TBL_CAP_CAR." AS c 
 	INNER JOIN 
-	  ".TBL_RATE_BOOK." AS r ON c.CAPID = CAP_Id 
-	INNER JOIN 
 	  ".TBL_BRANDS." AS b ON c.Manufacturer = b.brand 
 	AND
 	  b.enabled = 1
@@ -262,8 +260,6 @@ $sqlCapVanBrand =
 	  DISTINCT c.Manufacturer AS brand
 	FROM 
 	  ".TBL_CAP_VAN." AS c 
-	INNER JOIN 
-	  ".TBL_RATE_BOOK." AS r ON c.CAPID = CAP_Id 
 	INNER JOIN 
 	  ".TBL_VANBRANDS." AS b ON c.Manufacturer = b.brand 
 	AND
@@ -442,8 +438,6 @@ $sqlModels=
 	FROM 
 	  ".$deriv_table." AS c 
 	INNER JOIN 
-	  ".TBL_RATE_BOOK." AS r ON c.CAPID = CAP_Id 
-	INNER JOIN 
 	  ".$model_table." AS m ON c.ModelShort = m.model 
 	WHERE
 	  c.Manufacturer = '".$BrandID."'
@@ -488,8 +482,6 @@ function getCapDerivs($ModelID, $Car){
 	  c.CAPID
 	FROM
 		".$tbl." as c
-	INNER JOIN
-		".TBL_RATE_BOOK." AS r ON c.CAPID = r.CAP_Id 
 	WHERE
 		c.ModelShort = '$ModelID' 
 	ORDER BY
@@ -659,7 +651,7 @@ function vehicleInfoAndFinance($capid, $vtype) {
 		$tblDerivs = TBL_CAP_VAN;
 	}
 	
-	$sql = "SELECT CO2, P11D, FinanceRental, ServiceRental, EffectiveRentalValue, c.Manufacturer, ModelShort, ModelLong, DerivativeShort, DerivativeLong FROM ".$tblDerivs." AS c, tblratebook AS r ".
+	$sql = "SELECT CO2, P11D, FinanceRental, ServiceRental, EffectiveRentalValue, c.Manufacturer, ModelShort, ModelLong, DerivativeShort, DerivativeLong FROM ".$tblDerivs." AS c, ".TBL_RATE_BOOK." AS r ".
 	       "WHERE c.CAPID = '$capid' ".
 		     "AND c.CAPID = r.CAP_Id ".
 		     "AND Mileage = 10000 ".

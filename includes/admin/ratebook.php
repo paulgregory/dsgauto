@@ -50,7 +50,7 @@ if (isset($_SESSION['status']))
 
 					  // Import the csv contents in one go - using MySQL 'LOAD DATA LOCAL INFILE'
 					  $linecount = 0;
-						$loadsql = 'LOAD DATA LOCAL INFILE "'.addslashes($_FILES['ratebookFile']['tmp_name']).'" INTO TABLE tblratebook FIELDS TERMINATED BY "," OPTIONALLY ENCLOSED BY """" LINES TERMINATED BY "\r" IGNORE 1 LINES';
+						$loadsql = 'LOAD DATA LOCAL INFILE "'.addslashes($_FILES['ratebookFile']['tmp_name']).'" INTO TABLE tblratebook FIELDS TERMINATED BY "," OPTIONALLY ENCLOSED BY \'"\' LINES TERMINATED BY "\r\n" IGNORE 1 LINES';
 
 						if (!mysql_query($loadsql)) {
 							// The query has failed - throw an error
